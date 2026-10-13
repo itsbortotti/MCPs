@@ -1,0 +1,123 @@
+{
+  "mcpServers": {
+    "stripe": {
+      "type": "http",
+      "url": "https://mcp.stripe.com"
+    },
+    "postman": {
+      "type": "http",
+      "url": "https://mcp.postman.com/minimal"
+    },
+    "gitmcp": {
+      "type": "http",
+      "url": "https://gitmcp.io/docs"
+    },
+    "deepwiki": {
+      "type": "http",
+      "url": "https://mcp.deepwiki.com/mcp"
+    },
+    "asaas-docs": {
+      "url": "https://docs.asaas.com/mcp"
+    },
+    "asaas": {
+      "command": "npx",
+      "args": ["-y", "asaas-mcp"],
+      "env": {
+        "ASAAS_API_KEY": "${ASAAS_API_KEY}",
+        "ASAAS_BASE_URL": "https://api.asaas.com/v3",
+        "ASAAS_MCP_ALLOW_WRITE": "true"
+      }
+    },
+    "azure-integration": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@azure/mcp@latest",
+        "server",
+        "start",
+        "--read-only",
+        "--namespace",
+        "documentation",
+        "--namespace",
+        "subscription",
+        "--namespace",
+        "group",
+        "--namespace",
+        "functionapp",
+        "--namespace",
+        "servicebus",
+        "--namespace",
+        "monitor",
+        "--namespace",
+        "applicationinsights",
+        "--namespace",
+        "cosmos",
+        "--namespace",
+        "postgres",
+        "--namespace",
+        "redis",
+        "--namespace",
+        "keyvault",
+        "--namespace",
+        "storage",
+        "--namespace",
+        "resourcehealth",
+        "--namespace",
+        "role"
+      ]
+    },
+    "github": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-p",
+        "127.0.0.1:8085:8085",
+        "-e",
+        "GITHUB_OAUTH_CALLBACK_PORT",
+        "ghcr.io/github/github-mcp-server"
+      ],
+      "env": {
+        "GITHUB_OAUTH_CALLBACK_PORT": "8085"
+      }
+    },
+    "ado": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@azure-devops/mcp",
+        "totvstfs",
+        "--authentication",
+        "azcli"
+      ]
+    },
+    "jira-totvs": {
+      "command": "uvx",
+      "args": ["mcp-atlassian"],
+      "env": {
+        "JIRA_URL": "https://jiraproducao.totvs.com.br",
+        "JIRA_PERSONAL_TOKEN": "${JIRA_PERSONAL_TOKEN}",
+        "JIRA_CUSTOM_HEADERS": "User-Agent=Mozilla/5.0"
+      }
+    },
+    "render": {
+      "url": "https://mcp.render.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${RENDER_API_KEY}"
+      }
+    },
+    "n8n-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "n8n-mcp"],
+      "env": {
+        "MCP_MODE": "stdio",
+        "LOG_LEVEL": "error",
+        "DISABLE_CONSOLE_OUTPUT": "true",
+        "N8N_API_URL": "${N8N_API_URL}",
+        "N8N_API_KEY": "${N8N_API_KEY}"
+      }
+    }
+  }
+}
