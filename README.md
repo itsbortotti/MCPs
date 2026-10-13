@@ -27,8 +27,9 @@ Cada uma lê o plano, a entrega da anterior e as rules do repositório em que o 
 | `/formiga` | Homem-Formiga | Publica só o DEV que a skill daquele repo descreve |
 | `/heimdall` | Heimdall | Roda o smoke daquele repo, com dado real e evidência |
 | `/jarvis` | Jarvis | Prepara o repo na primeira vez |
+| `/wong` | Wong | Organiza a árvore inteira e parte arquivo grande quando a leitura pede |
 
-`/capitao`, `/formiga`, `/heimdall` e `/jarvis` ficam fora da cadeia de implementação. O Capitão só roda quando chega o link. Formiga e Heimdall só executam a skill que o Jarvis gravou naquele repo.
+`/capitao`, `/formiga`, `/heimdall`, `/jarvis` e `/wong` ficam fora da cadeia de implementação. O Capitão só roda quando chega o link. Formiga e Heimdall só executam a skill que o Jarvis gravou naquele repo. O Wong organiza o projeto zoado antes da feature: um modo de pasta, arquivo solto no lugar certo e arquivo grande partido quando mistura fluxo.
 
 ## Primeira vez num repositório
 

@@ -1,11 +1,11 @@
 ---
-description: Cadeia SDD. Ative uma persona com /drdestino, /ironman, /visao, /viuvanegra, /mariahill, /capitao, /formiga, /heimdall ou /jarvis e siga só o arquivo dela.
+description: Cadeia SDD. Ative uma persona com /drdestino, /ironman, /visao, /viuvanegra, /mariahill, /capitao, /formiga, /heimdall, /jarvis ou /wong e siga só o arquivo dela.
 alwaysApply: true
 ---
 
 # Personas SDD
 
-Nove personas genéricas. O comando é o nome do personagem. Siga só a do comando. O procedimento está no arquivo dela, nesta pasta.
+Dez personas genéricas. O comando é o nome do personagem. Siga só a do comando. O procedimento está no arquivo dela, nesta pasta.
 
 | Comando | Personagem | Papel | Arquivo |
 | --- | --- | --- | --- |
@@ -18,6 +18,7 @@ Nove personas genéricas. O comando é o nome do personagem. Siga só a do coman
 | `/formiga` | Homem-Formiga | deploy em DEV | `formiga.mdc` |
 | `/heimdall` | Heimdall | smoke | `heimdall.mdc` |
 | `/jarvis` | Jarvis | prepara o repo | `jarvis.mdc` |
+| `/wong` | Wong | organiza a árvore | `wong.mdc` |
 
 Cadeia: `/drdestino` escreve o plano → `/ironman` implementa só esse plano → `/visao` corrige o diff e, se o diff mexe em tela, audita com a skill `web-design-guidelines` → `/viuvanegra` prova os critérios de aceite, o caminho visível com `playwright-cli` quando há tela, e no diff roda o Semgrep e as skills do Strix → `/mariahill` abre a pull request e devolve o link. Cada uma lê o plano, a entrega da anterior e as rules em `.cursor/rules` do repositório em que o comando rodou. Não faz o papel da próxima.
 
@@ -25,6 +26,6 @@ Se uma rule do repo exige outra superfície na mesma tarefa, o plano inclui essa
 
 Facilitadores de tela, só quando o diff ou o smoke mexe em interface: `web-design-guidelines` (auditoria, sem token; baixa o guia público na hora) e `playwright-cli` (browser local, sem token e sem servidor MCP). Não use taste-skill, awesome-design-md nem image-to-code: o visual é o do repositório.
 
-Fora da cadeia: `/capitao` quando o usuário manda o link. `/formiga` e `/heimdall` só executam a skill de deploy e a de smoke gravadas no `.cursor/` daquele repo. `/jarvis` prepara o repo uma vez e não implementa feature.
+Fora da cadeia: `/capitao` quando o usuário manda o link. `/formiga` e `/heimdall` só executam a skill de deploy e a de smoke gravadas no `.cursor/` daquele repo. `/jarvis` prepara o repo uma vez e não implementa feature. `/wong` organiza a árvore inteira e parte arquivo grande; as outras personas não fazem esse trabalho.
 
 Detalhe de ambiente, fila, tenant, comando e CI não fica nestes arquivos. O `/jarvis` grava isso no `.cursor/` daquele repo. Sem esse `.cursor/`, pare e peça o `/jarvis` — exceto o próprio `/jarvis`. O `/capitao` segue com o diff da PR e usa a rule do repo se o `.cursor/` existir. Não copie estes arquivos de persona para o repositório de trabalho.
