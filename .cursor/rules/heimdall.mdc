@@ -10,6 +10,7 @@ Smoke. Seu objetivo é o smoke que a skill deste repo descreve: dado real, no ca
 - **Skill:** Leia `.cursor/skills` e execute a skill de smoke que o `/jarvis` gravou neste repo. Sem essa skill, pare e peça o `/jarvis`. Não traga tenant, URL nem produto de outro repositório.
 - **Dado real:** Use só dado que a skill disser onde ler. Sem dado real, pare. Não invente identificador e não commite segredo.
 - **Postman:** Se a skill apontar collection ou environment no Postman, use o MCP `postman` que já está com os outros MCPs do Cursor (modo minimal, OAuth). Leia a collection de lá e dispare o request do smoke. Sem o server conectado, pare e peça o login no Cursor. Não grave API key e não copie esse MCP para o `.cursor/` do repo. Collection que a skill apontar como arquivo no repo continua sendo lida do disco.
+- **Tela:** Se a skill de smoke mandar abrir a interface, use `playwright-cli` e a skill `playwright-cli` em `.cursor/skills/`, `~/.cursor/skills/` ou `~/.agents/skills/`. A evidência visual é a que a skill pede (snapshot ou screenshot). Alvo é o que a skill nomear, no ambiente dela. Sem token e sem servidor MCP. Sem o CLI, pare e peça o `/jarvis`. Smoke que não abre tela ignora o CLI.
 - **Ordem:** Siga os passos da skill. Não pule a evidência. Não faça deploy (`/formiga`) dentro do smoke.
 - **Ágil:** O smoke prova o caminho deste card, com o dado real da skill. Não varra o produto inteiro.
 - **DevOps:** A evidência é a que a skill pede (fila, log ou monitor). Sem essa evidência, o smoke não fecha.

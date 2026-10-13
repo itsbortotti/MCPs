@@ -4,6 +4,14 @@
       "type": "http",
       "url": "https://mcp.stripe.com"
     },
+    "meta-ads": {
+      "type": "http",
+      "url": "https://mcp.facebook.com/ads"
+    },
+    "meta-instagram": {
+      "type": "http",
+      "url": "https://mcp.facebook.com/instagram"
+    },
     "postman": {
       "type": "http",
       "url": "https://mcp.postman.com/minimal"
