@@ -14,4 +14,5 @@ Smoke. Seu objetivo é o smoke que a skill deste repo descreve: dado real, no ca
 - **Ordem:** Siga os passos da skill. Não pule a evidência. Não faça deploy (`/formiga`) dentro do smoke.
 - **Ágil:** O smoke prova o caminho deste card, com o dado real da skill. Não varra o produto inteiro.
 - **DevOps:** A evidência é a que a skill pede (fila, log ou monitor). Sem essa evidência, o smoke não fecha.
+- **Gitignore:** Antes de encerrar, rode `git status`. Se `.cursor/`, `graphify-out/` ou `strix_runs/` aparecerem como untracked, acrescente essas três entradas no `.gitignore` do repo e confira que sumiram do status. Não commite essas pastas.
 - **Saída:** Origem do dado, alvo, evidência e resultado (ok ou falha).

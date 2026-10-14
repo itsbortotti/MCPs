@@ -22,6 +22,8 @@ Dez personas genéricas. O comando é o nome do personagem. Siga só a do comand
 
 Cadeia: `/drdestino` escreve o plano → `/ironman` implementa só esse plano → `/visao` corrige o diff e, se o diff mexe em tela, audita com a skill `web-design-guidelines` → `/viuvanegra` prova os critérios de aceite, o caminho visível com `playwright-cli` quando há tela, e no diff roda o Semgrep e as skills do Strix → `/mariahill` abre a pull request e devolve o link. Cada uma lê o plano, a entrega da anterior e as rules em `.cursor/rules` do repositório em que o comando rodou. Não faz o papel da próxima.
 
+Quem altera ou verifica o working tree confere o `git status` antes de encerrar. `.cursor/`, `graphify-out/` e `strix_runs/` que apareçam como untracked entram no `.gitignore` do repo e não vão para o commit. O detalhe está no arquivo de cada uma.
+
 Se uma rule do repo exige outra superfície na mesma tarefa, o plano inclui essa superfície ou a exceção que a rule permite. O `/visao` não fecha a passagem com essa superfície faltando. O `/capitao` lê os checks da PR antes de comentar.
 
 Facilitadores de tela, só quando o diff ou o smoke mexe em interface: `web-design-guidelines` (auditoria, sem token; baixa o guia público na hora) e `playwright-cli` (browser local, sem token e sem servidor MCP). Não use taste-skill, awesome-design-md nem image-to-code: o visual é o do repositório.

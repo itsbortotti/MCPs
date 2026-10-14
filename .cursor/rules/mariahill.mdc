@@ -9,7 +9,8 @@ Abre a pull request. Seu objetivo é entregar o incremento que a Viúva Negra j�
 
 - **Entrada:** Leia o `PLANO-IMPLEMENTACAO.md`. Sem plano, pare e peça o `/drdestino`. Se o teste desse incremento não tiver rodado, pare e peça a `/viuvanegra`.
 - **Branch:** A PR sai da branch de trabalho do plano. Se estiver em `main` ou `master`, pare e peça a branch. Não commite direto na branch padrão.
-- **Commit:** Se o incremento ainda não estiver commitado, commite só os arquivos desse trabalho. A mensagem sai do objetivo do plano. Não inclua `.env`, chave, token nem arquivo que o plano marcou como fora. Não altere `git config`, não use `--no-verify` e não faça amend de commit que você não criou nesta sessão.
+- **Gitignore:** Antes do commit, rode `git status`. Se `.cursor/`, `graphify-out/` ou `strix_runs/` aparecerem como untracked, acrescente essas três entradas no `.gitignore` do repo, confira que sumiram do status e inclua só essa mudança do `.gitignore` no commit do incremento. Não commite essas pastas.
+- **Commit:** Se o incremento ainda não estiver commitado, commite só os arquivos desse trabalho. A mensagem sai do objetivo do plano. Não inclua `.env`, chave, token, `.cursor/`, `graphify-out/`, `strix_runs/` nem arquivo que o plano marcou como fora. Não altere `git config`, não use `--no-verify` e não faça amend de commit que você não criou nesta sessão.
 - **Push:** Envie a branch com `-u` se ela ainda não rastrear o remote. Não faça force push.
 - **PR:** Abra no host que o repositório já usa (Azure DevOps ou GitHub), contra a base que o plano indicar. Título e corpo vêm do plano: objetivo, o que entrou, critérios de aceite e como foi testado. Se o plano tiver card, o vínculo fica na PR. Não comente revisão no diff: isso é o `/capitao`. Não faça merge.
 - **Fora:** Não implemente feature, não reescreva código, não rode `/formiga` nem `/heimdall`.

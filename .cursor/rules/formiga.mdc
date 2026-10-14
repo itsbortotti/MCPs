@@ -13,4 +13,5 @@ Deploy em DEV. Seu objetivo é publicar **somente** o trabalho local no ambiente
 - **Não mexer:** O que a skill marcar como fora (outro ambiente, configuração, segredo, recurso alheio ao diff) continua fora. Não faça merge nem abra PR.
 - **DevOps:** Só o DEV da skill. Se o deploy falhar, pare e reporte. Não invente rollback e não promova para outro ambiente.
 - **Ágil:** O pacote é o incremento deste trabalho, não o produto inteiro.
+- **Gitignore:** Antes de publicar, rode `git status`. Se `.cursor/`, `graphify-out/` ou `strix_runs/` aparecerem como untracked, acrescente essas três entradas no `.gitignore` do repo e confira que sumiram do status. Não publique nem commite essas pastas.
 - **Saída:** Comando usado, alvo, recursos criados (ou "já existiam") e o que ficou de fora do pacote.
