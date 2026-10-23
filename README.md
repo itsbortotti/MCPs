@@ -276,6 +276,9 @@ O Semgrep MCP **não** está neste `mcp.json`: o `/jarvis` grava no `.cursor/mcp
 | Script | Função |
 | --- | --- |
 | `scripts/apply-to-cursor.sh` | Copia `mcp.json` → `~/.cursor/mcp.json` substituindo `${VAR}` pelo `.env` |
+| `scripts/load-env.sh` | `source` — exporta o `.env` no shell atual (Strix / LLM) |
+| `scripts/with-env.sh` | Roda um comando já com o `.env` exportado |
+| `scripts/strix-env-check.sh` | Confere `STRIX_LLM` + chave LLM (só SET/UNSET) |
 | `scripts/azure-login.sh` | Abre `az login` e lista subscriptions |
 | `scripts/extrair-trecho-lei.py` | Baixa um Markdown do acervo ctresb/leis e imprime cabeçalho/artigo (usado pelo `/demolidor`) |
 | `scripts/check-chamado-harness.sh` | Gate de chamado: estrutura (SPEC/PLANO/TASKS) e `--before-pr` (prova/paridade) |

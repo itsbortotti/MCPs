@@ -8,6 +8,8 @@ ENV_FILE="${ROOT}/.env"
 
 mkdir -p "${HOME}/.cursor"
 
+# Carrega .env (ASAAS/JIRA/… para mcp.json e também STRIX_LLM / LLM_API_KEY / OPENAI_API_KEY).
+# Para scans Strix no shell, use: source scripts/load-env.sh  ou  ./scripts/with-env.sh <cmd>
 if [[ -f "${ENV_FILE}" ]]; then
   # shellcheck disable=SC1090
   set -a
