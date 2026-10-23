@@ -1,6 +1,8 @@
 # MCPs
 
-Configuração do Cursor para desenvolver com spec-driven: os servidores MCP ficam neste repositório, e cada persona sabe o que fazer quando o comando dela é chamado.
+Configuração do Cursor para desenvolver com **Spec-Driven Design próprio** (personas Marvel + `chamados/`): os servidores MCP ficam neste repositório, e cada persona sabe o que fazer quando o comando dela é chamado. Harness = guides + tools + sensors + gates + artefatos (ver seção abaixo).
+
+**[Como usar](MANUAL.md)** — playbook: cole no chat, confira o disco, próximo comando (simulações negócio→dev e task pequena).
 
 São duas partes.
 
@@ -42,16 +44,57 @@ Cada agent aponta para a rule correspondente; o procedimento completo fica em `.
 
 | Domínio | Rules | Agents | Artefatos no chamado |
 | --- | --- | --- | --- |
-| Engenharia | `.cursor/rules/engenharia/` | `.cursor/agents/engenharia/` | `PLANO-IMPLEMENTACAO.md`, `sdd/handoff/` |
+| Engenharia | `.cursor/rules/engenharia/` | `.cursor/agents/engenharia/` | `SPEC.md`, `PLANO-IMPLEMENTACAO.md`, `TASKS.md`, `sdd/handoff/` |
 | Negócio | `.cursor/rules/negocio/` | `.cursor/agents/negocio/` | `PLANO-NEGOCIO.md`, `negocio/handoff/` |
 
+## Spec-Driven + Harness (completo)
+
+**SDD próprio** com personas Marvel em `chamados/`. Alinhado ao espírito do [Spec Kit](https://github.com/github/spec-kit) (`specify → plan → tasks → implement → verify`), **sem** substituir o fluxo pelo Spec Kit CLI.
+
+| Camada | O que é neste repo |
+| --- | --- |
+| Guides | Rules e agents em `.cursor/` (personas + `handoff.mdc`) |
+| Tools | MCP (`mcp.json`), skills do `/jarvis`, scripts em `scripts/` |
+| Sensors | `/visao`, `/viuvanegra` (grader = testes de aceite commitados), `/falcao`, Semgrep, Strix |
+| Gates | `Status:` nos handoffs + `scripts/check-chamado-harness.sh` (`--before-pr` na Maria Hill) |
+| Artifacts | Pasta local `chamados/<id>-<slug>/` (só `_template` no git) |
+| Bootstrap | `/jarvis` no repo de produto |
+| Eval (opcional) | `scripts/eval-harness-smoke.sh` |
+
+Fluxo de arquivos:
+
+```text
+SPEC.md  →  PLANO-IMPLEMENTACAO.md  →  TASKS.md
+                ↓
+         sdd/handoff/entrega.md  →  revisao.md  →  [paridade.md]
+                ↓
+              prova.md  →  check --before-pr  →  PR
+```
+
+Anti reward-hacking: a Viúva committa os testes de aceite com a prova; o Iron Man **não** os enfraquece para ficar verde — lacuna de plano → `/drdestino`.
+
+```bash
+# estrutura (SPEC + PLANO + TASKS)
+./scripts/check-chamado-harness.sh chamados/<NUMERO>-<slug>
+
+# prontidão de PR (prova ok; paridade se superfície dupla)
+./scripts/check-chamado-harness.sh --before-pr chamados/<NUMERO>-<slug>
+
+# smoke do harness (deve ficar verde)
+./scripts/eval-harness-smoke.sh
+```
+
 ## Chamados (tickets)
+
+Chamados reais ficam só na máquina; só `_template` vai pro git.
 
 Planos e handoffs **não** ficam na raiz. Cada ticket tem uma pasta:
 
 ```
 chamados/<NUMERO>-<slug-do-nome>/
-  PLANO-IMPLEMENTACAO.md      # engenharia (/drdestino)
+  SPEC.md                     # engenharia — o quê / aceite (/drdestino)
+  PLANO-IMPLEMENTACAO.md      # engenharia — como no repo (/drdestino → /ironman)
+  TASKS.md                    # engenharia — checklist ordenado (/drdestino → /ironman)
   PLANO-NEGOCIO.md            # negócio (/pepper)
   sdd/handoff/...             # engenharia
   negocio/handoff/...         # negócio
@@ -71,24 +114,24 @@ Ou no corpo: `Ticket: 1234` e `Nome: …`.
 
 Exceções sem ticket: `/jarvis` (bootstrap), `/capitao` (só link da PR), `/wong`, `/demolidor`. `/formiga` e `/heimdall` pedem ticket quando o trabalho é de um chamado.
 
-Plano legado migrado: `chamados/001-migrado-busca-estabelecimentos/`. Não há `PLANO-IMPLEMENTACAO.md` na raiz — o contrato vive só na pasta do chamado.
+Plano legado migrado: `chamados/001-migrado-busca-estabelecimentos/` (só PLANO — ver README lá). Chamados novos: `chamados/_template/`. Não há contrato na raiz do MCPs.
 
 ## Cadeia — Engenharia
 
-`/drdestino` cria a pasta do chamado e escreve o plano → `/ironman` implementa e grava `sdd/handoff/entrega.md` nessa pasta → `/visao` corrige o diff, grava `revisao.md` e, se houver tela, audita com `web-design-guidelines` → `/falcao` (depois do `/visao`, **antes** da `/viuvanegra`, quando a rule ou o plano pede outra superfície; sem superfície dupla, skippable) grava `paridade.md` → `/viuvanegra` prova o aceite, grava `prova.md`, e no diff roda Semgrep e Strix → `/mariahill` abre a pull request e devolve o link. Se superfície dupla for obrigatória e não houver `paridade.md` com `Status: ok`, Maria Hill para e pede `/falcao`.
+`/drdestino` cria a pasta e escreve `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `TASKS.md` → `/ironman` implementa por id de task e grava `sdd/handoff/entrega.md` → `/visao` corrige o diff, grava `revisao.md` e, se houver tela, audita com `web-design-guidelines` → `/falcao` (depois do `/visao`, **antes** da `/viuvanegra`, quando a rule ou o SPEC/plano pede outra superfície; sem superfície dupla, skippable) grava `paridade.md` → `/viuvanegra` prova o aceite do **SPEC**, grava `prova.md`, e no diff roda Semgrep e Strix → `/mariahill` roda `check-chamado-harness.sh --before-pr` e abre a pull request. Se superfície dupla for obrigatória e não houver `paridade.md` com `Status: ok`, Maria Hill para e pede `/falcao`.
 
-**Contexto mínimo — uma etapa atrás.** Cada persona lê só os paths da tabela em `.cursor/rules/engenharia/handoff.mdc` (plano + handoff da etapa anterior; no máximo um opcional). Não abre a pasta `sdd/handoff/` inteira. Se `Status:` da anterior ≠ `ok`, para. Rules do repo de produto entram à parte. Não faz o papel da próxima.
+**Contexto mínimo — uma etapa atrás.** Cada persona lê só os paths da tabela em `.cursor/rules/engenharia/handoff.mdc` (SPEC/PLANO/TASKS conforme a tabela + handoff da etapa anterior; no máximo um opcional). Não abre a pasta `sdd/handoff/` inteira. Se `Status:` da anterior ≠ `ok`, para. Rules do repo de produto entram à parte. Não faz o papel da próxima.
 
 Esqueleto de pasta: `chamados/README.md` e `chamados/_template/`.
 
 | Comando | Personagem | Faz |
 | --- | --- | --- |
-| `/drdestino` | Dr. Destino | Cria `chamados/<NUMERO>-<slug>/` e planeja o `PLANO-IMPLEMENTACAO.md` antes de código |
-| `/ironman` | Iron Man | Implementa só o plano dessa pasta e grava `sdd/handoff/entrega.md` |
+| `/drdestino` | Dr. Destino | Cria `chamados/<NUMERO>-<slug>/` e escreve SPEC + PLANO + TASKS antes de código |
+| `/ironman` | Iron Man | Implementa PLANO + TASKS e grava `sdd/handoff/entrega.md` |
 | `/visao` | Visão | Revisa o diff, corrige até uma passagem limpa e, em tela, audita com `web-design-guidelines` |
 | `/falcao` | Falcão | Matriz e score de paridade entre superfícies (ex.: web↔mobile); grava `paridade.md` |
-| `/viuvanegra` | Viúva Negra | Prova o aceite, o caminho visível com `playwright-cli` quando há tela, e procura falha no diff |
-| `/mariahill` | Maria Hill | Abre a PR do incremento e devolve o link |
+| `/viuvanegra` | Viúva Negra | Prova o aceite do SPEC, o caminho visível com `playwright-cli` quando há tela, e procura falha no diff |
+| `/mariahill` | Maria Hill | Gate harness `--before-pr`, abre a PR e devolve o link |
 | `/capitao` | Capitão América | Lê os checks da PR, comenta no arquivo e na linha, e só publica depois de um "pode mandar" |
 | `/formiga` | Homem-Formiga | Publica só o DEV que a skill daquele repo descreve |
 | `/heimdall` | Heimdall | Roda o smoke daquele repo, com dado real e evidência |
@@ -106,6 +149,9 @@ Dentro de `chamados/<NUMERO>-<slug>/`:
 
 | Arquivo | Quem escreve |
 | --- | --- |
+| `SPEC.md` | `/drdestino` |
+| `PLANO-IMPLEMENTACAO.md` | `/drdestino` |
+| `TASKS.md` | `/drdestino` (cria); `/ironman` marca ids |
 | `sdd/handoff/entrega.md` | `/ironman` |
 | `sdd/handoff/revisao.md` | `/visao` |
 | `sdd/handoff/prova.md` | `/viuvanegra` |
@@ -113,9 +159,9 @@ Dentro de `chamados/<NUMERO>-<slug>/`:
 | `sdd/handoff/duelo.md` | `/loki` |
 | `sdd/handoff/recon.md` | `/shuri` |
 
-Seções fixas na rule `.cursor/rules/engenharia/handoff.mdc`.
+Seções fixas na rule `.cursor/rules/engenharia/handoff.mdc`. Stubs com `Status: pendente` em `chamados/_template/`.
 
-**Por que vários arquivos (e não um `HANDOFF.md` único):** cada persona lê só o handoff nomeado da anterior; `Status:` na primeira linha útil é o gate; caps de tamanho e “sem dump de log” mantêm o arquivo pequeno. Sem índice `STATUS.md` extra — a tabela de leitura basta. Detalhe na rule `engenharia/handoff.mdc`.
+**Por que vários arquivos (e não um `HANDOFF.md` único):** cada persona lê só o handoff nomeado da anterior; `Status:` na primeira linha útil é o gate; caps de tamanho e “sem dump de log” mantêm o arquivo pequeno. Sem índice `STATUS.md` extra — a tabela de leitura + `check-chamado-harness.sh` bastam. Detalhe na rule `engenharia/handoff.mdc`.
 
 ## Cadeia — Negócio / produto
 
@@ -141,7 +187,7 @@ Exemplo:
 /ultron 5678 Oferta mensal oficinas
 ```
 
-Seções fixas e tabela de leitura estrita na rule `negocio/handoff-negocio.mdc` (contexto mínimo — uma etapa atrás). Se depois houver implementação, use o mesmo número e nome com `/drdestino` e `PLANO-IMPLEMENTACAO.md`.
+Seções fixas e tabela de leitura estrita na rule `negocio/handoff-negocio.mdc` (contexto mínimo — uma etapa atrás). Se depois houver implementação, use o mesmo número e nome com `/drdestino` e `SPEC` / `PLANO` / `TASKS`.
 
 ## Primeira vez num repositório
 
@@ -232,6 +278,8 @@ O Semgrep MCP **não** está neste `mcp.json`: o `/jarvis` grava no `.cursor/mcp
 | `scripts/apply-to-cursor.sh` | Copia `mcp.json` → `~/.cursor/mcp.json` substituindo `${VAR}` pelo `.env` |
 | `scripts/azure-login.sh` | Abre `az login` e lista subscriptions |
 | `scripts/extrair-trecho-lei.py` | Baixa um Markdown do acervo ctresb/leis e imprime cabeçalho/artigo (usado pelo `/demolidor`) |
+| `scripts/check-chamado-harness.sh` | Gate de chamado: estrutura (SPEC/PLANO/TASKS) e `--before-pr` (prova/paridade) |
+| `scripts/eval-harness-smoke.sh` | Smoke do harness (template + cenários temp); deve ficar verde |
 
 ## Aplicar no Cursor
 

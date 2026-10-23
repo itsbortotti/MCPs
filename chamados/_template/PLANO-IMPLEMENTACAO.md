@@ -3,24 +3,26 @@
 - Ticket: <NUMERO>
 - Repo:
 - Branch:
+- Spec: SPEC.md
+- Tasks: TASKS.md
 
 ## Objetivo
 
-## Escopo
-
-## Fora de escopo
+## Como no repo (arquitetura)
 
 ## Situação atual
-
-## Critérios de aceite
 
 ## Decisões
 
 ## Etapas
 
+<!-- Cada etapa mapeia a ids em TASKS.md (T1, T2…). Aceite detalhado fica em SPEC.md. -->
+
 ## Superfícies
 
 <!-- n/a | web+mobile (ou outro par) | exceção permitida pela rule -->
+
+## Fora de escopo
 
 ## Checklist
 

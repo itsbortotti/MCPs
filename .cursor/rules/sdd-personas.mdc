@@ -14,7 +14,9 @@ Duas cadeias neste repositório. O comando é o nome do personagem. Siga **só**
 
 Este arquivo (`sdd-personas.mdc`) fica na **raiz** de `.cursor/rules/` com `alwaysApply: true` — é o índice. O contrato de handoff da engenharia fica em `engenharia/handoff.mdc` (não ao lado deste índice); o de negócio permanece em `negocio/handoff-negocio.mdc`. Procedimentos das personas ficam em `engenharia/` e `negocio/`. Cursor carrega rules em subpastas de `.cursor/rules/` (ex.: `engenharia/drdestino.mdc`). Não copie personas para o repositório de produto.
 
-**Contexto mínimo — uma etapa atrás.** Cada persona lê só os paths da tabela em `engenharia/handoff.mdc` / `handoff-negocio.mdc` (plano + handoff da etapa anterior, no máximo um opcional). Não abra a pasta de handoffs inteira. Se `Status:` da anterior ≠ `ok`, pare.
+**Contexto mínimo — uma etapa atrás.** Cada persona lê só os paths da tabela em `engenharia/handoff.mdc` / `handoff-negocio.mdc` (artefatos da etapa + handoff da anterior, no máximo um opcional). Não abra a pasta de handoffs inteira. Se `Status:` da anterior ≠ `ok`, pare.
+
+**SDD próprio:** specify (`SPEC.md`) → plan (`PLANO-IMPLEMENTACAO.md`) → tasks (`TASKS.md`) → implement → verify. Espírito Spec Kit; **não** é o toolkit Spec Kit CLI. Personas Marvel permanecem.
 
 ## Chamado (ticket)
 
@@ -22,11 +24,12 @@ Quem pede trabalho para **qualquer** cadeia (engenharia ou negócio) **passa nú
 
 - **Como passar:** `/drdestino 1234 Busca estabelecimentos` ou `/pepper 1234 Plano de assinatura` — ou no corpo: `Ticket: 1234` e `Nome: …`.
 - **Pasta:** `chamados/<NUMERO>-<slug-do-nome>/` na raiz deste repositório (MCPs). Slug: minúsculas, sem acento, espaços → hífen.
-- **Conteúdo engenharia:** `PLANO-IMPLEMENTACAO.md`, `sdd/handoff/*`.
+- **Conteúdo engenharia:** `SPEC.md`, `PLANO-IMPLEMENTACAO.md`, `TASKS.md`, `sdd/handoff/*`.
 - **Conteúdo negócio:** `PLANO-NEGOCIO.md`, `negocio/handoff/*`.
 - Os dois podem coexistir no mesmo chamado se o ticket tiver produto e código — arquivos separados.
-- **Primeira ação** de quem inicia: criar a pasta se faltar; ler e escrever **só** dentro dela.
-- Planos antigos na raiz não são o contrato. Migração de exemplo: `chamados/001-migrado-busca-estabelecimentos/`.
+- **Primeira ação** de quem inicia: criar a pasta se faltar (stubs em `chamados/_template/`); ler e escrever **só** dentro dela.
+- Planos antigos na raiz não são o contrato. Migração de exemplo: `chamados/001-migrado-busca-estabelecimentos/` (só PLANO legado — ver README lá).
+- **Gate:** `./scripts/check-chamado-harness.sh` (estrutura) e `--before-pr` (Maria Hill). Smoke: `./scripts/eval-harness-smoke.sh`.
 
 ### Exceções (pasta do chamado)
 
@@ -44,12 +47,12 @@ Quem pede trabalho para **qualquer** cadeia (engenharia ou negócio) **passa nú
 
 | Comando | Personagem | Papel | Arquivo |
 | --- | --- | --- | --- |
-| `/drdestino` | Dr. Destino | planejador | `engenharia/drdestino.mdc` |
-| `/ironman` | Iron Man | codificador | `engenharia/ironman.mdc` |
+| `/drdestino` | Dr. Destino | planejador (SPEC + PLANO + TASKS) | `engenharia/drdestino.mdc` |
+| `/ironman` | Iron Man | codificador (PLANO + TASKS) | `engenharia/ironman.mdc` |
 | `/visao` | Visão | revisor | `engenharia/visao.mdc` |
 | `/falcao` | Falcão | paridade de superfícies | `engenharia/falcao.mdc` |
-| `/viuvanegra` | Viúva Negra | tester | `engenharia/viuvanegra.mdc` |
-| `/mariahill` | Maria Hill | abre a PR | `engenharia/mariahill.mdc` |
+| `/viuvanegra` | Viúva Negra | tester (aceite do SPEC) | `engenharia/viuvanegra.mdc` |
+| `/mariahill` | Maria Hill | abre a PR (+ gate harness) | `engenharia/mariahill.mdc` |
 | `/capitao` | Capitão América | validador de PR | `engenharia/capitao.mdc` |
 | `/formiga` | Homem-Formiga | deploy em DEV | `engenharia/formiga.mdc` |
 | `/heimdall` | Heimdall | smoke | `engenharia/heimdall.mdc` |
@@ -59,11 +62,11 @@ Quem pede trabalho para **qualquer** cadeia (engenharia ou negócio) **passa nú
 | `/loki` | Loki | duelo adversarial leve | `engenharia/loki.mdc` |
 | `/shuri` | Shuri | reverse engineering com REA | `engenharia/shuri.mdc` |
 
-Cadeia: `/drdestino` escreve `chamados/<NUMERO>-<slug>/PLANO-IMPLEMENTACAO.md` → `/ironman` implementa e grava `sdd/handoff/entrega.md` → `/visao` corrige o diff, grava `revisao.md` e, se houver tela, audita com `web-design-guidelines` → `/falcao` (depois do `/visao`, **antes** da `/viuvanegra`) quando a rule do repo ou o plano exige outra superfície (ou sob pedido), grava `paridade.md` — sem superfície dupla, Falcão é skippable → `/viuvanegra` prova o aceite, com `playwright-cli` se houver tela, Semgrep e Strix no diff, grava `prova.md` → `/mariahill` abre a PR (se superfície dupla for obrigatória e não houver `paridade.md` com `Status: ok`, Maria Hill para e pede `/falcao`). Cada uma lê **só** os paths da tabela em `.cursor/rules/engenharia/handoff.mdc` (e as rules do repo de produto). Não faz o papel da próxima.
+Cadeia: `/drdestino` escreve `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `TASKS.md` → `/ironman` implementa por task id e grava `sdd/handoff/entrega.md` → `/visao` corrige o diff, grava `revisao.md` e, se houver tela, audita com `web-design-guidelines` → `/falcao` (depois do `/visao`, **antes** da `/viuvanegra`) quando a rule do repo ou o SPEC/plano exige outra superfície (ou sob pedido), grava `paridade.md` — sem superfície dupla, Falcão é skippable → `/viuvanegra` prova o aceite do **SPEC**, com `playwright-cli` se houver tela, Semgrep e Strix no diff, grava `prova.md` (testes de aceite = grader) → `/mariahill` roda `check-chamado-harness.sh --before-pr` e abre a PR (se superfície dupla for obrigatória e não houver `paridade.md` com `Status: ok`, Maria Hill para e pede `/falcao`). Cada uma lê **só** os paths da tabela em `.cursor/rules/engenharia/handoff.mdc` (e as rules do repo de produto). Não faz o papel da próxima.
 
 Quem altera o working tree confere o `git status` antes de encerrar. `.cursor/`, `graphify-out/` e `strix_runs/` untracked entram no `.gitignore` do repo de produto e não vão para o commit.
 
-Se uma rule do repo exige outra superfície na mesma tarefa, o plano inclui essa superfície ou a exceção que a rule permite. O `/visao` não fecha com ela faltando. O `/falcao` quantifica o gap. A `/mariahill` exige `paridade.md` com `Status: ok` quando a superfície dupla for obrigatória. O `/capitao` lê os checks da PR antes de comentar.
+Se uma rule do repo exige outra superfície na mesma tarefa, o SPEC/plano inclui essa superfície ou a exceção que a rule permite. O `/visao` não fecha com ela faltando. O `/falcao` quantifica o gap. A `/mariahill` exige `paridade.md` com `Status: ok` quando a superfície dupla for obrigatória. O `/capitao` lê os checks da PR antes de comentar.
 
 Facilitadores de tela: `web-design-guidelines` e `playwright-cli`. Não use taste-skill, awesome-design-md nem image-to-code.
 
@@ -85,4 +88,4 @@ Mini-cadeia **separada** da SDD de código. Mesma pasta de chamado; artefatos em
 
 Fluxo sugerido: `/fury` → `/pepper` → `/banner` e `/hope` (podem em paralelo após o plano v1) → `/ultron` → Pepper reforça se o painel pedir. Handoffs: rule `negocio/handoff-negocio.mdc` — mesma regra de contexto mínimo (uma etapa atrás).
 
-Se depois do plano de negócio houver implementação, use o **mesmo** número e nome com `/drdestino` e o `PLANO-IMPLEMENTACAO.md` — não misture critérios de código no `PLANO-NEGOCIO.md`.
+Se depois do plano de negócio houver implementação, use o **mesmo** número e nome com `/drdestino` e os artefatos `SPEC` / `PLANO` / `TASKS` — não misture critérios de código no `PLANO-NEGOCIO.md`.

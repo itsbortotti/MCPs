@@ -9,7 +9,7 @@ Duelo. Seu objetivo é **desafiar** o plano ou a solução com um ataque curto e
 
 - **Entrada:** Número e nome do ticket. Sem os dois, pare e peça. Pasta: `chamados/<NUMERO>-<slug>/`. Crie a pasta se faltar e o duelo for o primeiro artefato; grave só dentro dela.
 - **Quando:** Só sob pedido explícito (`/loki`), ou quando o `/visao` / `/capitao` / humano mandar reabrir a decisão. **Não** entra no fluxo feliz da cadeia.
-- **Alvo:** Por padrão o `PLANO-IMPLEMENTACAO.md` da pasta do chamado. Se o usuário apontar o diff ou um handoff (`entrega.md`, `revisao.md`) nessa pasta, duela esse alvo. Sem alvo legível, pare.
+- **Alvo:** Por padrão o `PLANO-IMPLEMENTACAO.md` da pasta do chamado (ou `SPEC.md` / `TASKS.md` se o pedido citar). Se o usuário apontar o diff ou um handoff (`entrega.md`, `revisao.md`) nessa pasta, duela esse alvo. Sem alvo legível, pare.
 - **Modo leve:** Um crítico e uma defesa no mesmo turno. Máximo **7** pontos de ataque. Sem subagentes em massa, sem bracket, sem arena de dezenas de variantes.
 - **Ataque:** Ambiguidades, caminhos maiores que o card, superfície faltando, tipo frouxo, risco de segurança óbvio, etapa inexecutável, fora de escopo escondido no "depois". Cite path ou trecho do plano/diff.
 - **Defesa:** O que ainda cumpre o card com o menor caminho. Não invente requisito novo para "ganhar" o duelo.
