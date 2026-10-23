@@ -1,0 +1,139 @@
+---
+description: Contrato de handoff tipado da cadeia de negócio/produto. Cada persona escreve um arquivo canónico; a seguinte só lê esse arquivo e o plano de negócio — tudo dentro da pasta do chamado.
+alwaysApply: false
+---
+
+# Handoff tipado — Negócio
+
+Cada persona **escreve** só o seu arquivo. A seguinte lê **apenas** os paths da tabela de leitura abaixo — não reinterpreta o chat.
+
+**Contexto mínimo — uma etapa atrás.** Não abra a pasta `negocio/handoff/` inteira nem handoffs laterais “por garantia”.
+
+## Pasta do chamado
+
+```
+chamados/<NUMERO>-<slug-do-nome>/
+  PLANO-NEGOCIO.md
+  negocio/handoff/discovery.md
+  negocio/handoff/financeiro.md
+  negocio/handoff/gtm.md
+  negocio/handoff/painel.md
+```
+
+- Paths **relativos à pasta do chamado**. Crie `negocio/handoff/` se faltar.
+- Engenharia: `sdd/handoff/`; negócio: `negocio/handoff/`. Não misture contratos no mesmo arquivo.
+
+## Contrato de leitura (estrito)
+
+Só estes paths. Proibido: listar/ler todos os arquivos de `negocio/handoff/`; reler tudo “por garantia”.
+
+Gate: leia primeiro a linha `Status:` do handoff exigido. Se `Status` ≠ `ok`, **pare** (exceto `/pepper` ao absorver `painel.md` com veredito de reabrir).
+
+| Comando | Paths permitidos (só estes) |
+| --- | --- |
+| `/fury` | Nenhum handoff prévio (fontes do pedido). Escreve `discovery.md`. |
+| `/pepper` | `negocio/handoff/discovery.md` se existir. Ao reforçar: `PLANO-NEGOCIO.md` + **um** de `painel.md` / `financeiro.md` / `gtm.md` (o que o pedido citar). |
+| `/banner` | `PLANO-NEGOCIO.md` se existir; senão `negocio/handoff/discovery.md` — **não os dois** por garantia. |
+| `/hope` | `PLANO-NEGOCIO.md`; opcional **um**: `discovery.md` **ou** `financeiro.md`. |
+| `/ultron` | `PLANO-NEGOCIO.md`; opcional **um**: `discovery.md` **ou** `financeiro.md` **ou** `gtm.md`. |
+
+Chat não substitui arquivo. Sem o path exigido, pare e peça a persona que falta.
+
+## Contrato de escrita
+
+- Sobrescreve **só o seu** arquivo. Nunca append noutro.
+- Seções curtas. Caps:
+  - `discovery.md`: voz do cliente ≤ 10 itens; critérios em bullets curtos.
+  - `financeiro.md`: 3 cenários redondos; sem planilha longa.
+  - `gtm.md`: headline + suporte; poucos canais.
+  - `painel.md`: 3–5 arquetipos; ≤ 7 objeções fortes.
+  - `PLANO-NEGOCIO.md`: seções do contrato; sem dump de pesquisa.
+- **Não cole log inteiro / dump de entrevista** — evidência mínima com fonte/path.
+
+| Arquivo | Quem escreve |
+| --- | --- |
+| `negocio/handoff/discovery.md` | `/fury` |
+| `PLANO-NEGOCIO.md` | `/pepper` |
+| `negocio/handoff/financeiro.md` | `/banner` |
+| `negocio/handoff/gtm.md` | `/hope` |
+| `negocio/handoff/painel.md` | `/ultron` |
+
+## Status na primeira linha útil
+
+```markdown
+# Handoff — <papel>
+
+Status: ok | bloqueado | gap
+
+- Plano: path do `PLANO-NEGOCIO.md`, ou `n/a` se ainda não existir
+- Chamado: <NUMERO> — <nome>
+- Persona: <comando>
+- Data: <ISO date>
+```
+
+`bloqueado` ou `gap` impede a próxima de seguir como pronto. Detalhe em **Bloqueios**.
+
+(`PLANO-NEGOCIO.md` não usa esse cabeçalho de handoff; é o contrato da Pepper.)
+
+## Seções por arquivo
+
+### `discovery.md` (Nick Fury)
+
+1. **Fontes** — com data.
+2. **Voz do cliente** — máx. 10.
+3. **Jobs / dores**
+4. **Critérios** — testáveis.
+5. **Não-problemas**
+6. **Bloqueios** — vazio se `ok`.
+
+### `PLANO-NEGOCIO.md` (Pepper Potts)
+
+Cabeçalho (chamado, produto, horizonte) + :
+
+1. **Objetivo**
+2. **Problema e ICP**
+3. **Oferta**
+4. **Posicionamento**
+5. **Modelo**
+6. **Go-to-market**
+7. **Riscos**
+8. **Próximos passos**
+9. **Fora de escopo**
+
+### `financeiro.md` (Banner)
+
+1. **Hipótese de preço**
+2. **Unit economics** — marcar estimativa.
+3. **Cenários** — conservador / base / otimista.
+4. **Riscos financeiros**
+5. **Decisão pedida**
+6. **Bloqueios**
+
+### `gtm.md` (Hope van Dyne)
+
+1. **Mensagem**
+2. **Canais**
+3. **Lançamento** — pré / dia 0 / pós.
+4. **Prova social**
+5. **Não fazer**
+6. **Bloqueios**
+
+### `painel.md` (Ultron)
+
+1. **Personas de comprador** — 3 a 5.
+2. **Objeções** — ≤ 7 fortes no total.
+3. **Falhas da oferta**
+4. **O que sobrevive**
+5. **Veredito** — segue | reforça plano | volta ao `/pepper`.
+6. **Bloqueios**
+
+## Por que vários arquivos
+
+Igual à engenharia (`engenharia/handoff.mdc`): um arquivo por persona; Banner e Hope podem escrever em paralelo. Sem índice `STATUS.md` extra — tabela de leitura + `Status:` bastam.
+
+## Regras
+
+- Não invente seção → `n/a`.
+- Handoff não substitui o `PLANO-NEGOCIO.md`.
+- Sem critérios de engenharia nestes arquivos.
+- Não commite segredo nem dado sensível de cliente.

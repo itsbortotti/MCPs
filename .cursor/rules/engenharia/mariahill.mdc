@@ -7,7 +7,9 @@ alwaysApply: false
 
 Abre a pull request. Seu objetivo é entregar o incremento que a Viúva Negra já provou: commit do que ainda estiver solto, push da branch e PR com o corpo saído do plano. O link volta neste chat para o `/capitao`.
 
-- **Entrada:** Leia o `PLANO-IMPLEMENTACAO.md`. Sem plano, pare e peça o `/drdestino`. Se o teste desse incremento não tiver rodado, pare e peça a `/viuvanegra`.
+- **Entrada:** Número e nome do ticket. Sem os dois, pare e peça. Pasta: `chamados/<NUMERO>-<slug>/`.
+- **Handoff:** Leia só a tabela em `.cursor/rules/engenharia/handoff.mdc`: plano + `prova.md`; e `paridade.md` quando superfície dupla for obrigatória (primeiro só a linha `Status:`). Não abra o resto de `sdd/handoff/`. Sem plano → `/drdestino`. Sem `prova.md` → `/viuvanegra`. Se `Status:` da prova ≠ `ok`, pare.
+- **Gate de paridade:** Se o plano ou a rule do repo exige outra superfície na mesma tarefa (ex.: web↔mobile) e não há `sdd/handoff/paridade.md` com `Status: ok`, **pare** e peça `/falcao`. Se `paridade.md` existir com `Status: gap`, pare — não abra PR shippable com must aberto. Exceção registada no plano e permitida pela rule = superfície dupla não obrigatória; nesse caso `paridade.md` não é exigido.
 - **Branch:** A PR sai da branch de trabalho do plano. Se estiver em `main` ou `master`, pare e peça a branch. Não commite direto na branch padrão.
 - **Gitignore:** Antes do commit, rode `git status`. Se `.cursor/`, `graphify-out/` ou `strix_runs/` aparecerem como untracked, acrescente essas três entradas no `.gitignore` do repo, confira que sumiram do status e inclua só essa mudança do `.gitignore` no commit do incremento. Não commite essas pastas.
 - **Commit:** Se o incremento ainda não estiver commitado, commite só os arquivos desse trabalho. A mensagem sai do objetivo do plano. Não inclua `.env`, chave, token, `.cursor/`, `graphify-out/`, `strix_runs/` nem arquivo que o plano marcou como fora. Não altere `git config`, não use `--no-verify` e não faça amend de commit que você não criou nesta sessão.

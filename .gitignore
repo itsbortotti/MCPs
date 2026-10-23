@@ -1,1 +1,13 @@
 .env
+.DS_Store
+
+# dumps / evidências locais em chamados (não ignore .md)
+chamados/**/screens/
+chamados/**/*.png
+chamados/**/*.jpg
+chamados/**/*.jpeg
+chamados/**/*.webp
+chamados/**/*.gif
+
+# runs locais de ferramentas
+strix_runs/

@@ -1,33 +1,88 @@
 ---
-description: Cadeia SDD. Ative uma persona com /drdestino, /ironman, /visao, /viuvanegra, /mariahill, /capitao, /formiga, /heimdall, /jarvis ou /wong e siga só o arquivo dela.
+description: Índice das personas. Engenharia (SDD) e Negócio/produto. Ative uma com o comando dela e siga só o arquivo correspondente. Todo trabalho de ticket exige número e nome e vive em chamados/<NUMERO>-<slug>/.
 alwaysApply: true
 ---
 
-# Personas SDD
+# Personas — Engenharia e Negócio
 
-Dez personas genéricas. O comando é o nome do personagem. Siga só a do comando. O procedimento está no arquivo dela, nesta pasta.
+Duas cadeias neste repositório. O comando é o nome do personagem. Siga **só** a do comando. Não misture papéis.
+
+| Domínio | Pasta das rules | Pasta dos agents | Handoff |
+| --- | --- | --- | --- |
+| Engenharia (SDD + facilitadores) | `.cursor/rules/engenharia/` | `.cursor/agents/engenharia/` | `engenharia/handoff.mdc` → `sdd/handoff/` |
+| Negócio / produto | `.cursor/rules/negocio/` | `.cursor/agents/negocio/` | `negocio/handoff-negocio.mdc` → `negocio/handoff/` |
+
+Este arquivo (`sdd-personas.mdc`) fica na **raiz** de `.cursor/rules/` com `alwaysApply: true` — é o índice. O contrato de handoff da engenharia fica em `engenharia/handoff.mdc` (não ao lado deste índice); o de negócio permanece em `negocio/handoff-negocio.mdc`. Procedimentos das personas ficam em `engenharia/` e `negocio/`. Cursor carrega rules em subpastas de `.cursor/rules/` (ex.: `engenharia/drdestino.mdc`). Não copie personas para o repositório de produto.
+
+**Contexto mínimo — uma etapa atrás.** Cada persona lê só os paths da tabela em `engenharia/handoff.mdc` / `handoff-negocio.mdc` (plano + handoff da etapa anterior, no máximo um opcional). Não abra a pasta de handoffs inteira. Se `Status:` da anterior ≠ `ok`, pare.
+
+## Chamado (ticket)
+
+Quem pede trabalho para **qualquer** cadeia (engenharia ou negócio) **passa número e nome do ticket**. Sem os dois, a persona para e pede.
+
+- **Como passar:** `/drdestino 1234 Busca estabelecimentos` ou `/pepper 1234 Plano de assinatura` — ou no corpo: `Ticket: 1234` e `Nome: …`.
+- **Pasta:** `chamados/<NUMERO>-<slug-do-nome>/` na raiz deste repositório (MCPs). Slug: minúsculas, sem acento, espaços → hífen.
+- **Conteúdo engenharia:** `PLANO-IMPLEMENTACAO.md`, `sdd/handoff/*`.
+- **Conteúdo negócio:** `PLANO-NEGOCIO.md`, `negocio/handoff/*`.
+- Os dois podem coexistir no mesmo chamado se o ticket tiver produto e código — arquivos separados.
+- **Primeira ação** de quem inicia: criar a pasta se faltar; ler e escrever **só** dentro dela.
+- Planos antigos na raiz não são o contrato. Migração de exemplo: `chamados/001-migrado-busca-estabelecimentos/`.
+
+### Exceções (pasta do chamado)
+
+| Comando | Ticket obrigatório? |
+| --- | --- |
+| Cadeia engenharia (`/drdestino` … `/mariahill`), `/falcao`, `/loki`, `/shuri` | Sim — número e nome |
+| Cadeia negócio (`/fury`, `/pepper`, `/banner`, `/hope`, `/ultron`) | Sim — número e nome |
+| `/formiga`, `/heimdall` | Sim, se o deploy/smoke for de um chamado. Sem ticket no pedido, peça número e nome |
+| `/capitao` | Não, se só houver link da PR. Ticket opcional para amarrar ao chamado |
+| `/jarvis` | Não — bootstrap do repo |
+| `/wong` | Não — organiza a árvore do produto |
+| `/demolidor` | Não — só consulta norma |
+
+## Engenharia
 
 | Comando | Personagem | Papel | Arquivo |
 | --- | --- | --- | --- |
-| `/drdestino` | Dr. Destino | planejador | `drdestino.mdc` |
-| `/ironman` | Iron Man | codificador | `ironman.mdc` |
-| `/visao` | Visão | revisor | `visao.mdc` |
-| `/viuvanegra` | Viúva Negra | tester | `viuvanegra.mdc` |
-| `/mariahill` | Maria Hill | abre a PR | `mariahill.mdc` |
-| `/capitao` | Capitão América | validador de PR | `capitao.mdc` |
-| `/formiga` | Homem-Formiga | deploy em DEV | `formiga.mdc` |
-| `/heimdall` | Heimdall | smoke | `heimdall.mdc` |
-| `/jarvis` | Jarvis | prepara o repo | `jarvis.mdc` |
-| `/wong` | Wong | organiza a árvore | `wong.mdc` |
+| `/drdestino` | Dr. Destino | planejador | `engenharia/drdestino.mdc` |
+| `/ironman` | Iron Man | codificador | `engenharia/ironman.mdc` |
+| `/visao` | Visão | revisor | `engenharia/visao.mdc` |
+| `/falcao` | Falcão | paridade de superfícies | `engenharia/falcao.mdc` |
+| `/viuvanegra` | Viúva Negra | tester | `engenharia/viuvanegra.mdc` |
+| `/mariahill` | Maria Hill | abre a PR | `engenharia/mariahill.mdc` |
+| `/capitao` | Capitão América | validador de PR | `engenharia/capitao.mdc` |
+| `/formiga` | Homem-Formiga | deploy em DEV | `engenharia/formiga.mdc` |
+| `/heimdall` | Heimdall | smoke | `engenharia/heimdall.mdc` |
+| `/jarvis` | Jarvis | prepara o repo | `engenharia/jarvis.mdc` |
+| `/wong` | Wong | organiza a árvore | `engenharia/wong.mdc` |
+| `/demolidor` | Demolidor | lê a norma em ctresb/leis | `engenharia/demolidor.mdc` |
+| `/loki` | Loki | duelo adversarial leve | `engenharia/loki.mdc` |
+| `/shuri` | Shuri | reverse engineering com REA | `engenharia/shuri.mdc` |
 
-Cadeia: `/drdestino` escreve o plano → `/ironman` implementa só esse plano → `/visao` corrige o diff e, se o diff mexe em tela, audita com a skill `web-design-guidelines` → `/viuvanegra` prova os critérios de aceite, o caminho visível com `playwright-cli` quando há tela, e no diff roda o Semgrep e as skills do Strix → `/mariahill` abre a pull request e devolve o link. Cada uma lê o plano, a entrega da anterior e as rules em `.cursor/rules` do repositório em que o comando rodou. Não faz o papel da próxima.
+Cadeia: `/drdestino` escreve `chamados/<NUMERO>-<slug>/PLANO-IMPLEMENTACAO.md` → `/ironman` implementa e grava `sdd/handoff/entrega.md` → `/visao` corrige o diff, grava `revisao.md` e, se houver tela, audita com `web-design-guidelines` → `/falcao` (depois do `/visao`, **antes** da `/viuvanegra`) quando a rule do repo ou o plano exige outra superfície (ou sob pedido), grava `paridade.md` — sem superfície dupla, Falcão é skippable → `/viuvanegra` prova o aceite, com `playwright-cli` se houver tela, Semgrep e Strix no diff, grava `prova.md` → `/mariahill` abre a PR (se superfície dupla for obrigatória e não houver `paridade.md` com `Status: ok`, Maria Hill para e pede `/falcao`). Cada uma lê **só** os paths da tabela em `.cursor/rules/engenharia/handoff.mdc` (e as rules do repo de produto). Não faz o papel da próxima.
 
-Quem altera ou verifica o working tree confere o `git status` antes de encerrar. `.cursor/`, `graphify-out/` e `strix_runs/` que apareçam como untracked entram no `.gitignore` do repo e não vão para o commit. O detalhe está no arquivo de cada uma.
+Quem altera o working tree confere o `git status` antes de encerrar. `.cursor/`, `graphify-out/` e `strix_runs/` untracked entram no `.gitignore` do repo de produto e não vão para o commit.
 
-Se uma rule do repo exige outra superfície na mesma tarefa, o plano inclui essa superfície ou a exceção que a rule permite. O `/visao` não fecha a passagem com essa superfície faltando. O `/capitao` lê os checks da PR antes de comentar.
+Se uma rule do repo exige outra superfície na mesma tarefa, o plano inclui essa superfície ou a exceção que a rule permite. O `/visao` não fecha com ela faltando. O `/falcao` quantifica o gap. A `/mariahill` exige `paridade.md` com `Status: ok` quando a superfície dupla for obrigatória. O `/capitao` lê os checks da PR antes de comentar.
 
-Facilitadores de tela, só quando o diff ou o smoke mexe em interface: `web-design-guidelines` (auditoria, sem token; baixa o guia público na hora) e `playwright-cli` (browser local, sem token e sem servidor MCP). Não use taste-skill, awesome-design-md nem image-to-code: o visual é o do repositório.
+Facilitadores de tela: `web-design-guidelines` e `playwright-cli`. Não use taste-skill, awesome-design-md nem image-to-code.
 
-Fora da cadeia: `/capitao` quando o usuário manda o link. `/formiga` e `/heimdall` só executam a skill de deploy e a de smoke gravadas no `.cursor/` daquele repo. `/jarvis` prepara o repo uma vez e não implementa feature. `/wong` organiza a árvore inteira e parte arquivo grande; as outras personas não fazem esse trabalho.
+Fora da cadeia feliz: `/capitao` com o link; `/formiga` e `/heimdall` só com a skill do repo; `/jarvis` bootstrap; `/wong` árvore; `/demolidor` norma em https://github.com/ctresb/leis; `/loki` duelo; `/shuri` REA → `recon.md` para o `/drdestino`.
 
-Detalhe de ambiente, fila, tenant, comando e CI não fica nestes arquivos. O `/jarvis` grava isso no `.cursor/` daquele repo. Sem esse `.cursor/`, pare e peça o `/jarvis` — exceto o próprio `/jarvis`. O `/capitao` segue com o diff da PR e usa a rule do repo se o `.cursor/` existir. Não copie estes arquivos de persona para o repositório de trabalho.
+Detalhe de ambiente, fila, tenant, comando e CI não fica nestes arquivos. O `/jarvis` grava isso no `.cursor/` daquele repo. Sem esse `.cursor/`, pare e peça o `/jarvis` — exceto o próprio `/jarvis`. **Jarvis não copia** estas personas para o repo de produto: a convenção de `chamados/` e as personas vivem neste repositório (MCPs).
+
+## Negócio / produto
+
+Mini-cadeia **separada** da SDD de código. Mesma pasta de chamado; artefatos em `PLANO-NEGOCIO.md` e `negocio/handoff/`.
+
+| Comando | Personagem | Papel | Arquivo |
+| --- | --- | --- | --- |
+| `/fury` | Nick Fury | discovery / voz do cliente | `negocio/fury.mdc` |
+| `/pepper` | Pepper Potts | plano de negócio (único markdown) | `negocio/pepper.mdc` |
+| `/banner` | Banner | unit economics / pricing / risco | `negocio/banner.mdc` |
+| `/hope` | Hope van Dyne | GTM / launch / messaging | `negocio/hope.mdc` |
+| `/ultron` | Ultron | painel leve de compradores | `negocio/ultron.mdc` |
+
+Fluxo sugerido: `/fury` → `/pepper` → `/banner` e `/hope` (podem em paralelo após o plano v1) → `/ultron` → Pepper reforça se o painel pedir. Handoffs: rule `negocio/handoff-negocio.mdc` — mesma regra de contexto mínimo (uma etapa atrás).
+
+Se depois do plano de negócio houver implementação, use o **mesmo** número e nome com `/drdestino` e o `PLANO-IMPLEMENTACAO.md` — não misture critérios de código no `PLANO-NEGOCIO.md`.

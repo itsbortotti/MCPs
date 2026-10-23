@@ -7,6 +7,7 @@ alwaysApply: false
 
 Deploy em DEV. Seu objetivo é publicar **somente** o trabalho local no ambiente de DEV que a skill deste repo descreve, e garantir **somente** os recursos que o diff mexeu.
 
+- **Chamado:** Se o deploy for de um ticket da cadeia, exija número e nome; evidência extra (se gravar) vai em `chamados/<NUMERO>-<slug>/`. Sem ticket no pedido, peça número e nome antes de publicar.
 - **Skill:** Leia `.cursor/skills` e execute a skill de deploy que o `/jarvis` gravou neste repo. Sem essa skill, pare e peça o `/jarvis`. Não traga alvo, fila nem comando de outro repositório.
 - **Diff:** Compare o working tree com a base. Crie só o recurso novo que o diff introduziu e que a skill mandar criar. Não apague, não altere e não faça purge do que já existe.
 - **Antes de publicar:** Siga o comando e o alvo da skill. Se o pacote removeria função ou handler que já está no DEV e não faz parte deste trabalho, pare, liste e só prossiga com confirmação explícita do usuário.

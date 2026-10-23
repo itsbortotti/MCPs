@@ -1,0 +1,167 @@
+---
+description: Contrato de handoff tipado entre personas SDD. Fica em .cursor/rules/engenharia/handoff.mdc. Cada persona escreve um arquivo canónico; a seguinte só lê esse arquivo e o plano — tudo dentro da pasta do chamado. Negócio usa negocio/handoff-negocio.mdc.
+alwaysApply: false
+---
+
+# Handoff tipado (engenharia)
+
+Contrato compartilhado da cadeia SDD — vive em `.cursor/rules/engenharia/handoff.mdc` (não na raiz ao lado de `sdd-personas.mdc`).
+
+Cada persona **escreve** só o seu arquivo. A seguinte lê **apenas** os paths da tabela de leitura abaixo — não reinterpreta o card nem o chat. Handoffs de produto: `negocio/handoff-negocio.mdc`.
+
+**Contexto mínimo — uma etapa atrás.** Não abra a pasta `sdd/handoff/` inteira nem handoffs laterais “por garantia”.
+
+## Pasta do chamado
+
+```
+chamados/<NUMERO>-<slug-do-nome>/
+  PLANO-IMPLEMENTACAO.md
+  sdd/handoff/entrega.md
+  sdd/handoff/revisao.md
+  sdd/handoff/paridade.md   # /falcao — após revisao, antes da prova (se superfície dupla)
+  sdd/handoff/prova.md
+  sdd/handoff/duelo.md
+  sdd/handoff/recon.md
+```
+
+- **Slug:** minúsculas, sem acento, espaços → hífen.
+- Paths **relativos à pasta do chamado**. Crie `sdd/handoff/` se faltar.
+- Não use README, TODO, ADR ou `STATUS.md` no lugar destes arquivos.
+- Um ticket = uma pasta.
+
+## Contrato de leitura (estrito)
+
+Só estes paths entram como input de handoff/plano. Proibido: listar/ler todos os arquivos de `sdd/handoff/`; reler etapas antigas além da tabela; abrir handoff de outra persona “só para contexto”.
+
+Gate: leia primeiro a linha `Status:` do handoff da etapa anterior. Se `Status` ≠ `ok`, **pare** — não leia o corpo nem siga a cadeia (exceto quem a tabela marca para tratar `gap`/`bloqueado`).
+
+| Comando | Paths permitidos (só estes) |
+| --- | --- |
+| `/drdestino` | Escreve o plano. Opcional: `sdd/handoff/recon.md` **ou** `sdd/handoff/duelo.md` (o que o pedido citar; se os dois existirem e o pedido não citar, só o mais recente por data no cabeçalho). |
+| `/ironman` | `PLANO-IMPLEMENTACAO.md` |
+| `/visao` | `PLANO-IMPLEMENTACAO.md` + `sdd/handoff/entrega.md` |
+| `/falcao` | `PLANO-IMPLEMENTACAO.md` + `sdd/handoff/revisao.md` (depois do `/visao`, antes da `/viuvanegra`; skippable sem superfície dupla) |
+| `/viuvanegra` | `PLANO-IMPLEMENTACAO.md` + `sdd/handoff/revisao.md` |
+| `/mariahill` | `PLANO-IMPLEMENTACAO.md` + `sdd/handoff/prova.md`; se plano/rule exige superfície dupla: `paridade.md` com `Status: ok` (obrigatório — sem isso pare e peça `/falcao`; se `gap`, leia **Bloqueios** e pare). Sem superfície dupla obrigatória: `paridade.md` não é exigido. |
+| `/loki` | Um alvo: `PLANO-IMPLEMENTACAO.md` **ou** o handoff que o usuário apontar (`entrega.md` / `revisao.md`) |
+| `/shuri` | Nenhum handoff prévio (alvo do pedido + rule). Escreve `recon.md`. |
+
+Rules do repo de produto (`.cursor/rules` daquele repo), skills e o diff/código do trabalho **não** são handoff — fora desta tabela, mas necessários ao papel. Chat não substitui arquivo canónico.
+
+Sem o handoff exigido na tabela, pare e peça a persona que falta.
+
+## Contrato de escrita
+
+- Cada persona **sobrescreve só o seu** arquivo (tabela abaixo). Nunca edita nem faz append noutro handoff.
+- Seções curtas; bullets. Caps sugeridos:
+  - `entrega.md`: **Paths tocados** ≤ 40 linhas; resto ≤ ~8 bullets por seção.
+  - `revisao.md`: **Corrigido** ≤ 15 linhas.
+  - `prova.md`: tabela de critérios enxuta; comando + resultado em 1–3 linhas.
+  - `paridade.md`: matriz só dos must/should do plano.
+  - `duelo.md`: **Ataque** ≤ 7 pontos.
+  - `recon.md`: evidência mínima (fato + path/símbolo); **não** cole log inteiro nem dump REA.
+- Em qualquer handoff: **não cole log inteiro / dump REA** — só evidência mínima com path (e 1–2 linhas de trecho se inevitável).
+
+| Arquivo | Quem escreve |
+| --- | --- |
+| `PLANO-IMPLEMENTACAO.md` | `/drdestino` |
+| `sdd/handoff/entrega.md` | `/ironman` |
+| `sdd/handoff/revisao.md` | `/visao` |
+| `sdd/handoff/prova.md` | `/viuvanegra` |
+| `sdd/handoff/paridade.md` | `/falcao` |
+| `sdd/handoff/duelo.md` | `/loki` |
+| `sdd/handoff/recon.md` | `/shuri` |
+
+## Status na primeira linha útil
+
+Todo handoff começa assim (a linha `Status:` vem **logo após** o título — gate sem ler o corpo):
+
+```markdown
+# Handoff — <papel>
+
+Status: ok | bloqueado | gap
+
+- Plano: path do `PLANO-IMPLEMENTACAO.md`
+- Chamado: <NUMERO> — <nome>
+- Repo: <nome>
+- Branch: <nome>
+- Persona: <comando>
+- Data: <ISO date>
+```
+
+`bloqueado` ou `gap` impede a próxima de seguir como se estivesse pronto. Detalhe em **Bloqueios**.
+
+## Seções por arquivo
+
+### `entrega.md` (Iron Man)
+
+1. **Escopo cumprido** — etapas do plano feitas (ids ou títulos).
+2. **Paths tocados** — lista (≤ 40 linhas).
+3. **Contratos** — tipos/endpoints/telas novos, nomes do plano.
+4. **Não feito** — só se o plano autorizar pular.
+5. **Como rodar** — comando mínimo.
+6. **Bloqueios** — vazio se `ok`.
+
+### `revisao.md` (Visão)
+
+1. **Passagens** — quantas voltas.
+2. **Corrigido** — arquivo, problema, correção (uma linha cada; ≤ 15).
+3. **Tela** — auditoria `web-design-guidelines`, ou `n/a`.
+4. **Superfície** — presente | faltando | exceção do plano.
+5. **Tipagem** — comando e resultado.
+6. **Bloqueios** — vazio se `ok`.
+
+### `prova.md` (Viúva Negra)
+
+1. **Critérios** — critério | prova | passou?
+2. **Comando de teste** — o que rodou e o resultado (sem log completo).
+3. **Tela** — path do snapshot/screenshot ou `n/a`.
+4. **Semgrep** — achados no diff (ou limpo).
+5. **Strix** — achados no diff (ou limpo).
+6. **Bloqueios** — vazio se `ok`.
+
+### `paridade.md` (Falcão)
+
+1. **Superfícies** — pares comparados.
+2. **Matriz** — id | comportamento | lado A | lado B | status.
+3. **Score** — must/should/could; must faltando = não shippable.
+4. **Gaps** — o que falta + path sugerido.
+5. **Bloqueios** — must faltando ou vazio se shippable.
+
+### `duelo.md` (Loki)
+
+1. **Alvo** — path.
+2. **Tese** — o que o alvo afirma.
+3. **Ataque** — máx. 7 pontos.
+4. **Defesa** — o que ainda segura.
+5. **Veredito** — mantém | reforça plano | volta ao `/drdestino`.
+6. **Bloqueios** — se reabrir o plano.
+
+### `recon.md` (Shuri)
+
+1. **Alvo** — app/binário/path.
+2. **Ferramenta** — REA / MCP / CLI (sem dump).
+3. **Evidência** — fatos + path/símbolo (mínimo).
+4. **Inferências** — separado; marcar incerteza.
+5. **Limitações** — o que não foi provado.
+6. **Para o plano** — comportamento para o `/drdestino`.
+7. **Bloqueios** — sem REA, sem permissão, alvo ilegítimo.
+
+## Por que vários arquivos
+
+Um arquivo por etapa (não um `HANDOFF.md` / `STATUS.md` único):
+
+- Próxima persona lê só plano + handoff nomeado — contexto pequeno.
+- `Status:` na 1ª linha útil = gate (Maria Hill / cadeia).
+- Escrita em paralelo e diffs por etapa limpos; chat não substitui o canónico.
+- `duelo` / `recon` não incham a cadeia feliz.
+- Índice extra de status foi rejeitado: cerimônia sem ganho se a tabela de leitura e o `Status:` forem cumpridos.
+
+Negócio espelha em `negocio/handoff/` (`handoff-negocio.mdc`).
+
+## Regras
+
+- Não invente seção. Se não couber: `n/a`.
+- Não copie código alheio no recon.
+- Handoff não substitui o plano: Iron Man segue só o `PLANO-IMPLEMENTACAO.md` do chamado.
+- Versionar `chamados/<NUMERO>-<slug>/` é opcional; não commite segredo nem screenshot sensível.

@@ -7,6 +7,7 @@ alwaysApply: false
 
 Bibliotecário. Seu objetivo é olhar o projeto inteiro, entender a estrutura que ele já tem e deixar cada arquivo no lugar. Serve para repositório zoado, antes de começar feature. Não implementa comportamento novo.
 
+- **Chamado:** Ticket **não** é obrigatório. Não escreve plano nem handoff em `chamados/` (exceto se o usuário pedir explicitamente um rastro lá).
 - **Quando:** Só com `/wong`. Não entra na cadeia de implementação. O `/drdestino`, o `/ironman` e o `/visao` não reorganizam a árvore inteira nem partem o legado inchado.
 - **Leitura:** Antes de mover, percorra a raiz e as subpastas de código (backend, frontend, mobile, scripts). Use o grafo se o repo tiver Graphify (`graphify query`). Cite paths reais. Ignore `node_modules`, `.venv`, cliente gerado, `dist`, cobertura e cache. Não abra pasta que a rule do repo manda não abrir.
 - **Modo:** Um modo para o projeto todo, o que a rule em `.cursor/rules` daquele repo marca. Se a rule não marcar, use fatia por assunto e grave isso na rule de arquitetura local. Sem `.cursor/`, pare e peça o `/jarvis`. Não misture dois modos.

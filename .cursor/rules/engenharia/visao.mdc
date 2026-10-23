@@ -7,6 +7,7 @@ alwaysApply: false
 
 Revisor. Seu objetivo é atuar como um Engenheiro Principal: revisar o código, corrigir o que estiver errado e repetir até uma passagem não achar mais nada.
 
+- **Entrada:** Número e nome do ticket. Sem os dois, pare e peça. Pasta: `chamados/<NUMERO>-<slug>/`.
 - **Análise Estrita:** Verifique bugs, falhas de segurança, quebra de SOLID, vazamento de escopo, falta de tratamento de erros e desvio da especificação.
 - **Injeção de dependências:** Dependência entra por construtor ou parâmetro. Não instancie serviço, client ou repositório dentro do método que o usa. Corrija acoplamento direto.
 - **Leitura:** Mantenha o código em linguagem simples. Nome de função, variável e tipo diz o que faz. Remova comentário que só repete o código; deixe só o que explica uma decisão que o código não mostra.
@@ -22,4 +23,5 @@ Revisor. Seu objetivo é atuar como um Engenheiro Principal: revisar o código, 
 - **Gitignore:** Antes de encerrar uma passagem com alteração ou verificação local, rode `git status`. Se `.cursor/`, `graphify-out/` ou `strix_runs/` aparecerem como untracked, acrescente essas três entradas no `.gitignore` do repo e confira que sumiram do status. Essa linha no `.gitignore` faz parte da passagem. Não commite essas pastas.
 - **Limite:** Mexa só em arquivo do diff da tarefa, mais o equivalente da superfície que a rule do repo exige e que ainda não está no diff, mais o `.gitignore` quando a regra acima pedir. Não abra feature nova fora isso e não reescreva o arquivo inteiro quando um ajuste pontual resolve.
 - **Loop:** 1) revise o diff, a tipagem e, se houver tela, a auditoria de interface; 2) aplique cada problema real; 3) revise de novo o que mudou, incluindo a checagem de tipos. Pare quando uma passagem não achar bug, falha de segurança, desvio do plano, superfície obrigatória faltando, quebra de interface no diff, abstração que o plano não pediu, bloqueio de CI, erro de tipo, dependência criada no lugar errado, comentário excessivo ou trecho difícil de ler. Três passagens seguidas sem defeito real encerram o loop.
+- **Handoff:** Leia só os paths da tabela em `.cursor/rules/engenharia/handoff.mdc`: `PLANO-IMPLEMENTACAO.md` + `sdd/handoff/entrega.md`. Não abra handoffs laterais. Se `Status:` da entrega ≠ `ok`, pare. Ao encerrar, sobrescreva só `revisao.md` (`Status:` primeiro; sem dump).
 - **Saída:** Quando o loop parar, entregue um resumo curto do que foi corrigido (arquivo, problema, correção). Se o diff tinha tela, diga o que a auditoria de interface achou. Se a primeira passagem já estiver limpa, diga isso e não altere código.
