@@ -1,0 +1,174 @@
+---
+description: Contrato de handoff tipado da cadeia de mídia/vídeo. Cada persona escreve um arquivo canónico; a seguinte só lê esse arquivo e o brief — tudo dentro da pasta do chamado. MiniMax só via /camera.
+alwaysApply: false
+---
+
+# Handoff tipado — Mídia
+
+Cada persona **escreve** só o seu arquivo. A seguinte lê **apenas** os paths da tabela de leitura abaixo — não reinterpreta o chat.
+
+**Contexto mínimo — uma etapa atrás.** Não abra a pasta `midia/handoff/` inteira nem handoffs laterais “por garantia”.
+
+**Runtime:** só MiniMax Design (`user-minimax-design`). Ninguém chama geração paga antes do `/camera`. `/produtor` só prepara o pacote de jobs.
+
+## Pasta do chamado
+
+```
+chamados/<NUMERO>-<slug-do-nome>/
+  BRIEF-VIDEO.md
+  midia/handoff/roteiro.md
+  midia/handoff/storyboard.md
+  midia/handoff/pacote-minimax.md
+  midia/handoff/producao.md
+  midia/handoff/montagem.md
+  midia/handoff/qa.md
+  midia/handoff/pacote.md
+```
+
+- Paths **relativos à pasta do chamado**. Crie `midia/handoff/` se faltar (stubs em `chamados/_template/`).
+- Engenharia: `sdd/handoff/`; negócio: `negocio/handoff/`; mídia: `midia/handoff/`. Não misture contratos no mesmo arquivo.
+
+## Contrato de leitura (estrito)
+
+Só estes paths. Proibido: listar/ler todos os arquivos de `midia/handoff/`; reler tudo “por garantia”.
+
+Gate: leia primeiro a linha `Status:` do handoff exigido. Se `Status` ≠ `ok`, **pare**. Stub com `Status: pendente` = etapa ainda não feita.
+
+| Comando | Paths permitidos (só estes) |
+| --- | --- |
+| `/diretor` | Fontes do pedido. Opcional **um**: `negocio/handoff/gtm.md` **ou** `PLANO-NEGOCIO.md` (se o pedido citar). Escreve `BRIEF-VIDEO.md`. |
+| `/roteirista` | `BRIEF-VIDEO.md` |
+| `/story` | `BRIEF-VIDEO.md` + `midia/handoff/roteiro.md` |
+| `/produtor` | `BRIEF-VIDEO.md` + `midia/handoff/storyboard.md` |
+| `/camera` | `midia/handoff/pacote-minimax.md` (e skill `midia-minimax` se existir) |
+| `/montador` | `midia/handoff/producao.md`; opcional `midia/handoff/storyboard.md` |
+| `/critico` | `BRIEF-VIDEO.md` + `midia/handoff/montagem.md` |
+| `/distribuidor` | `BRIEF-VIDEO.md` + `midia/handoff/qa.md` |
+
+Chat não substitui arquivo. Sem o path exigido, pare e peça a persona que falta.
+
+## Contrato de escrita
+
+- Sobrescreve **só o seu** arquivo. Nunca append noutro.
+- Seções curtas. Caps:
+  - `BRIEF-VIDEO.md`: seções do contrato; sem dump de pesquisa.
+  - `roteiro.md`: ≤ 3 hooks candidatos; roteiro falado com beats.
+  - `storyboard.md`: uma linha por shot; prompts curtos.
+  - `pacote-minimax.md`: jobs numeradas; capability id; params; estimativa; **sem** chamar API.
+  - `producao.md`: taskIds, resourceIds, paths/URLs, custos; sem log bruto.
+  - `montagem.md`: ordem dos takes + notas; sem re-gerar.
+  - `qa.md`: checklist contra o brief; ≤ 10 achados.
+  - `pacote.md`: título/thumb/caption/Shorts — texto; você publica.
+- **Não cole** dump de API / base64 / transcript longo — evidência mínima com id/path.
+
+| Arquivo | Quem escreve |
+| --- | --- |
+| `BRIEF-VIDEO.md` | `/diretor` |
+| `midia/handoff/roteiro.md` | `/roteirista` |
+| `midia/handoff/storyboard.md` | `/story` |
+| `midia/handoff/pacote-minimax.md` | `/produtor` |
+| `midia/handoff/producao.md` | `/camera` |
+| `midia/handoff/montagem.md` | `/montador` |
+| `midia/handoff/qa.md` | `/critico` |
+| `midia/handoff/pacote.md` | `/distribuidor` |
+
+## Status na primeira linha útil
+
+```markdown
+# Handoff — <papel>
+
+Status: ok | bloqueado | gap
+
+- Brief: path do `BRIEF-VIDEO.md`, ou `n/a` se ainda não existir
+- Chamado: <NUMERO> — <nome>
+- Persona: <comando>
+- Data: <ISO date>
+```
+
+`bloqueado` ou `gap` impede a próxima de seguir como pronto. Detalhe em **Bloqueios**.
+
+(`BRIEF-VIDEO.md` não usa esse cabeçalho de handoff; é o contrato do `/diretor`.)
+
+## Seções por arquivo
+
+### `BRIEF-VIDEO.md` (`/diretor`)
+
+Cabeçalho (chamado, produto/marca, canal) +:
+
+1. **Objetivo**
+2. **Público / canal** — YT, Reels, Shorts, etc.
+3. **Formato** — duração alvo, aspect ratio, idioma
+4. **Mensagem e CTA**
+5. **Tom e restrições de marca**
+6. **Ativos existentes** — paths ou `n/a`
+7. **Critérios de aceite** — testáveis na `/critico`
+8. **Fora de escopo**
+9. **Próximos passos**
+
+### `roteiro.md` (`/roteirista`)
+
+1. **Hooks** — até 3, com fórmula/score se houver
+2. **Roteiro falado** — falas + marcas de retenção
+3. **Texto na tela** — se couber
+4. **Bloqueios**
+
+### `storyboard.md` (`/story`)
+
+1. **Shot list** — id, duração, visual, áudio
+2. **Prompts** — por shot (imagem/vídeo)
+3. **Voz / música** — intenção (sem gerar)
+4. **Bloqueios**
+
+### `pacote-minimax.md` (`/produtor`)
+
+1. **Projeto MiniMax** — `list_projects` / `open_project` (nome sugerido; `/camera` abre)
+2. **Jobs** — tabela: ordem, operation, capability id, params essenciais, depends_on
+3. **Custo** — estimativa / o que pedirá confirmação
+4. **Critérios de entrega** — o que `/camera` deve gravar em `producao.md`
+5. **Bloqueios**
+
+### `producao.md` (`/camera`)
+
+1. **Projeto** — projectId
+2. **Runs** — taskId → resourceId / path / URL
+3. **Custos confirmados** — só após “sim” do usuário
+4. **Pendências** — jobs que falharam
+5. **Bloqueios**
+
+### `montagem.md` (`/montador`)
+
+1. **Timeline** — ordem dos takes
+2. **Sync** — VO / música / cortes
+3. **Legendas / texto** — se aplicável
+4. **Entrega intermediária** — paths
+5. **Bloqueios**
+
+### `qa.md` (`/critico`)
+
+1. **Checklist vs brief**
+2. **Achados** — ≤ 10
+3. **Veredito** — segue | volta ao `/camera` | volta ao `/story`
+4. **Bloqueios**
+
+### `pacote.md` (`/distribuidor`)
+
+1. **Título + thumb** — como um par
+2. **Caption / descrição**
+3. **Tags / capítulos** — se canal pedir
+4. **Corte Shorts/Reels** — se couber
+5. **Não publicar** — lembrete: humano publica
+6. **Bloqueios**
+
+## Cadeia feliz
+
+`/diretor` → `/roteirista` → `/story` → `/produtor` → `/camera` → `/montador` → `/critico` → `/distribuidor`
+
+Analogia engenharia: tudo no papel até o `/produtor` (como SPEC/PLANO/TASKS); `/camera` executa no MiniMax (como `/ironman` no repo).
+
+## Regras
+
+- Não invente seção → `n/a`.
+- Handoff não substitui o `BRIEF-VIDEO.md`.
+- Sem critérios de engenharia de produto nestes arquivos (código/PR).
+- Não commite segredo, cookie nem API key.
+- `/camera` é a **única** persona autorizada a chamar `execute` / geração MiniMax.

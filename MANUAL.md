@@ -2,7 +2,9 @@
 
 Guia prático: cola um comando → espera gravar arquivos → confere → cola o próximo.
 
-Duas filas: **negócio** (ideia, preço, mensagem) e **dev** (plano + código). Cada ticket tem **número + nome** e pasta `MCPs/chamados/<NUMERO>-<slug>/`. Não pule pro `/ironman` sem `SPEC.md` / plano / lista de tarefas — e sem `Status: ok` da etapa anterior.
+Duas filas neste manual: **negócio** (ideia, preço, mensagem) e **dev** (plano + código). Cada ticket tem **número + nome** e pasta `MCPs/chamados/<NUMERO>-<slug>/`. Não pule pro `/ironman` sem `SPEC.md` / plano / lista de tarefas — e sem `Status: ok` da etapa anterior.
+
+**Vídeo / MiniMax:** terceira cadeia — [MANUAL-MIDIA.md](MANUAL-MIDIA.md) (`/diretor` … `/camera` … `/distribuidor`).
 
 Personas: [README.md](README.md).
 

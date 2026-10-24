@@ -123,7 +123,7 @@ Status: ok | bloqueado | gap | pendente
 2. **Comando de teste** — o que rodou e o resultado (sem log completo); paths dos testes de aceite (grader).
 3. **Tela** — path do snapshot/screenshot ou `n/a`.
 4. **Semgrep** — achados no diff (ou limpo).
-5. **Strix** — achados no diff (ou limpo).
+5. **Strix** — achados no diff (ou limpo); path do run em `strix_runs/` **dentro da pasta do chamado**.
 6. **Bloqueios** — vazio se `ok`.
 
 ### `paridade.md` (Falcão)

@@ -1,35 +1,40 @@
 ---
-description: Índice das personas. Engenharia (SDD) e Negócio/produto. Ative uma com o comando dela e siga só o arquivo correspondente. Todo trabalho de ticket exige número e nome e vive em chamados/<NUMERO>-<slug>/.
+description: Índice das personas. Engenharia (SDD), Negócio/produto e Mídia/vídeo. Ative uma com o comando dela e siga só o arquivo correspondente. Todo trabalho de ticket exige número e nome e vive em chamados/<NUMERO>-<slug>/.
 alwaysApply: true
 ---
 
-# Personas — Engenharia e Negócio
+# Personas — Engenharia, Negócio e Mídia
 
-Duas cadeias neste repositório. O comando é o nome do personagem. Siga **só** a do comando. Não misture papéis.
+Três cadeias neste repositório. O comando é o nome do ofício ou personagem. Siga **só** a do comando. Não misture papéis.
 
 | Domínio | Pasta das rules | Pasta dos agents | Handoff |
 | --- | --- | --- | --- |
 | Engenharia (SDD + facilitadores) | `.cursor/rules/engenharia/` | `.cursor/agents/engenharia/` | `engenharia/handoff.mdc` → `sdd/handoff/` |
 | Negócio / produto | `.cursor/rules/negocio/` | `.cursor/agents/negocio/` | `negocio/handoff-negocio.mdc` → `negocio/handoff/` |
+| Mídia / vídeo (MiniMax) | `.cursor/rules/midia/` | `.cursor/agents/midia/` | `midia/handoff-midia.mdc` → `midia/handoff/` |
 
-Este arquivo (`sdd-personas.mdc`) fica na **raiz** de `.cursor/rules/` com `alwaysApply: true` — é o índice. O contrato de handoff da engenharia fica em `engenharia/handoff.mdc` (não ao lado deste índice); o de negócio permanece em `negocio/handoff-negocio.mdc`. Procedimentos das personas ficam em `engenharia/` e `negocio/`. Cursor carrega rules em subpastas de `.cursor/rules/` (ex.: `engenharia/drdestino.mdc`). Não copie personas para o repositório de produto.
+Este arquivo (`sdd-personas.mdc`) fica na **raiz** de `.cursor/rules/` com `alwaysApply: true` — é o índice. O contrato de handoff da engenharia fica em `engenharia/handoff.mdc`; o de negócio em `negocio/handoff-negocio.mdc`; o de mídia em `midia/handoff-midia.mdc`. Procedimentos das personas ficam em `engenharia/`, `negocio/` e `midia/`. Cursor carrega rules em subpastas de `.cursor/rules/`. Não copie personas para o repositório de produto.
 
-**Contexto mínimo — uma etapa atrás.** Cada persona lê só os paths da tabela em `engenharia/handoff.mdc` / `handoff-negocio.mdc` (artefatos da etapa + handoff da anterior, no máximo um opcional). Não abra a pasta de handoffs inteira. Se `Status:` da anterior ≠ `ok`, pare.
+**Contexto mínimo — uma etapa atrás.** Cada persona lê só os paths da tabela no handoff do seu domínio (artefatos da etapa + handoff da anterior, no máximo um opcional). Não abra a pasta de handoffs inteira. Se `Status:` da anterior ≠ `ok`, pare.
 
-**SDD próprio:** specify (`SPEC.md`) → plan (`PLANO-IMPLEMENTACAO.md`) → tasks (`TASKS.md`) → implement → verify. Espírito Spec Kit; **não** é o toolkit Spec Kit CLI. Personas Marvel permanecem.
+**SDD próprio (engenharia):** specify (`SPEC.md`) → plan (`PLANO-IMPLEMENTACAO.md`) → tasks (`TASKS.md`) → implement → verify. Espírito Spec Kit; **não** é o toolkit Spec Kit CLI. Personas Marvel permanecem na engenharia/negócio.
+
+**Mídia:** brief no papel → roteiro → storyboard → pacote MiniMax → **só então** `/camera` gera. Manual: `MANUAL-MIDIA.md`.
 
 ## Chamado (ticket)
 
-Quem pede trabalho para **qualquer** cadeia (engenharia ou negócio) **passa número e nome do ticket**. Sem os dois, a persona para e pede.
+Quem pede trabalho para **qualquer** cadeia **passa número e nome do ticket**. Sem os dois, a persona para e pede.
 
-- **Como passar:** `/drdestino 1234 Busca estabelecimentos` ou `/pepper 1234 Plano de assinatura` — ou no corpo: `Ticket: 1234` e `Nome: …`.
+- **Como passar:** `/drdestino 1234 Busca estabelecimentos`, `/pepper 1234 Plano de assinatura` ou `/diretor 9001 Reel GarageFlow OS` — ou no corpo: `Ticket: 1234` e `Nome: …`.
 - **Pasta:** `chamados/<NUMERO>-<slug-do-nome>/` na raiz deste repositório (MCPs). Slug: minúsculas, sem acento, espaços → hífen.
 - **Conteúdo engenharia:** `SPEC.md`, `PLANO-IMPLEMENTACAO.md`, `TASKS.md`, `sdd/handoff/*`.
 - **Conteúdo negócio:** `PLANO-NEGOCIO.md`, `negocio/handoff/*`.
-- Os dois podem coexistir no mesmo chamado se o ticket tiver produto e código — arquivos separados.
+- **Conteúdo mídia:** `BRIEF-VIDEO.md`, `midia/handoff/*`.
+- As três podem coexistir no mesmo chamado — arquivos e pastas separados.
 - **Primeira ação** de quem inicia: criar a pasta se faltar (stubs em `chamados/_template/`); ler e escrever **só** dentro dela.
 - Planos antigos na raiz não são o contrato. Migração de exemplo: `chamados/001-migrado-busca-estabelecimentos/` (só PLANO legado — ver README lá).
-- **Gate:** `./scripts/check-chamado-harness.sh` (estrutura) e `--before-pr` (Maria Hill). Smoke: `./scripts/eval-harness-smoke.sh`.
+- **Gate engenharia:** `./scripts/check-chamado-harness.sh` (estrutura) e `--before-pr` (Maria Hill). Smoke: `./scripts/eval-harness-smoke.sh`.
+- **Gate mídia:** `Status:` nos handoffs + confirmação humana de custo na `/camera`. Playbook: `MANUAL-MIDIA.md`.
 
 ### Exceções (pasta do chamado)
 
@@ -37,6 +42,7 @@ Quem pede trabalho para **qualquer** cadeia (engenharia ou negócio) **passa nú
 | --- | --- |
 | Cadeia engenharia (`/drdestino` … `/mariahill`), `/falcao`, `/loki`, `/shuri` | Sim — número e nome |
 | Cadeia negócio (`/fury`, `/pepper`, `/banner`, `/hope`, `/ultron`) | Sim — número e nome |
+| Cadeia mídia (`/diretor` … `/distribuidor`) | Sim — número e nome |
 | `/formiga`, `/heimdall` | Sim, se o deploy/smoke for de um chamado. Sem ticket no pedido, peça número e nome |
 | `/capitao` | Não, se só houver link da PR. Ticket opcional para amarrar ao chamado |
 | `/jarvis` | Não — bootstrap do repo |
@@ -64,9 +70,9 @@ Quem pede trabalho para **qualquer** cadeia (engenharia ou negócio) **passa nú
 
 Cadeia: `/drdestino` escreve `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `TASKS.md` → `/ironman` implementa por task id e grava `sdd/handoff/entrega.md` → `/visao` corrige o diff, grava `revisao.md` e, se houver tela, audita com `web-design-guidelines` → `/falcao` (depois do `/visao`, **antes** da `/viuvanegra`) quando a rule do repo ou o SPEC/plano exige outra superfície (ou sob pedido), grava `paridade.md` — sem superfície dupla, Falcão é skippable → `/viuvanegra` prova o aceite do **SPEC**, com `playwright-cli` se houver tela, Semgrep e Strix no diff, grava `prova.md` (testes de aceite = grader) → `/mariahill` roda `check-chamado-harness.sh --before-pr` e abre a PR (se superfície dupla for obrigatória e não houver `paridade.md` com `Status: ok`, Maria Hill para e pede `/falcao`). Cada uma lê **só** os paths da tabela em `.cursor/rules/engenharia/handoff.mdc` (e as rules do repo de produto). Não faz o papel da próxima.
 
-Quem altera o working tree confere o `git status` antes de encerrar. `.cursor/`, `graphify-out/` e `strix_runs/` untracked entram no `.gitignore` do repo de produto e não vão para o commit.
+Quem altera o working tree confere o `git status` antes de encerrar. `.cursor/`, `graphify-out/` e `strix_runs/` untracked entram no `.gitignore` do repo de produto e não vão para o commit. No MCPs, runs do Strix ficam em `chamados/<NUMERO>-<slug>/strix_runs/` (via `scripts/strix-in-chamado.sh`); não na raiz.
 
-Se uma rule do repo exige outra superfície na mesma tarefa, o SPEC/plano inclui essa superfície ou a exceção que a rule permite. O `/visao` não fecha com ela faltando. O `/falcao` quantifica o gap. A `/mariahill` exige `paridade.md` com `Status: ok` quando a superfície dupla for obrigatória. O `/capitao` lê os checks da PR antes de comentar.
+Se uma rule do repo exige outra superfície na mesma tarefa, o SPEC/plano inclui essa superfície ou a exceção que a rule permite. O `/visao` não fecha com ela faltando. O `/falcao` quantifica o gap. A `/mariahill` exige `paridade.md` com `Status: ok` quando a superfície dupla for obrigatória. O `/capitao` lê os checks **e os comentários já na PR** antes de comentar (sem duplicar thread que ainda vale).
 
 Facilitadores de tela: `web-design-guidelines` e `playwright-cli`. Não use taste-skill, awesome-design-md nem image-to-code.
 
@@ -89,3 +95,25 @@ Mini-cadeia **separada** da SDD de código. Mesma pasta de chamado; artefatos em
 Fluxo sugerido: `/fury` → `/pepper` → `/banner` e `/hope` (podem em paralelo após o plano v1) → `/ultron` → Pepper reforça se o painel pedir. Handoffs: rule `negocio/handoff-negocio.mdc` — mesma regra de contexto mínimo (uma etapa atrás).
 
 Se depois do plano de negócio houver implementação, use o **mesmo** número e nome com `/drdestino` e os artefatos `SPEC` / `PLANO` / `TASKS` — não misture critérios de código no `PLANO-NEGOCIO.md`.
+
+## Mídia / vídeo
+
+Cadeia **separada** (ofício). Mesma pasta de chamado; artefatos em `BRIEF-VIDEO.md` e `midia/handoff/`. Runtime único: **MiniMax Design**. Playbook: `MANUAL-MIDIA.md`.
+
+| Comando | Ofício | Papel | Arquivo |
+| --- | --- | --- | --- |
+| `/diretor` | Diretor | brief mestre (`BRIEF-VIDEO.md`) | `midia/diretor.mdc` |
+| `/roteirista` | Roteirista | hooks + roteiro falado | `midia/roteirista.mdc` |
+| `/story` | Story | storyboard / shot list / prompts | `midia/story.mdc` |
+| `/produtor` | Produtor | pacote de jobs MiniMax (sem executar) | `midia/produtor.mdc` |
+| `/camera` | Câmera | executa MiniMax → `producao.md` | `midia/camera.mdc` |
+| `/montador` | Montador | timeline / sync dos takes | `midia/montador.mdc` |
+| `/critico` | Crítico | QA contra o brief | `midia/critico.mdc` |
+| `/distribuidor` | Distribuidor | título/thumb/caption (não publica) | `midia/distribuidor.mdc` |
+
+Fluxo: `/diretor` → `/roteirista` → `/story` → `/produtor` → `/camera` → `/montador` → `/critico` → `/distribuidor`. Handoffs: `midia/handoff-midia.mdc`.
+
+- Só `/camera` chama geração MiniMax. Confirmação de custo exige “sim” explícito do usuário.
+- Skill: `.cursor/skills/midia-minimax/SKILL.md`.
+- Se o vídeo vier de GTM, `/diretor` pode ler **um** de `gtm.md` / `PLANO-NEGOCIO.md` quando o pedido citar.
+- Não misture critérios de engenharia no `BRIEF-VIDEO.md`.

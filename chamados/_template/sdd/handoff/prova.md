@@ -24,4 +24,6 @@ Status: pendente
 
 ## Strix
 
+- Path do run: `strix_runs/<run>/` (sempre dentro da pasta deste chamado; use `./scripts/strix-in-chamado.sh`)
+
 ## Bloqueios

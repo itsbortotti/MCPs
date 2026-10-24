@@ -4,11 +4,13 @@ Configuração do Cursor para desenvolver com **Spec-Driven Design próprio** (p
 
 **[Como usar](MANUAL.md)** — playbook: cole no chat, confira o disco, próximo comando (simulações negócio→dev e task pequena).
 
+**[Mídia / vídeo](MANUAL-MIDIA.md)** — terceira cadeia (ofício + MiniMax): brief no papel → `/camera` gera.
+
 São duas partes.
 
 **Servidores.** O `mcp.json` é a lista do que o Cursor pode consultar (Azure, Azure DevOps, Jira, Postman, GitHub e o restante). O `scripts/apply-to-cursor.sh` copia essa lista para `~/.cursor/mcp.json`, troca cada `${VAR}` pelo valor do `.env` e não mexe em servidor de plugin que só exista no Cursor. Segredo não entra no git: copie `.env.example` para `.env` e preencha. O `.env` está no `.gitignore`.
 
-**Personas.** Os arquivos em `.cursor/rules/` dizem como a IA trabalha. O `sdd-personas.mdc` fica na raiz de `.cursor/rules/` com `alwaysApply: true` e é o índice das duas cadeias (engenharia e negócio). O procedimento de cada personagem entra quando o comando dele é usado.
+**Personas.** Os arquivos em `.cursor/rules/` dizem como a IA trabalha. O `sdd-personas.mdc` fica na raiz de `.cursor/rules/` com `alwaysApply: true` e é o índice das três cadeias (engenharia, negócio e mídia). O procedimento de cada personagem entra quando o comando dele é usado.
 
 Abra esta pasta no workspace do Cursor para as personas valerem. Numa janela só com outro repositório, a cadeia não entra.
 
@@ -19,7 +21,7 @@ Cursor carrega rules em subpastas de `.cursor/rules/` (documentação oficial). 
 ```
 .cursor/
   rules/
-    sdd-personas.mdc          # alwaysApply — índice Engenharia | Negócio
+    sdd-personas.mdc          # alwaysApply — índice Engenharia | Negócio | Mídia
     engenharia/               # cadeia SDD + facilitadores técnicos
       handoff.mdc             # contrato SDD engenharia
       jarvis.mdc
@@ -28,9 +30,15 @@ Cursor carrega rules em subpastas de `.cursor/rules/` (documentação oficial). 
       handoff-negocio.mdc
       fury.mdc
       pepper.mdc …
+    midia/                    # cadeia de vídeo (ofício + MiniMax)
+      handoff-midia.mdc
+      diretor.mdc …
   agents/
     engenharia/               # ver inventário de agents abaixo
     negocio/                  # fury, pepper, banner, hope, ultron
+    midia/                    # diretor … distribuidor
+  skills/
+    midia-minimax/            # protocolo MiniMax da /camera
 ```
 
 ### Agents Cursor (existem neste repo)
@@ -39,6 +47,7 @@ Cursor carrega rules em subpastas de `.cursor/rules/` (documentação oficial). 
 | --- | --- |
 | `.cursor/agents/engenharia/` | `drdestino`, `ironman`, `visao`, `falcao`, `viuvanegra`, `mariahill`, `capitao`, `jarvis`, `formiga`, `heimdall`, `wong`, `demolidor`, `loki`, `shuri` |
 | `.cursor/agents/negocio/` | `fury`, `pepper`, `banner`, `hope`, `ultron` |
+| `.cursor/agents/midia/` | `diretor`, `roteirista`, `story`, `produtor`, `camera`, `montador`, `critico`, `distribuidor` |
 
 Cada agent aponta para a rule correspondente; o procedimento completo fica em `.cursor/rules/`.
 
@@ -46,6 +55,7 @@ Cada agent aponta para a rule correspondente; o procedimento completo fica em `.
 | --- | --- | --- | --- |
 | Engenharia | `.cursor/rules/engenharia/` | `.cursor/agents/engenharia/` | `SPEC.md`, `PLANO-IMPLEMENTACAO.md`, `TASKS.md`, `sdd/handoff/` |
 | Negócio | `.cursor/rules/negocio/` | `.cursor/agents/negocio/` | `PLANO-NEGOCIO.md`, `negocio/handoff/` |
+| Mídia | `.cursor/rules/midia/` | `.cursor/agents/midia/` | `BRIEF-VIDEO.md`, `midia/handoff/` |
 
 ## Spec-Driven + Harness (completo)
 
@@ -279,6 +289,7 @@ O Semgrep MCP **não** está neste `mcp.json`: o `/jarvis` grava no `.cursor/mcp
 | `scripts/load-env.sh` | `source` — exporta o `.env` no shell atual (Strix / LLM) |
 | `scripts/with-env.sh` | Roda um comando já com o `.env` exportado |
 | `scripts/strix-env-check.sh` | Confere `STRIX_LLM` + chave LLM (só SET/UNSET) |
+| `scripts/strix-in-chamado.sh` | Roda Strix com CWD na pasta do chamado → `chamados/<…>/strix_runs/` |
 | `scripts/azure-login.sh` | Abre `az login` e lista subscriptions |
 | `scripts/extrair-trecho-lei.py` | Baixa um Markdown do acervo ctresb/leis e imprime cabeçalho/artigo (usado pelo `/demolidor`) |
 | `scripts/check-chamado-harness.sh` | Gate de chamado: estrutura (SPEC/PLANO/TASKS) e `--before-pr` (prova/paridade) |

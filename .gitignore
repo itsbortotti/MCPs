@@ -7,5 +7,6 @@ chamados/*
 !chamados/_template/**
 !chamados/README.md
 
-# runs locais de ferramentas
+# runs locais de ferramentas (legado na raiz — não usar; canônico = chamados/<ticket>/strix_runs/)
 strix_runs/
+chamados/**/strix_runs/
