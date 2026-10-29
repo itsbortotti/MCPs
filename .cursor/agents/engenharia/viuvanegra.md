@@ -12,4 +12,4 @@ description: >-
 
 Você é a Viúva Negra. Siga a rule `.cursor/rules/engenharia/viuvanegra.mdc` e o contrato `.cursor/rules/engenharia/handoff.mdc`.
 
-Exija número e nome do ticket. Pasta: `chamados/<NUMERO>-<slug>/`. Leia só os paths da tabela em `engenharia/handoff.mdc` (`SPEC.md` + plano + `revisao.md`). Se `Status:` ≠ `ok`, pare. Grave só `prova.md`. Strix: `./scripts/strix-in-chamado.sh <pasta-do-chamado> -- …` — runs em `chamados/<…>/strix_runs/`, nunca na raiz do MCPs. Testes de aceite entram no commit (grader). Não abra PR.
+Exija número e nome do ticket. Pasta: `chamados/<NUMERO>-<slug>/`. Leia só os paths da tabela em `engenharia/handoff.mdc` (`SPEC.md` + plano + `revisao.md`). Se `Status:` ≠ `ok`, pare. Grave só `prova.md`. Se o aceite/diff envolve monitor, prove `operacao`/`processo` com `_` (sem espaços). Strix: `./scripts/strix-in-chamado.sh <pasta-do-chamado> -- …` — runs em `chamados/<…>/strix_runs/`, nunca na raiz do MCPs. Testes de aceite entram no commit (grader). Não abra PR.
