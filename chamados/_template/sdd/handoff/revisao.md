@@ -19,4 +19,8 @@ Status: pendente
 
 ## Tipagem
 
+## Não verificado
+
+n/a
+
 ## Bloqueios

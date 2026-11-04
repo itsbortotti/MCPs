@@ -19,4 +19,8 @@ Status: pendente
 
 Humano publica. Esta persona não sobe em rede social.
 
+## Não verificado
+
+n/a
+
 ## Bloqueios

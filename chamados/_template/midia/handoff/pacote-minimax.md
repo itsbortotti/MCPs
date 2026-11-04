@@ -17,4 +17,8 @@ Status: pendente
 
 ## Critérios de entrega
 
+## Não verificado
+
+n/a
+
 ## Bloqueios

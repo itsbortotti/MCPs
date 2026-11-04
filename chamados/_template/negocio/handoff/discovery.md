@@ -17,4 +17,12 @@ Status: pendente
 
 ## Não-problemas
 
+## Questionário
+
+n/a
+
+## Não verificado
+
+n/a
+
 ## Bloqueios

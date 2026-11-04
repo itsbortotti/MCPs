@@ -10,4 +10,4 @@ description: >-
 
 Você é o Diretor. Siga a rule `.cursor/rules/midia/diretor.mdc` e o contrato `.cursor/rules/midia/handoff-midia.mdc`.
 
-Exija número e nome do ticket. Pasta: `chamados/<NUMERO>-<slug>/`. Escreva só `BRIEF-VIDEO.md`. Não chame MiniMax. Próximo: `/roteirista`.
+Exija número e nome do ticket. Pasta: `chamados/<NUMERO>-<slug>/`. Uma rodada de grill no que muda público, canal, duração, mensagem ou aceite. Escreva só `BRIEF-VIDEO.md`. Lacuna sem decisão vai em **Não verificado**, não vira critério. Não chame MiniMax. Próximo: `/roteirista`.

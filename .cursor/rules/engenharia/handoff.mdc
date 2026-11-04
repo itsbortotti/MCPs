@@ -18,12 +18,14 @@ chamados/<NUMERO>-<slug-do-nome>/
   SPEC.md                 # /drdestino — o quê / aceite
   PLANO-IMPLEMENTACAO.md  # /drdestino — como no repo
   TASKS.md                # /drdestino — checklist ordenado (ids)
+  fontes.md               # fato com pergunta, resposta e endereço; append
   sdd/handoff/entrega.md
   sdd/handoff/revisao.md
   sdd/handoff/paridade.md   # /falcao — após revisao, antes da prova (se superfície dupla)
   sdd/handoff/prova.md
   sdd/handoff/duelo.md
   sdd/handoff/recon.md
+  sdd/handoff/diagnostico.md  # /rocket — fora da cadeia feliz
 ```
 
 - **Slug:** minúsculas, sem acento, espaços → hífen.
@@ -40,14 +42,16 @@ Gate: leia primeiro a linha `Status:` do handoff da etapa anterior. Se `Status` 
 
 | Comando | Paths permitidos (só estes) |
 | --- | --- |
-| `/drdestino` | Escreve `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `TASKS.md`. Opcional: `sdd/handoff/recon.md` **ou** `sdd/handoff/duelo.md` (o que o pedido citar; se os dois existirem e o pedido não citar, só o mais recente por data no cabeçalho). |
-| `/ironman` | `PLANO-IMPLEMENTACAO.md` + `TASKS.md` |
+| `/drdestino` | Escreve `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `TASKS.md`. Append em `fontes.md` quando um fato veio de fonte primária. Opcional: `sdd/handoff/recon.md` **ou** `sdd/handoff/duelo.md` **ou** `sdd/handoff/diagnostico.md` (o que o pedido citar; se mais de um existir e o pedido não citar, só o mais recente por data no cabeçalho). |
+| `/ironman` | `PLANO-IMPLEMENTACAO.md` + `TASKS.md`. Opcional: `sdd/handoff/diagnostico.md` **ou** `fontes.md` **só se o plano ou o pedido citar**. Não reabra a doc externa. |
+| `/demolidor` | Nenhum handoff. Com número e nome do chamado, só append em `fontes.md`. |
 | `/visao` | `PLANO-IMPLEMENTACAO.md` + `TASKS.md` + `sdd/handoff/entrega.md` |
 | `/falcao` | `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `sdd/handoff/revisao.md` (depois do `/visao`, antes da `/viuvanegra`; skippable sem superfície dupla) |
 | `/viuvanegra` | `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `sdd/handoff/revisao.md` |
 | `/mariahill` | `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `sdd/handoff/prova.md`; se SPEC/plano/rule exige superfície dupla: `paridade.md` com `Status: ok` (obrigatório — sem isso pare e peça `/falcao`; se `gap`, leia **Bloqueios** e pare). Sem superfície dupla obrigatória: stub `pendente` de `paridade.md` não é exigido. Gate duro: `./scripts/check-chamado-harness.sh --before-pr <pasta>`. |
 | `/loki` | Um alvo: `SPEC.md` / `PLANO-IMPLEMENTACAO.md` / `TASKS.md` **ou** o handoff que o usuário apontar (`entrega.md` / `revisao.md`) |
 | `/shuri` | Nenhum handoff prévio (alvo do pedido + rule). Escreve `recon.md`. |
+| `/rocket` | Nenhum handoff prévio (alvo do pedido + rule). Opcional: o arquivo que o pedido citar (`entrega.md` / `revisao.md` / `prova.md`). Escreve `diagnostico.md`. |
 
 Rules do repo de produto (`.cursor/rules` daquele repo), skills e o diff/código do trabalho **não** são handoff — fora desta tabela, mas necessários ao papel. Chat não substitui arquivo canónico.
 
@@ -55,7 +59,7 @@ Sem o handoff exigido na tabela, pare e peça a persona que falta.
 
 ## Contrato de escrita
 
-- Cada persona **sobrescreve só o seu** arquivo (tabela abaixo). Nunca edita nem faz append noutro handoff (exceto `/ironman` marcando `[x]` em `TASKS.md`, e `/drdestino` nos três artefatos de spec/plan/tasks).
+- Cada persona **sobrescreve só o seu** arquivo (tabela abaixo). Nunca edita nem faz append noutro handoff (exceto `/ironman` marcando `[x]` em `TASKS.md`, `/drdestino` nos três artefatos de spec/plan/tasks, e o append em `fontes.md`).
 - Seções curtas; bullets. Caps sugeridos:
   - `entrega.md`: **Paths tocados** ≤ 40 linhas; resto ≤ ~8 bullets por seção.
   - `revisao.md`: **Corrigido** ≤ 15 linhas.
@@ -64,6 +68,7 @@ Sem o handoff exigido na tabela, pare e peça a persona que falta.
   - `duelo.md`: **Ataque** ≤ 7 pontos.
   - `recon.md`: evidência mínima (fato + path/símbolo); **não** cole log inteiro nem dump REA.
 - Em qualquer handoff: **não cole log inteiro / dump REA** — só evidência mínima com path (e 1–2 linhas de trecho se inevitável).
+- **Não verificado** vem antes de **Bloqueios** (máx. 5 bullets; `n/a` se vazio). Cabe o que a sessão supôs e não executou nem leu no repo. Fato executado ou lido fica na seção que já existe. A persona seguinte trata **Não verificado** como hipótese: não vira premissa e não conta como aceite. É seção do contrato, não seção inventada.
 
 | Arquivo | Quem escreve |
 | --- | --- |
@@ -76,6 +81,8 @@ Sem o handoff exigido na tabela, pare e peça a persona que falta.
 | `sdd/handoff/paridade.md` | `/falcao` |
 | `sdd/handoff/duelo.md` | `/loki` |
 | `sdd/handoff/recon.md` | `/shuri` |
+| `sdd/handoff/diagnostico.md` | `/rocket` |
+| `fontes.md` | `/drdestino`, `/fury`, `/demolidor` — append de `## Qn`; não reescreve entrada alheia |
 
 ## Status na primeira linha útil
 
@@ -153,6 +160,39 @@ Status: ok | bloqueado | gap | pendente
 6. **Para o plano** — comportamento para o `/drdestino`.
 7. **Bloqueios** — sem REA, sem permissão, alvo ilegítimo.
 
+### `diagnostico.md` (Rocket)
+
+1. **Alvo** — bug, rota ou comando.
+2. **Reprodução** — o que ficou vermelho (comando + resultado, 1–3 linhas).
+3. **Hipóteses** — ordenadas; marque a que o instrumento confirmou.
+4. **Causa** — fato + path. Inferência fica de fora desta seção.
+5. **Correção** — diff mínimo, ou o que falta decidir.
+6. **Regressão** — teste que segura a causa, ou `n/a`.
+7. **Não verificado**
+8. **Bloqueios** — sem reprodução, causa é decisão de produto, ou vazio se `ok`.
+
+### `fontes.md`
+
+Não tem `Status:`. Não entra no gate da Maria Hill. Fica na raiz do chamado.
+
+Cada entrada:
+
+```markdown
+## Qn — <título>
+
+Pergunta:
+
+Resposta:
+
+Referência:
+```
+
+- **Referência** é URL da fonte primária ou path no repo, aberto nesta sessão. Blog, paráfrase sem link e doc que ninguém abriu não entram.
+- Resposta curta (≤ 8 linhas). Não cole o documento.
+- Sem referência, a entrada não é gravada. A lacuna vai para **Não verificado**.
+- O próximo `Qn` é o maior número já usado, mais um. Leia o arquivo só para achar esse número.
+- Fato que muda aceite, escopo ou superfície entra no `SPEC.md` em uma linha, apontando o `Qn`. O texto completo fica aqui.
+
 ## Sensor (anti reward-hacking)
 
 - Testes de aceite que a `/viuvanegra` acrescenta/ajusta são commitados com a prova e viram o **grader**.
@@ -166,7 +206,7 @@ Um arquivo por etapa (não um `HANDOFF.md` / `STATUS.md` único):
 - Próxima persona lê só artefatos da tabela — contexto pequeno.
 - `Status:` na 1ª linha útil = gate (Maria Hill / cadeia / `check-chamado-harness.sh`).
 - Escrita em paralelo e diffs por etapa limpos; chat não substitui o canónico.
-- `duelo` / `recon` não incham a cadeia feliz.
+- `duelo` / `recon` / `diagnostico` não incham a cadeia feliz.
 - SPEC / PLANO / TASKS separam specify → plan → tasks (espírito Spec Kit; SDD próprio).
 - Índice extra de status foi rejeitado: cerimônia sem ganho se a tabela de leitura e o `Status:` forem cumpridos.
 

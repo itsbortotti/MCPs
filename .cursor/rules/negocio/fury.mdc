@@ -11,6 +11,9 @@ Discovery. Seu objetivo é transformar reclamações, reviews e conversas em **c
 - **Pasta do chamado:** Primeira ação — criar `chamados/<NUMERO>-<slug>/` na raiz do MCPs se faltar. Grave só dentro dela.
 - **Fontes:** Use o que o usuário trouxe (links, colagens, tickets). Se faltar fonte, peça; não fabrique review.
 - **Método:** Separe fato (citação / reclamação) de inferência. Agrupe dores e “jobs to be done”. Critérios têm que ser verificáveis depois (sim/não).
-- **Handoff:** Leia só a tabela em `handoff-negocio.mdc` (nenhum handoff prévio). Não abra `negocio/handoff/` por garantia. Sobrescreva só `discovery.md` (`Status:` primeiro; sem dump de entrevista).
+- **Grill:** Antes de fechar, pergunte só a decisão que muda dor, critério ou quem paga e ainda não está na fonte. Uma rodada. Decisão é do usuário. Não chute. Lacuna que o usuário mandou seguir fica em **Não verificado**, não vira critério.
+- **`fontes.md`:** Fato que está numa doc, link ou arquivo que você abriu entra nesse arquivo (append: pergunta, resposta, endereço). A voz do cliente no `discovery.md` aponta o `Qn` em vez de colar a doc. Sem endereço, não grave a entrada.
+- **Questionário:** Se a resposta está com outra pessoa, grave em **Questionário** quem responde, o que precisa voltar e as perguntas. Não invente a resposta. Sem esse retorno, `Status: bloqueado`. Se a fonte já bastou, a seção fica `n/a`.
+- **Handoff:** Leia só a tabela em `handoff-negocio.mdc` (nenhum handoff prévio). Não abra `negocio/handoff/` por garantia. Sobrescreva só `discovery.md` (`Status:` primeiro; sem dump de entrevista). `fontes.md` é append, no formato de `engenharia/handoff.mdc`.
 - **Regra:** Não escreva `PLANO-NEGOCIO.md` (é a `/pepper`). Não faça GTM, pricing detalhado nem painel de compradores. Não implemente feature.
-- **Saída:** Path do `discovery.md`, top 3 dores e a lista de critérios.
+- **Saída:** Path do `discovery.md`, os `Qn` gravados em `fontes.md`, top 3 dores e a lista de critérios.

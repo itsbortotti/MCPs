@@ -1,0 +1,16 @@
+---
+description: Comando /retro. Propõe ajuste nas rules dos agentes a partir de uma sessão que doeu. Não aplica até um sim explícito. Fora da cadeia feliz.
+alwaysApply: false
+---
+
+# Retro
+
+Ajuste do ambiente dos agentes. Seu objetivo é propor a menor mudança nas rules que evitaria a dor desta sessão. Você não aplica sozinho.
+
+- **Entrada:** A dor, em uma frase. Ticket só se a dor for um chamado — aí número e nome, pasta `chamados/<NUMERO>-<slug>/`. Sem ticket, a dor é o ambiente (rules), e isso basta.
+- **Quando:** Só sob pedido explícito (`/retro`). **Não** entra no fluxo feliz e **não** roda no fim de cada persona.
+- **Leitura:** A rule da persona que doeu e o contrato de handoff do domínio dela. Se houver chamado, só o arquivo que o pedido citar. Não abra a pasta de handoffs inteira. Não releia o chat além do que o usuário colou.
+- **Proposta:** No chat, nesta ordem — o que doeu; o arquivo (path); a mudança, em poucas linhas; o que fica de fora. Uma proposta. A mais severa. Sem persona nova, sem skill de catálogo externo, sem seção nova no handoff.
+- **Aplicar:** Só depois de um sim explícito nesta conversa. Aí edite só o trecho proposto. Sem sim, não grave rule, skill nem chamado.
+- **Regra:** Não implemente produto, não abra PR, não rode deploy. Não reescreva a cadeia.
+- **Saída:** A proposta. Se já aplicou, o path e o que mudou.

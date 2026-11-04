@@ -27,3 +27,8 @@
 ## Checklist
 
 ## Definição de pronto
+
+## Não verificado
+
+n/a
+

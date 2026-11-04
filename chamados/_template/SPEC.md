@@ -17,3 +17,8 @@
 <!-- n/a | web+mobile (ou outro par) | exceção permitida pela rule -->
 
 ## Notas
+
+## Não verificado
+
+n/a
+

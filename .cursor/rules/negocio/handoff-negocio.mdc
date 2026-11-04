@@ -31,8 +31,8 @@ Gate: leia primeiro a linha `Status:` do handoff exigido. Se `Status` ≠ `ok`, 
 
 | Comando | Paths permitidos (só estes) |
 | --- | --- |
-| `/fury` | Nenhum handoff prévio (fontes do pedido). Escreve `discovery.md`. |
-| `/pepper` | `negocio/handoff/discovery.md` se existir. Ao reforçar: `PLANO-NEGOCIO.md` + **um** de `painel.md` / `financeiro.md` / `gtm.md` (o que o pedido citar). |
+| `/fury` | Nenhum handoff prévio (fontes do pedido). Escreve `discovery.md`. Append em `fontes.md` quando o fato veio de doc, link ou arquivo aberto. |
+| `/pepper` | `negocio/handoff/discovery.md` se existir. `fontes.md` só se o discovery ou o pedido citar um `Qn`. Ao reforçar: `PLANO-NEGOCIO.md` + **um** de `painel.md` / `financeiro.md` / `gtm.md` (o que o pedido citar). Não reabra a doc. |
 | `/banner` | `PLANO-NEGOCIO.md` se existir; senão `negocio/handoff/discovery.md` — **não os dois** por garantia. |
 | `/hope` | `PLANO-NEGOCIO.md`; opcional **um**: `discovery.md` **ou** `financeiro.md`. |
 | `/ultron` | `PLANO-NEGOCIO.md`; opcional **um**: `discovery.md` **ou** `financeiro.md` **ou** `gtm.md`. |
@@ -41,7 +41,7 @@ Chat não substitui arquivo. Sem o path exigido, pare e peça a persona que falt
 
 ## Contrato de escrita
 
-- Sobrescreve **só o seu** arquivo. Nunca append noutro.
+- Sobrescreve **só o seu** arquivo. Nunca append noutro. Exceção: `/fury` faz append em `fontes.md` (raiz do chamado; formato em `engenharia/handoff.mdc`).
 - Seções curtas. Caps:
   - `discovery.md`: voz do cliente ≤ 10 itens; critérios em bullets curtos.
   - `financeiro.md`: 3 cenários redondos; sem planilha longa.
@@ -49,10 +49,12 @@ Chat não substitui arquivo. Sem o path exigido, pare e peça a persona que falt
   - `painel.md`: 3–5 arquetipos; ≤ 7 objeções fortes.
   - `PLANO-NEGOCIO.md`: seções do contrato; sem dump de pesquisa.
 - **Não cole log inteiro / dump de entrevista** — evidência mínima com fonte/path.
+- **Não verificado** vem antes de **Bloqueios** (máx. 5 bullets; `n/a` se vazio). Cabe o que a sessão supôs e não leu na fonte. A persona seguinte trata isso como hipótese: não vira premissa e não conta como critério. É seção do contrato.
 
 | Arquivo | Quem escreve |
 | --- | --- |
 | `negocio/handoff/discovery.md` | `/fury` |
+| `fontes.md` | `/fury` faz append; formato em `engenharia/handoff.mdc` |
 | `PLANO-NEGOCIO.md` | `/pepper` |
 | `negocio/handoff/financeiro.md` | `/banner` |
 | `negocio/handoff/gtm.md` | `/hope` |
@@ -84,7 +86,9 @@ Status: ok | bloqueado | gap
 3. **Jobs / dores**
 4. **Critérios** — testáveis.
 5. **Não-problemas**
-6. **Bloqueios** — vazio se `ok`.
+6. **Questionário** — quem responde, o que precisa voltar, perguntas. `n/a` se a fonte já bastou.
+7. **Não verificado**
+8. **Bloqueios** — vazio se `ok`. Sem retorno do questionário: `bloqueado`.
 
 ### `PLANO-NEGOCIO.md` (Pepper Potts)
 
@@ -99,6 +103,7 @@ Cabeçalho (chamado, produto, horizonte) + :
 7. **Riscos**
 8. **Próximos passos**
 9. **Fora de escopo**
+10. **Não verificado** — lacuna que seguiu sem decisão. `n/a` se não houver. Não é oferta.
 
 ### `financeiro.md` (Banner)
 

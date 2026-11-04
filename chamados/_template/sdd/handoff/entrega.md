@@ -19,4 +19,8 @@ Status: pendente
 
 ## Como rodar
 
+## Não verificado
+
+n/a
+
 ## Bloqueios

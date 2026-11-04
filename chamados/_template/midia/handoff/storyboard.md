@@ -13,4 +13,8 @@ Status: pendente
 
 ## Voz / música
 
+## Não verificado
+
+n/a
+
 ## Bloqueios

@@ -21,4 +21,8 @@ Status: pendente
 
 ## Para o plano
 
+## Não verificado
+
+n/a
+
 ## Bloqueios

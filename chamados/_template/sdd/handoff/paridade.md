@@ -21,4 +21,8 @@ Status: pendente
 
 ## Gaps
 
+## Não verificado
+
+n/a
+
 ## Bloqueios

@@ -112,7 +112,7 @@ chamados/<NUMERO>-<slug-do-nome>/
 
 Slug: minúsculas, sem acento, espaços → hífen. Ex.: `1234` + `Busca estabelecimentos` → `chamados/1234-busca-estabelecimentos/`.
 
-**Como invocar** (número e nome obrigatórios na cadeia de engenharia, na de negócio, e em `/falcao`, `/loki`, `/shuri`):
+**Como invocar** (número e nome obrigatórios na cadeia de engenharia, na de negócio, e em `/falcao`, `/loki`, `/shuri`, `/rocket`):
 
 ```text
 /drdestino 1234 Busca estabelecimentos
@@ -122,7 +122,7 @@ Slug: minúsculas, sem acento, espaços → hífen. Ex.: `1234` + `Busca estabel
 
 Ou no corpo: `Ticket: 1234` e `Nome: …`.
 
-Exceções sem ticket: `/jarvis` (bootstrap), `/capitao` (só link da PR), `/wong`, `/demolidor`. `/formiga` e `/heimdall` pedem ticket quando o trabalho é de um chamado.
+Exceções sem ticket: `/jarvis` (bootstrap), `/capitao` (só link da PR), `/wong`, `/demolidor`, `/retro` (quando a dor é o ambiente dos agentes). `/formiga` e `/heimdall` pedem ticket quando o trabalho é de um chamado. `/retro` pede ticket quando a dor é um chamado.
 
 Plano legado migrado: `chamados/001-migrado-busca-estabelecimentos/` (só PLANO — ver README lá). Chamados novos: `chamados/_template/`. Não há contrato na raiz do MCPs.
 
@@ -150,8 +150,10 @@ Esqueleto de pasta: `chamados/README.md` e `chamados/_template/`.
 | `/demolidor` | Demolidor | Lê o texto da norma no acervo público [ctresb/leis](https://github.com/ctresb/leis) |
 | `/loki` | Loki | Duelo adversarial leve ao plano ou à solução; grava `duelo.md` (fora do fluxo feliz) |
 | `/shuri` | Shuri | Reverse engineering com [REA](https://github.com/morluto/rea); grava `recon.md` para o plano |
+| `/rocket` | Rocket | Diagnóstico de bug difícil; grava `diagnostico.md` (fora do fluxo feliz) |
+| `/retro` | — | Propõe um ajuste nas rules e só aplica depois de um sim |
 
-`/capitao`, `/formiga`, `/heimdall`, `/jarvis`, `/wong`, `/demolidor`, `/loki` e `/shuri` ficam fora da cadeia feliz. O Falcão entra na cadeia feliz só quando há superfície dupla obrigatória (posição fixa: após `/visao`, antes de `/viuvanegra`). O Loki só sob pedido. A Shuri só com alvo concreto e REA instalado (`npx rea-agents setup`).
+`/capitao`, `/formiga`, `/heimdall`, `/jarvis`, `/wong`, `/demolidor`, `/loki`, `/shuri`, `/rocket` e `/retro` ficam fora da cadeia feliz. O Falcão entra na cadeia feliz só quando há superfície dupla obrigatória (posição fixa: após `/visao`, antes de `/viuvanegra`). O Loki só sob pedido. A Shuri só com alvo concreto e REA instalado (`npx rea-agents setup`). O Rocket só com sintoma concreto. O Retro não grava rule sem um sim.
 
 ### Handoff tipado (engenharia)
 
@@ -168,6 +170,8 @@ Dentro de `chamados/<NUMERO>-<slug>/`:
 | `sdd/handoff/paridade.md` | `/falcao` |
 | `sdd/handoff/duelo.md` | `/loki` |
 | `sdd/handoff/recon.md` | `/shuri` |
+| `sdd/handoff/diagnostico.md` | `/rocket` |
+| `fontes.md` | `/drdestino`, `/fury`, `/demolidor` (append: pergunta, resposta, endereço) |
 
 Seções fixas na rule `.cursor/rules/engenharia/handoff.mdc`. Stubs com `Status: pendente` em `chamados/_template/`.
 
@@ -181,7 +185,7 @@ Fluxo sugerido: `/fury` → `/pepper` → `/banner` e `/hope` (podem em paralelo
 
 | Comando | Personagem | Faz |
 | --- | --- | --- |
-| `/fury` | Nick Fury | Discovery e voz do cliente → `negocio/handoff/discovery.md` |
+| `/fury` | Nick Fury | Discovery e voz do cliente → `negocio/handoff/discovery.md`; questionário se a resposta está com outra pessoa |
 | `/pepper` | Pepper Potts | Único `PLANO-NEGOCIO.md` (ops / orquestração) |
 | `/banner` | Banner | Pricing, unit economics, risco → `negocio/handoff/financeiro.md` |
 | `/hope` | Hope van Dyne | GTM, launch, messaging → `negocio/handoff/gtm.md` |

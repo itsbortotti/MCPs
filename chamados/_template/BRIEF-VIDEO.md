@@ -29,3 +29,8 @@
 ## Próximos passos
 
 <!-- típico: /roteirista -->
+
+## Não verificado
+
+n/a
+

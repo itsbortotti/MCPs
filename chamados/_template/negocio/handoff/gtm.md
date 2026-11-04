@@ -17,4 +17,8 @@ Status: pendente
 
 ## Não fazer
 
+## Não verificado
+
+n/a
+
 ## Bloqueios

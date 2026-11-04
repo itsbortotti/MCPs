@@ -60,6 +60,7 @@ Chat não substitui arquivo. Sem o path exigido, pare e peça a persona que falt
   - `qa.md`: checklist contra o brief; ≤ 10 achados.
   - `pacote.md`: título/thumb/caption/Shorts — texto; você publica.
 - **Não cole** dump de API / base64 / transcript longo — evidência mínima com id/path.
+- **Não verificado** vem antes de **Bloqueios** (máx. 5 bullets; `n/a` se vazio). Cabe o que a sessão supôs. A persona seguinte trata isso como hipótese: não vira critério. É seção do contrato. No `BRIEF-VIDEO.md`, a seção fica depois de **Próximos passos**.
 
 | Arquivo | Quem escreve |
 | --- | --- |
@@ -104,6 +105,7 @@ Cabeçalho (chamado, produto/marca, canal) +:
 7. **Critérios de aceite** — testáveis na `/critico`
 8. **Fora de escopo**
 9. **Próximos passos**
+10. **Não verificado** — lacuna que seguiu sem decisão. `n/a` se não houver. Não é critério da `/critico`.
 
 ### `roteiro.md` (`/roteirista`)
 

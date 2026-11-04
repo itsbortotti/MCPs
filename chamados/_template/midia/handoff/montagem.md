@@ -15,4 +15,8 @@ Status: pendente
 
 ## Entrega intermediária
 
+## Não verificado
+
+n/a
+
 ## Bloqueios

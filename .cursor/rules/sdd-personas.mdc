@@ -40,7 +40,7 @@ Quem pede trabalho para **qualquer** cadeia **passa número e nome do ticket**. 
 
 | Comando | Ticket obrigatório? |
 | --- | --- |
-| Cadeia engenharia (`/drdestino` … `/mariahill`), `/falcao`, `/loki`, `/shuri` | Sim — número e nome |
+| Cadeia engenharia (`/drdestino` … `/mariahill`), `/falcao`, `/loki`, `/shuri`, `/rocket` | Sim — número e nome |
 | Cadeia negócio (`/fury`, `/pepper`, `/banner`, `/hope`, `/ultron`) | Sim — número e nome |
 | Cadeia mídia (`/diretor` … `/distribuidor`) | Sim — número e nome |
 | `/formiga`, `/heimdall` | Sim, se o deploy/smoke for de um chamado. Sem ticket no pedido, peça número e nome |
@@ -48,6 +48,7 @@ Quem pede trabalho para **qualquer** cadeia **passa número e nome do ticket**. 
 | `/jarvis` | Não — bootstrap do repo |
 | `/wong` | Não — organiza a árvore do produto |
 | `/demolidor` | Não — só consulta norma |
+| `/retro` | Não, se a dor for o ambiente dos agentes (rules). Sim, se a dor for um chamado — aí número e nome |
 
 ## Engenharia
 
@@ -67,6 +68,8 @@ Quem pede trabalho para **qualquer** cadeia **passa número e nome do ticket**. 
 | `/demolidor` | Demolidor | lê a norma em ctresb/leis | `engenharia/demolidor.mdc` |
 | `/loki` | Loki | duelo adversarial leve | `engenharia/loki.mdc` |
 | `/shuri` | Shuri | reverse engineering com REA | `engenharia/shuri.mdc` |
+| `/rocket` | Rocket | diagnóstico de bug difícil | `engenharia/rocket.mdc` |
+| `/retro` | — | propõe ajuste nas rules; não aplica sozinho | `engenharia/retro.mdc` |
 
 Cadeia: `/drdestino` escreve `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `TASKS.md` → `/ironman` implementa por task id e grava `sdd/handoff/entrega.md` → `/visao` corrige o diff, grava `revisao.md` e, se houver tela, audita com `web-design-guidelines` → `/falcao` (depois do `/visao`, **antes** da `/viuvanegra`) quando a rule do repo ou o SPEC/plano exige outra superfície (ou sob pedido), grava `paridade.md` — sem superfície dupla, Falcão é skippable → `/viuvanegra` prova o aceite do **SPEC**, com `playwright-cli` se houver tela, Semgrep e Strix no diff, grava `prova.md` (testes de aceite = grader) → `/mariahill` roda `check-chamado-harness.sh --before-pr` e abre a PR (se superfície dupla for obrigatória e não houver `paridade.md` com `Status: ok`, Maria Hill para e pede `/falcao`). Cada uma lê **só** os paths da tabela em `.cursor/rules/engenharia/handoff.mdc` (e as rules do repo de produto). Não faz o papel da próxima.
 
@@ -76,7 +79,9 @@ Se uma rule do repo exige outra superfície na mesma tarefa, o SPEC/plano inclui
 
 Facilitadores de tela: `web-design-guidelines` e `playwright-cli`. Não use taste-skill, awesome-design-md nem image-to-code.
 
-Fora da cadeia feliz: `/capitao` com o link; `/formiga` e `/heimdall` só com a skill do repo; `/jarvis` bootstrap; `/wong` árvore; `/demolidor` norma em https://github.com/ctresb/leis; `/loki` duelo; `/shuri` REA → `recon.md` para o `/drdestino`.
+Fora da cadeia feliz: `/capitao` com o link; `/formiga` e `/heimdall` só com a skill do repo; `/jarvis` bootstrap; `/wong` árvore; `/demolidor` norma em https://github.com/ctresb/leis (com chamado, append em `fontes.md`); `/loki` duelo; `/shuri` REA → `recon.md` para o `/drdestino`; `/rocket` diagnóstico → `diagnostico.md`; `/retro` propõe ajuste nas rules e espera sim.
+
+`fontes.md` fica na raiz do chamado. `/drdestino`, `/fury` e `/demolidor` fazem append: pergunta, resposta, endereço da fonte primária. Sem endereço, a entrada não entra. A persona seguinte lê o `Qn` só se o plano ou o pedido citar.
 
 Detalhe de ambiente, fila, tenant, comando e CI não fica nestes arquivos. O `/jarvis` grava isso no `.cursor/` daquele repo. Sem esse `.cursor/`, pare e peça o `/jarvis` — exceto o próprio `/jarvis`. **Jarvis não copia** estas personas para o repo de produto: a convenção de `chamados/` e as personas vivem neste repositório (MCPs).
 

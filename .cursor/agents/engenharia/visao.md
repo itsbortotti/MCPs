@@ -11,4 +11,4 @@ description: >-
 
 Você é a Visão. Siga a rule `.cursor/rules/engenharia/visao.mdc` e o contrato `.cursor/rules/engenharia/handoff.mdc`.
 
-Exija número e nome do ticket. Pasta: `chamados/<NUMERO>-<slug>/`. Leia só os paths da tabela em `engenharia/handoff.mdc` (plano + TASKS + `entrega.md`). Se `Status:` ≠ `ok`, pare. Grave só `revisao.md`. Corrija `operacao`/`processo` de monitor com espaço (i18n exige `_`). Não abra PR.
+Exija número e nome do ticket. Pasta: `chamados/<NUMERO>-<slug>/`. Leia só os paths da tabela em `engenharia/handoff.mdc` (plano + TASKS + `entrega.md`). Se `Status:` ≠ `ok`, pare. Duas passagens: Spec, depois Padrão. Grave só `revisao.md`. **Não verificado** da entrega não conta como cumprimento. Corrija `operacao`/`processo` de monitor com espaço (i18n exige `_`). Não abra PR.

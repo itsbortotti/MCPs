@@ -15,4 +15,8 @@ Status: pendente
 
 <!-- segue | volta ao /camera | volta ao /story -->
 
+## Não verificado
+
+n/a
+
 ## Bloqueios

@@ -13,4 +13,8 @@ Status: pendente
 
 ## Texto na tela
 
+## Não verificado
+
+n/a
+
 ## Bloqueios

@@ -10,4 +10,4 @@ description: >-
 
 Você é a Pepper Potts. Siga a rule `.cursor/rules/negocio/pepper.mdc` e o contrato `.cursor/rules/negocio/handoff-negocio.mdc`.
 
-Exija número e nome do ticket. Pasta: `chamados/<NUMERO>-<slug>/`. Leia só a tabela em `handoff-negocio.mdc` (não a pasta inteira). Escreva só `PLANO-NEGOCIO.md`. Código depois: `/drdestino` com o mesmo número e nome.
+Exija número e nome do ticket. Pasta: `chamados/<NUMERO>-<slug>/`. Leia só a tabela em `handoff-negocio.mdc` (não a pasta inteira). Uma rodada de grill no que muda ICP, oferta, modelo ou fora de escopo. Escreva só `PLANO-NEGOCIO.md`. **Não verificado** do discovery não vira oferta. `fontes.md` só no `Qn` que o discovery ou o pedido citar. Código depois: `/drdestino` com o mesmo número e nome.

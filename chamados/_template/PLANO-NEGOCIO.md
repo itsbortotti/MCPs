@@ -13,3 +13,8 @@
 ## Riscos
 
 ## Próximos passos
+
+## Não verificado
+
+n/a
+
