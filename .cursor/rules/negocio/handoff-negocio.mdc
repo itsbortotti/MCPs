@@ -142,3 +142,4 @@ Igual à engenharia (`engenharia/handoff.mdc`): um arquivo por persona; Banner e
 - Handoff não substitui o `PLANO-NEGOCIO.md`.
 - Sem critérios de engenharia nestes arquivos.
 - Não commite segredo nem dado sensível de cliente.
+- Ao encerrar a passada, rode `python3 scripts/custo-passada.py` como em `sdd-personas.mdc`. Isso grava `custos.md`. Sem contagem de token, não estime.

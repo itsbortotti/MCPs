@@ -172,6 +172,7 @@ Dentro de `chamados/<NUMERO>-<slug>/`:
 | `sdd/handoff/recon.md` | `/shuri` |
 | `sdd/handoff/diagnostico.md` | `/rocket` |
 | `fontes.md` | `/drdestino`, `/fury`, `/demolidor` (append: pergunta, resposta, endereço) |
+| `custos.md` | cada passada, via `scripts/custo-passada.py` |
 
 Seções fixas na rule `.cursor/rules/engenharia/handoff.mdc`. Stubs com `Status: pendente` em `chamados/_template/`.
 

@@ -83,6 +83,12 @@ Fora da cadeia feliz: `/capitao` com o link; `/formiga` e `/heimdall` só com a 
 
 `fontes.md` fica na raiz do chamado. `/drdestino`, `/fury` e `/demolidor` fazem append: pergunta, resposta, endereço da fonte primária. Sem endereço, a entrada não entra. A persona seguinte lê o `Qn` só se o plano ou o pedido citar.
 
+Ao encerrar uma passada num chamado, rode na raiz do MCPs:
+
+`python3 scripts/custo-passada.py <pasta> --persona <comando> --modelo <id> --fez "<o que esta passada fez>"`
+
+A primeira passada do dia atualiza `chamados/_precos-ia.md` nas fontes oficiais antes de gravar. `--modelo` é `claude-opus-5.5`, `claude-sonnet-5.5`, `claude-haiku-5.5`, `gpt-5.4`, `grok-4.7`, `gemini-4-argon` ou `gemini-3.8-flash`. `--entrada` e `--saida` só entram se o harness ou o usuário passou a contagem. Sem contagem, omita os dois. Não invente token. O `custos.md` lista cada passada (o que fez, IA, tokens, custo) e fecha com o consolidado do chamado.
+
 Detalhe de ambiente, fila, tenant, comando e CI não fica nestes arquivos. O `/jarvis` grava isso no `.cursor/` daquele repo. Sem esse `.cursor/`, pare e peça o `/jarvis` — exceto o próprio `/jarvis`. **Jarvis não copia** estas personas para o repo de produto: a convenção de `chamados/` e as personas vivem neste repositório (MCPs).
 
 ## Negócio / produto

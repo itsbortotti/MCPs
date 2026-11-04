@@ -19,6 +19,7 @@ chamados/<NUMERO>-<slug-do-nome>/
   PLANO-IMPLEMENTACAO.md  # /drdestino — como no repo
   TASKS.md                # /drdestino — checklist ordenado (ids)
   fontes.md               # fato com pergunta, resposta e endereço; append
+  custos.md               # uma linha por passada; comparativo em cada IA
   sdd/handoff/entrega.md
   sdd/handoff/revisao.md
   sdd/handoff/paridade.md   # /falcao — após revisao, antes da prova (se superfície dupla)
@@ -83,6 +84,7 @@ Sem o handoff exigido na tabela, pare e peça a persona que falta.
 | `sdd/handoff/recon.md` | `/shuri` |
 | `sdd/handoff/diagnostico.md` | `/rocket` |
 | `fontes.md` | `/drdestino`, `/fury`, `/demolidor` — append de `## Qn`; não reescreve entrada alheia |
+| `custos.md` | qualquer persona, ao encerrar a passada — via `scripts/custo-passada.py` |
 
 ## Status na primeira linha útil
 

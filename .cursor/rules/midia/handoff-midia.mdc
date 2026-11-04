@@ -174,3 +174,4 @@ Analogia engenharia: tudo no papel até o `/produtor` (como SPEC/PLANO/TASKS); `
 - Sem critérios de engenharia de produto nestes arquivos (código/PR).
 - Não commite segredo, cookie nem API key.
 - `/camera` é a **única** persona autorizada a chamar `execute` / geração MiniMax.
+- Ao encerrar a passada, rode `python3 scripts/custo-passada.py` como em `sdd-personas.mdc`. Isso grava `custos.md`. Sem contagem de token, não estime. O custo de mídia da MiniMax não entra nessa tabela.
