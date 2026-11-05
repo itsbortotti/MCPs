@@ -2,7 +2,7 @@
 
 Guia prático: cola um comando → espera gravar arquivos → confere → cola o próximo.
 
-Duas filas neste manual: **negócio** (ideia, preço, mensagem) e **dev** (plano + código). Cada ticket tem **número + nome** e pasta `MCPs/chamados/<NUMERO>-<slug>/`. Não pule pro `/ironman` sem `SPEC.md` / plano / lista de tarefas — e sem `Status: ok` da etapa anterior.
+Duas filas neste manual: **negócio** (ideia, preço, mensagem) e **dev** (plano + código). Cada ticket tem **número, empresa, cliente e assunto** e pasta `MCPs/chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Não pule pro `/ironman` sem `SPEC.md` / plano / lista de tarefas — e sem `Status: ok` da etapa anterior.
 
 **Vídeo / MiniMax:** terceira cadeia — [MANUAL-MIDIA.md](MANUAL-MIDIA.md) (`/diretor` … `/camera` … `/distribuidor`).
 
@@ -14,7 +14,7 @@ Personas: [README.md](README.md).
 
 - Workspace: **MCPs** + repo do **produto** (ex.: GarageFlow).
 - Uma vez no produto: `/jarvis` (prepara o `.cursor/` local).
-- Todo ticket: **número + nome** → pasta `MCPs/chamados/<NUMERO>-<slug>/`.
+- Todo ticket: **número, empresa, cliente e assunto** → pasta `MCPs/chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
 - Chamados reais ficam na máquina; no git só o `_template`.
 - Um comando por mensagem. Só avance com `Status: ok`.
 - Ticket no MCPs; código no produto.
@@ -41,7 +41,7 @@ Primeiro “compra” a ideia no negócio. Depois, no **mesmo ticket**, planeja 
 **`/fury`** — ouve a dor e grava `discovery.md`.
 
 ```
-/fury 4242 Assinatura mensal oficina
+/fury 4242 garageflow 3smoto Assinatura mensal oficina
 
 Quero entender se oficinas pagariam mensalidade por painel com cobrança e status. Foque dor de atraso e preço.
 ```
@@ -51,7 +51,7 @@ Quero entender se oficinas pagariam mensalidade por painel com cobrança e statu
 Exemplo do que aparece (`negocio/handoff/discovery.md`):
 
 ```markdown
-# Discovery — 4242 Assinatura mensal oficina
+# Discovery — 4242 garageflow 3smoto Assinatura mensal oficina
 
 Status: ok
 
@@ -70,7 +70,7 @@ API, telas e tasks de código — isso é depois, no Destino.
 **`/pepper`** — vira isso em plano de negócio (ainda sem código).
 
 ```
-/pepper 4242 Assinatura mensal oficina
+/pepper 4242 garageflow 3smoto Assinatura mensal oficina
 
 Com base no discovery, escreve o PLANO-NEGOCIO: ICP oficina, oferta mensal no Painel Master, fora de escopo. Sem lista de código.
 ```
@@ -80,7 +80,7 @@ Com base no discovery, escreve o PLANO-NEGOCIO: ICP oficina, oferta mensal no Pa
 Exemplo do que aparece (`PLANO-NEGOCIO.md`):
 
 ```markdown
-# Plano de negócio — 4242 Assinatura mensal oficina
+# Plano de negócio — 4242 garageflow 3smoto Assinatura mensal oficina
 
 ## Oferta
 Plano mensal no Painel Master: preço visível, gera cobrança,
@@ -101,13 +101,13 @@ depois do login no Painel.
 **Banner + Hope** — um precifica, o outro escreve a mensagem. Paralelo ok (duas mensagens).
 
 ```
-/banner 4242 Assinatura mensal oficina
+/banner 4242 garageflow 3smoto Assinatura mensal oficina
 
 Precifica o plano mensal e cenários conservador/base/otimista. Hipótese de atraso e churn.
 ```
 
 ```
-/hope 4242 Assinatura mensal oficina
+/hope 4242 garageflow 3smoto Assinatura mensal oficina
 
 Mensagem de lançamento para dono de oficina: preço claro, cobrança e status no Painel.
 ```
@@ -117,7 +117,7 @@ Mensagem de lançamento para dono de oficina: preço claro, cobrança e status n
 **(Opcional)** `/ultron` — stress-test da oferta.
 
 ```
-/ultron 4242 Assinatura mensal oficina
+/ultron 4242 garageflow 3smoto Assinatura mensal oficina
 
 Painel: dono de oficina que atrasa pagamento e o que mata a oferta.
 ```
@@ -129,7 +129,7 @@ Painel: dono de oficina que atrasa pagamento e o que mata a oferta.
 **`/drdestino`** — escreve `SPEC.md` (o que precisa funcionar), plano e lista de tarefas.
 
 ```
-/drdestino 4242 Assinatura mensal oficina
+/drdestino 4242 garageflow 3smoto Assinatura mensal oficina
 
 Quero que a oficina possa assinar um plano mensal pelo Painel Master: ver preço, gerar cobrança e ver status ativo/atrasado. Web e mobile.
 ```
@@ -139,7 +139,7 @@ Quero que a oficina possa assinar um plano mensal pelo Painel Master: ver preço
 Exemplo do que aparece (`SPEC.md`):
 
 ```markdown
-# SPEC — 4242 Assinatura mensal oficina
+# SPEC — 4242 garageflow 3smoto Assinatura mensal oficina
 
 ## Objetivo
 No Painel Master, a oficina assina plano mensal:
@@ -169,7 +169,7 @@ Exemplo do que aparece (`TASKS.md` — trecho):
 **`/ironman`** — só agora mexe no código. Resumo da entrega no MCPs.
 
 ```
-/ironman 4242 Assinatura mensal oficina
+/ironman 4242 garageflow 3smoto Assinatura mensal oficina
 
 Implementa as tasks do chamado. Código no repo do produto; handoff de entrega no MCPs.
 ```
@@ -179,7 +179,7 @@ Implementa as tasks do chamado. Código no repo do produto; handoff de entrega n
 Exemplo do que aparece (`sdd/handoff/entrega.md`):
 
 ```markdown
-# Entrega — 4242 Assinatura mensal oficina
+# Entrega — 4242 garageflow 3smoto Assinatura mensal oficina
 
 Status: ok
 
@@ -196,7 +196,7 @@ Cobrança mock em DEV; gateway real fica fora deste ticket.
 **`/visao`** — revisa o que mudou (e a tela, se tiver).
 
 ```
-/visao 4242 Assinatura mensal oficina
+/visao 4242 garageflow 3smoto Assinatura mensal oficina
 ```
 
 **Confere:** `revisao.md` → `Status: ok`.
@@ -206,7 +206,7 @@ Cobrança mock em DEV; gateway real fica fora deste ticket.
 > **Pular Falcão:** só uma tela (ex. só web) → não chama `/falcao`.
 
 ```
-/falcao 4242 Assinatura mensal oficina
+/falcao 4242 garageflow 3smoto Assinatura mensal oficina
 
 Paridade web ↔ mobile do fluxo de assinatura mensal no Painel Master.
 ```
@@ -230,7 +230,7 @@ Status: ok
 **`/viuvanegra`** — testa se o `SPEC.md` realmente funciona.
 
 ```
-/viuvanegra 4242 Assinatura mensal oficina
+/viuvanegra 4242 garageflow 3smoto Assinatura mensal oficina
 ```
 
 **Confere:** `prova.md` → `Status: ok`.
@@ -238,7 +238,7 @@ Status: ok
 Exemplo do que aparece (`sdd/handoff/prova.md`):
 
 ```markdown
-# Prova — 4242 Assinatura mensal oficina
+# Prova — 4242 garageflow 3smoto Assinatura mensal oficina
 
 Status: ok
 
@@ -269,7 +269,7 @@ OK  pronto para PR
 **`/mariahill`** — abre a PR.
 
 ```
-/mariahill 4242 Assinatura mensal oficina
+/mariahill 4242 garageflow 3smoto Assinatura mensal oficina
 ```
 
 **Espera** o link. Se faltar `paridade.md` ok (quando web+app for obrigatório), ela para.
@@ -286,7 +286,7 @@ No fim: `PLANO-NEGOCIO.md`, SPEC / plano / tasks, `negocio/handoff/*`, `sdd/hand
 
 ### O que você leva
 
-- Ticket = número + nome → uma pasta; negócio e dev juntos, arquivos separados.
+- Ticket = número, empresa, cliente e assunto → uma pasta; negócio e dev juntos, arquivos separados.
 - Negócio não manda API; dev não começa no Iron Man.
 - `Status: ok` → cola o próximo.
 - Web + app → `/falcao` entre Visão e Viúva; Maria Hill exige `paridade.md` ok.
@@ -298,10 +298,10 @@ No fim: `PLANO-NEGOCIO.md`, SPEC / plano / tasks, `negocio/handoff/*`, `sdd/hand
 
 Mesmo ritmo, sem negócio. **Só web** → não chama Falcão.
 
-**Ticket:** `9910` · `Fix timeout lista OS` → `chamados/9910-fix-timeout-lista-os/`
+**Ticket:** `9910` · `totvs` · `3smoto` · `Fix timeout lista OS` → `chamados/9910 - totvs - 3smoto - Fix timeout lista OS/`
 
 ```
-/drdestino 9910 Fix timeout lista OS
+/drdestino 9910 totvs 3smoto Fix timeout lista OS
 
 A lista de OS no web demora e estoura timeout em oficina com muitas ordens. Quero paginação ou limite seguro no backend e a tela não travar. Só web nesta fatia.
 ```
@@ -309,7 +309,7 @@ A lista de OS no web demora e estoura timeout em oficina com muitas ordens. Quer
 **Confere** SPEC / plano / tasks. Exemplo do `SPEC.md`:
 
 ```markdown
-# SPEC — 9910 Fix timeout lista OS
+# SPEC — 9910 totvs 3smoto Fix timeout lista OS
 
 ## Aceite
 1. Lista de OS no web carrega sem timeout com 5k+ ordens.
@@ -318,7 +318,7 @@ A lista de OS no web demora e estoura timeout em oficina com muitas ordens. Quer
 ```
 
 ```
-/ironman 9910 Fix timeout lista OS
+/ironman 9910 totvs 3smoto Fix timeout lista OS
 ```
 
 → `entrega.md` ok → `/visao` → `revisao.md` ok → **não** `/falcao` → `/viuvanegra` → `prova.md` ok → `/mariahill` → `/capitao` + link da PR.
@@ -329,7 +329,7 @@ A lista de OS no web demora e estoura timeout em oficina com muitas ordens. Quer
 
 ## 4. Se der erro
 
-- Sem número + nome → para; manda de novo com os dois.
+- Sem número, empresa, cliente e assunto → para; manda de novo com os dois.
 - `Status` ≠ `ok` → não avance; leia o bloqueio.
 - Comando “não pega” → falta **MCPs** no workspace.
 - Pede bootstrap → `/jarvis` no produto.

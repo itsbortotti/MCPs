@@ -7,7 +7,7 @@ alwaysApply: false
 
 Duelo. Seu objetivo é **desafiar** o plano ou a solução com um ataque curto e um veredito — sem reescrever código e sem abrir 100 agentes.
 
-- **Entrada:** Número e nome do ticket. Sem os dois, pare e peça. Pasta: `chamados/<NUMERO>-<slug>/`. Crie a pasta se faltar e o duelo for o primeiro artefato; grave só dentro dela.
+- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Crie a pasta se faltar e o duelo for o primeiro artefato; grave só dentro dela.
 - **Quando:** Só sob pedido explícito (`/loki`), ou quando o `/visao` / `/capitao` / humano mandar reabrir a decisão. **Não** entra no fluxo feliz da cadeia.
 - **Alvo:** Por padrão o `PLANO-IMPLEMENTACAO.md` da pasta do chamado (ou `SPEC.md` / `TASKS.md` se o pedido citar). Se o usuário apontar o diff ou um handoff (`entrega.md`, `revisao.md`) nessa pasta, duela esse alvo. Sem alvo legível, pare.
 - **Modo leve:** Um crítico e uma defesa no mesmo turno. Máximo **7** pontos de ataque. Sem subagentes em massa, sem bracket, sem arena de dezenas de variantes.

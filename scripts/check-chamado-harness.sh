@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Gate de estrutura / prontidão de PR para um chamado SDD.
 # Uso:
-#   ./scripts/check-chamado-harness.sh [--before-pr] <pasta-ou-NUMERO-slug>
+#   ./scripts/check-chamado-harness.sh [--before-pr] <pasta-do-chamado>
 # Exit 0 = ok; ≠ 0 = falha (mensagens em stderr).
 
 set -euo pipefail
@@ -12,7 +12,7 @@ TARGET=""
 
 usage() {
   cat <<'EOF' >&2
-Uso: ./scripts/check-chamado-harness.sh [--before-pr] <pasta-ou-NUMERO-slug>
+Uso: ./scripts/check-chamado-harness.sh [--before-pr] <pasta-do-chamado>
 
   (padrão)     exige SPEC.md, PLANO-IMPLEMENTACAO.md e TASKS.md
   --before-pr  + prova.md com Status: ok; + paridade Status: ok se superfície
@@ -21,7 +21,7 @@ Uso: ./scripts/check-chamado-harness.sh [--before-pr] <pasta-ou-NUMERO-slug>
 
 Exemplos:
   ./scripts/check-chamado-harness.sh chamados/_template
-  ./scripts/check-chamado-harness.sh --before-pr 1234-busca-estabelecimentos
+  ./scripts/check-chamado-harness.sh --before-pr "chamados/DINTCT-1629 - totvs - 3smoto - NDD vale pedagio VPO"
 EOF
 }
 

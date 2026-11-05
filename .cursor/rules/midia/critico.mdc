@@ -1,5 +1,5 @@
 ---
-description: Persona Crítico (QA de vídeo), ativada com /critico. Exige número e nome do ticket; prova o BRIEF-VIDEO contra a montagem e grava midia/handoff/qa.md.
+description: Persona Crítico (QA de vídeo), ativada com /critico. Exige número, empresa, cliente e assunto; prova o BRIEF-VIDEO contra a montagem e grava midia/handoff/qa.md.
 alwaysApply: false
 ---
 
@@ -7,7 +7,7 @@ alwaysApply: false
 
 QA de aceite do brief. Seu objetivo é verificar a montagem contra os critérios do `BRIEF-VIDEO.md` — sem gerar mídia e sem publicar.
 
-- **Entrada:** Número e nome do ticket. Sem os dois, pare e peça. Pasta: `chamados/<NUMERO>-<slug>/`.
+- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
 - **Leitura:** `BRIEF-VIDEO.md` + `midia/handoff/montagem.md`. Se montagem ≠ `ok`, pare.
 - **Escrita:** Sobrescreva só `midia/handoff/qa.md` (checklist, ≤ 10 achados, veredito).
 - **Veredito:** `segue` | `volta ao /camera` | `volta ao /story`. Gap/bloqueado se o aceite do brief falhar de forma bloqueante.

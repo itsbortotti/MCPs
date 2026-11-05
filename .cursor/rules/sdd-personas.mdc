@@ -1,5 +1,5 @@
 ---
-description: Índice das personas. Engenharia (SDD), Negócio/produto e Mídia/vídeo. Ative uma com o comando dela e siga só o arquivo correspondente. Todo trabalho de ticket exige número e nome e vive em chamados/<NUMERO>-<slug>/.
+description: Índice das personas. Engenharia (SDD), Negócio/produto e Mídia/vídeo. Ative uma com o comando dela e siga só o arquivo correspondente. Todo trabalho de ticket exige número, empresa, cliente e assunto e vive em chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/.
 alwaysApply: true
 ---
 
@@ -23,10 +23,17 @@ Este arquivo (`sdd-personas.mdc`) fica na **raiz** de `.cursor/rules/` com `alwa
 
 ## Chamado (ticket)
 
-Quem pede trabalho para **qualquer** cadeia **passa número e nome do ticket**. Sem os dois, a persona para e pede.
+Quem pede trabalho para **qualquer** cadeia **passa número, empresa, cliente e assunto**. Sem os quatro, a persona para e pede.
 
-- **Como passar:** `/drdestino 1234 Busca estabelecimentos`, `/pepper 1234 Plano de assinatura` ou `/diretor 9001 Reel GarageFlow OS` — ou no corpo: `Ticket: 1234` e `Nome: …`.
-- **Pasta:** `chamados/<NUMERO>-<slug-do-nome>/` na raiz deste repositório (MCPs). Slug: minúsculas, sem acento, espaços → hífen.
+- **Como passar:** `/drdestino DINTCT-1629 totvs 3smoto NDD vale pedagio VPO` — ou no corpo: `Ticket: DINTCT-1629`, `Empresa: totvs`, `Cliente: 3smoto`, `Nome: NDD vale pedagio VPO`.
+- **Pasta:** `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/` na raiz deste repositório (MCPs).
+  - Número: chave do ticket (`DINTCT-1629`).
+  - Empresa: `itau` | `totvs` | `altivon` | `garageflow`.
+  - Cliente: `3smoto` | `handmade`.
+  - Assunto: o que é o chamado, texto curto. Espaço só neste trecho. Sem `/` e sem `\`.
+- Exemplo: `chamados/DINTCT-1629 - totvs - 3smoto - NDD vale pedagio VPO/`.
+- Empresa ou cliente fora da lista: pare e peça. Não invente token.
+- Pasta já criada fora desse padrão: use a pasta existente. Não renomeie.
 - **Conteúdo engenharia:** `SPEC.md`, `PLANO-IMPLEMENTACAO.md`, `TASKS.md`, `sdd/handoff/*`.
 - **Conteúdo negócio:** `PLANO-NEGOCIO.md`, `negocio/handoff/*`.
 - **Conteúdo mídia:** `BRIEF-VIDEO.md`, `midia/handoff/*`.
@@ -40,15 +47,15 @@ Quem pede trabalho para **qualquer** cadeia **passa número e nome do ticket**. 
 
 | Comando | Ticket obrigatório? |
 | --- | --- |
-| Cadeia engenharia (`/drdestino` … `/mariahill`), `/falcao`, `/loki`, `/shuri`, `/rocket` | Sim — número e nome |
-| Cadeia negócio (`/fury`, `/pepper`, `/banner`, `/hope`, `/ultron`) | Sim — número e nome |
-| Cadeia mídia (`/diretor` … `/distribuidor`) | Sim — número e nome |
-| `/formiga`, `/heimdall` | Sim, se o deploy/smoke for de um chamado. Sem ticket no pedido, peça número e nome |
+| Cadeia engenharia (`/drdestino` … `/mariahill`), `/falcao`, `/loki`, `/shuri`, `/rocket` | Sim — número, empresa, cliente e assunto |
+| Cadeia negócio (`/fury`, `/pepper`, `/banner`, `/hope`, `/ultron`) | Sim — número, empresa, cliente e assunto |
+| Cadeia mídia (`/diretor` … `/distribuidor`) | Sim — número, empresa, cliente e assunto |
+| `/formiga`, `/heimdall` | Sim, se o deploy/smoke for de um chamado. Sem ticket no pedido, peça número, empresa, cliente e assunto |
 | `/capitao` | Não, se só houver link da PR. Ticket opcional para amarrar ao chamado |
 | `/jarvis` | Não — bootstrap do repo |
 | `/wong` | Não — organiza a árvore do produto |
 | `/demolidor` | Não — só consulta norma |
-| `/retro` | Não, se a dor for o ambiente dos agentes (rules). Sim, se a dor for um chamado — aí número e nome |
+| `/retro` | Não, se a dor for o ambiente dos agentes (rules). Sim, se a dor for um chamado — aí número, empresa, cliente e assunto |
 
 ## Engenharia
 
@@ -73,7 +80,7 @@ Quem pede trabalho para **qualquer** cadeia **passa número e nome do ticket**. 
 
 Cadeia: `/drdestino` escreve `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `TASKS.md` → `/ironman` implementa por task id e grava `sdd/handoff/entrega.md` → `/visao` corrige o diff, grava `revisao.md` e, se houver tela, audita com `web-design-guidelines` → `/falcao` (depois do `/visao`, **antes** da `/viuvanegra`) quando a rule do repo ou o SPEC/plano exige outra superfície (ou sob pedido), grava `paridade.md` — sem superfície dupla, Falcão é skippable → `/viuvanegra` prova o aceite do **SPEC**, com `playwright-cli` se houver tela, Semgrep e Strix no diff, grava `prova.md` (testes de aceite = grader) → `/mariahill` roda `check-chamado-harness.sh --before-pr` e abre a PR (se superfície dupla for obrigatória e não houver `paridade.md` com `Status: ok`, Maria Hill para e pede `/falcao`). Cada uma lê **só** os paths da tabela em `.cursor/rules/engenharia/handoff.mdc` (e as rules do repo de produto). Não faz o papel da próxima.
 
-Quem altera o working tree confere o `git status` antes de encerrar. `.cursor/`, `graphify-out/` e `strix_runs/` untracked entram no `.gitignore` do repo de produto e não vão para o commit. No MCPs, runs do Strix ficam em `chamados/<NUMERO>-<slug>/strix_runs/` (via `scripts/strix-in-chamado.sh`); não na raiz.
+Quem altera o working tree confere o `git status` antes de encerrar. `.cursor/`, `graphify-out/` e `strix_runs/` untracked entram no `.gitignore` do repo de produto e não vão para o commit. No MCPs, runs do Strix ficam em `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/strix_runs/` (via `scripts/strix-in-chamado.sh`); não na raiz.
 
 Se uma rule do repo exige outra superfície na mesma tarefa, o SPEC/plano inclui essa superfície ou a exceção que a rule permite. O `/visao` não fecha com ela faltando. O `/falcao` quantifica o gap. A `/mariahill` exige `paridade.md` com `Status: ok` quando a superfície dupla for obrigatória. O `/capitao` lê os checks **e os comentários já na PR** antes de comentar (sem duplicar thread que ainda vale).
 
@@ -105,7 +112,7 @@ Mini-cadeia **separada** da SDD de código. Mesma pasta de chamado; artefatos em
 
 Fluxo sugerido: `/fury` → `/pepper` → `/banner` e `/hope` (podem em paralelo após o plano v1) → `/ultron` → Pepper reforça se o painel pedir. Handoffs: rule `negocio/handoff-negocio.mdc` — mesma regra de contexto mínimo (uma etapa atrás).
 
-Se depois do plano de negócio houver implementação, use o **mesmo** número e nome com `/drdestino` e os artefatos `SPEC` / `PLANO` / `TASKS` — não misture critérios de código no `PLANO-NEGOCIO.md`.
+Se depois do plano de negócio houver implementação, use o **mesmo** número, empresa, cliente e assunto com `/drdestino` e os artefatos `SPEC` / `PLANO` / `TASKS` — não misture critérios de código no `PLANO-NEGOCIO.md`.
 
 ## Mídia / vídeo
 

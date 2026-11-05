@@ -14,7 +14,7 @@ Cada persona **escreve** só o seu arquivo. A seguinte lê **apenas** os paths d
 ## Pasta do chamado
 
 ```
-chamados/<NUMERO>-<slug-do-nome>/
+chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/
   BRIEF-VIDEO.md
   midia/handoff/roteiro.md
   midia/handoff/storyboard.md

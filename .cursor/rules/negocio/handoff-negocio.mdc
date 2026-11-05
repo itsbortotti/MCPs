@@ -12,7 +12,7 @@ Cada persona **escreve** só o seu arquivo. A seguinte lê **apenas** os paths d
 ## Pasta do chamado
 
 ```
-chamados/<NUMERO>-<slug-do-nome>/
+chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/
   PLANO-NEGOCIO.md
   negocio/handoff/discovery.md
   negocio/handoff/financeiro.md

@@ -25,7 +25,7 @@ Ninguém publica rede social. O `/distribuidor` só escreve o pacote; você sobe
 
 - Workspace com a pasta **MCPs** aberta (personas carregam daqui).
 - MCP **MiniMax Design** disponível no Cursor (`user-minimax-design`).
-- Todo ticket: **número + nome** → `chamados/<NUMERO>-<slug>/`.
+- Todo ticket: **número, empresa, cliente e assunto** → `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
 - Um comando por mensagem. Só avance com `Status: ok` no handoff da etapa.
 - Custo MiniMax: quando a `/camera` pedir confirmação, responda **sim** / **go** (ou recuse). Ela não confirma sozinha.
 
@@ -36,7 +36,7 @@ Ninguém publica rede social. O `/distribuidor` só escreve o pacote; você sobe
 ## 3. Pasta e arquivos
 
 ```
-chamados/<NUMERO>-<slug>/
+chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/
   BRIEF-VIDEO.md                 ← /diretor
   midia/handoff/
     roteiro.md                   ← /roteirista
@@ -75,7 +75,7 @@ Skill da câmera: `.cursor/skills/midia-minimax/SKILL.md`.
 ## 5. Simulação — um Reel curto
 
 **Ticket:** `9001` · `Reel GarageFlow OS`  
-**Pasta:** `chamados/9001-reel-garageflow-os/`  
+**Pasta:** `chamados/9001 - garageflow - 3smoto - Reel oficina/`  
 **Ideia:** Reel 20–30s mostrando ordem de serviço no app, CTA “agende na oficina”.
 
 ### 5.1 Papel (sem MiniMax)
@@ -83,7 +83,7 @@ Skill da câmera: `.cursor/skills/midia-minimax/SKILL.md`.
 **`/diretor`**
 
 ```
-/diretor 9001 Reel GarageFlow OS
+/diretor 9001 garageflow 3smoto Reel oficina
 
 Brief para Instagram Reels, 20–30s, vertical 9:16, tom direto de oficina.
 CTA: agende pelo link. Critérios: hook nos 3s, OS legível, sem jargão de dev.
@@ -94,7 +94,7 @@ CTA: agende pelo link. Critérios: hook nos 3s, OS legível, sem jargão de dev.
 **`/roteirista`**
 
 ```
-/roteirista 9001 Reel GarageFlow OS
+/roteirista 9001 garageflow 3smoto Reel oficina
 ```
 
 **Confere:** `midia/handoff/roteiro.md` → `Status: ok`.
@@ -102,7 +102,7 @@ CTA: agende pelo link. Critérios: hook nos 3s, OS legível, sem jargão de dev.
 **`/story`**
 
 ```
-/story 9001 Reel GarageFlow OS
+/story 9001 garageflow 3smoto Reel oficina
 ```
 
 **Confere:** shot list + prompts em `storyboard.md`.
@@ -110,7 +110,7 @@ CTA: agende pelo link. Critérios: hook nos 3s, OS legível, sem jargão de dev.
 **`/produtor`**
 
 ```
-/produtor 9001 Reel GarageFlow OS
+/produtor 9001 garageflow 3smoto Reel oficina
 
 Monte o pacote MiniMax: VO + clips + (se precisar) imagem de apoio.
 Não execute. Liste custos que a câmera vai pedir confirmação.
@@ -123,7 +123,7 @@ Não execute. Liste custos que a câmera vai pedir confirmação.
 **`/camera`**
 
 ```
-/camera 9001 Reel GarageFlow OS
+/camera 9001 garageflow 3smoto Reel oficina
 ```
 
 A persona abre o projeto MiniMax, roda as jobs do pacote, **para no custo** e espera seu “sim”.  
@@ -132,17 +132,17 @@ A persona abre o projeto MiniMax, roda as jobs do pacote, **para no custo** e es
 ### 5.3 Acabamento
 
 ```
-/montador 9001 Reel GarageFlow OS
+/montador 9001 garageflow 3smoto Reel oficina
 ```
 
 ```
-/critico 9001 Reel GarageFlow OS
+/critico 9001 garageflow 3smoto Reel oficina
 ```
 
 Se veredito `segue`:
 
 ```
-/distribuidor 9001 Reel GarageFlow OS
+/distribuidor 9001 garageflow 3smoto Reel oficina
 ```
 
 **Confere:** `pacote.md` (título + caption). Publique você no Instagram.
@@ -185,7 +185,7 @@ Não misture critérios de código no `BRIEF-VIDEO.md`.
 
 ## 9. Checklist rápido
 
-- [ ] Ticket com número e nome  
+- [ ] Ticket com número, empresa, cliente e assunto  
 - [ ] `BRIEF-VIDEO.md`  
 - [ ] `roteiro` → `storyboard` → `pacote-minimax` com `ok`  
 - [ ] `/camera` + confirmação de custo  

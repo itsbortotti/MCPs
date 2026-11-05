@@ -67,7 +67,7 @@ Cada agent aponta para a rule correspondente; o procedimento completo fica em `.
 | Tools | MCP (`mcp.json`), skills do `/jarvis`, scripts em `scripts/` |
 | Sensors | `/visao`, `/viuvanegra` (grader = testes de aceite commitados), `/falcao`, Semgrep, Strix |
 | Gates | `Status:` nos handoffs + `scripts/check-chamado-harness.sh` (`--before-pr` na Maria Hill) |
-| Artifacts | Pasta local `chamados/<id>-<slug>/` (só `_template` no git) |
+| Artifacts | Pasta local `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/` (só `_template` no git) |
 | Bootstrap | `/jarvis` no repo de produto |
 | Eval (opcional) | `scripts/eval-harness-smoke.sh` |
 
@@ -85,10 +85,10 @@ Anti reward-hacking: a Viúva committa os testes de aceite com a prova; o Iron M
 
 ```bash
 # estrutura (SPEC + PLANO + TASKS)
-./scripts/check-chamado-harness.sh chamados/<NUMERO>-<slug>
+./scripts/check-chamado-harness.sh "chamados/<NUMERO> - <empresa> - <cliente> - <assunto>"
 
 # prontidão de PR (prova ok; paridade se superfície dupla)
-./scripts/check-chamado-harness.sh --before-pr chamados/<NUMERO>-<slug>
+./scripts/check-chamado-harness.sh --before-pr "chamados/<NUMERO> - <empresa> - <cliente> - <assunto>"
 
 # smoke do harness (deve ficar verde)
 ./scripts/eval-harness-smoke.sh
@@ -101,7 +101,7 @@ Chamados reais ficam só na máquina; só `_template` vai pro git.
 Planos e handoffs **não** ficam na raiz. Cada ticket tem uma pasta:
 
 ```
-chamados/<NUMERO>-<slug-do-nome>/
+chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/
   SPEC.md                     # engenharia — o quê / aceite (/drdestino)
   PLANO-IMPLEMENTACAO.md      # engenharia — como no repo (/drdestino → /ironman)
   TASKS.md                    # engenharia — checklist ordenado (/drdestino → /ironman)
@@ -110,17 +110,17 @@ chamados/<NUMERO>-<slug-do-nome>/
   negocio/handoff/...         # negócio
 ```
 
-Slug: minúsculas, sem acento, espaços → hífen. Ex.: `1234` + `Busca estabelecimentos` → `chamados/1234-busca-estabelecimentos/`.
+Empresa: `itau` | `totvs` | `altivon` | `garageflow`. Cliente: `3smoto` | `handmade`. Assunto é o que o chamado é, com espaço só nesse trecho. Ex.: `chamados/DINTCT-1629 - totvs - 3smoto - NDD vale pedagio VPO/`. Pasta antiga já existente permanece.
 
-**Como invocar** (número e nome obrigatórios na cadeia de engenharia, na de negócio, e em `/falcao`, `/loki`, `/shuri`, `/rocket`):
+**Como invocar** (número, empresa, cliente e assunto obrigatórios na cadeia de engenharia, na de negócio, e em `/falcao`, `/loki`, `/shuri`, `/rocket`):
 
 ```text
-/drdestino 1234 Busca estabelecimentos
-/pepper 1234 Plano de assinatura
-/fury 1234 Plano de assinatura
+/drdestino DINTCT-1629 totvs 3smoto NDD vale pedagio VPO
+/pepper DINTCT-1629 totvs 3smoto Plano de assinatura
+/fury DINTCT-1629 totvs 3smoto Plano de assinatura
 ```
 
-Ou no corpo: `Ticket: 1234` e `Nome: …`.
+Ou no corpo: `Ticket: DINTCT-1629`, `Empresa: totvs`, `Cliente: 3smoto`, `Nome: NDD vale pedagio VPO`.
 
 Exceções sem ticket: `/jarvis` (bootstrap), `/capitao` (só link da PR), `/wong`, `/demolidor`, `/retro` (quando a dor é o ambiente dos agentes). `/formiga` e `/heimdall` pedem ticket quando o trabalho é de um chamado. `/retro` pede ticket quando a dor é um chamado.
 
@@ -136,7 +136,7 @@ Esqueleto de pasta: `chamados/README.md` e `chamados/_template/`.
 
 | Comando | Personagem | Faz |
 | --- | --- | --- |
-| `/drdestino` | Dr. Destino | Cria `chamados/<NUMERO>-<slug>/` e escreve SPEC + PLANO + TASKS antes de código |
+| `/drdestino` | Dr. Destino | Cria `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/` e escreve SPEC + PLANO + TASKS antes de código |
 | `/ironman` | Iron Man | Implementa PLANO + TASKS e grava `sdd/handoff/entrega.md` |
 | `/visao` | Visão | Revisa o diff, corrige até uma passagem limpa e, em tela, audita com `web-design-guidelines` |
 | `/falcao` | Falcão | Matriz e score de paridade entre superfícies (ex.: web↔mobile); grava `paridade.md` |
@@ -157,7 +157,7 @@ Esqueleto de pasta: `chamados/README.md` e `chamados/_template/`.
 
 ### Handoff tipado (engenharia)
 
-Dentro de `chamados/<NUMERO>-<slug>/`:
+Dentro de `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`:
 
 | Arquivo | Quem escreve |
 | --- | --- |
@@ -195,14 +195,14 @@ Fluxo sugerido: `/fury` → `/pepper` → `/banner` e `/hope` (podem em paralelo
 Exemplo:
 
 ```text
-/fury 5678 Oferta mensal oficinas
-/pepper 5678 Oferta mensal oficinas
-/banner 5678 Oferta mensal oficinas
-/hope 5678 Oferta mensal oficinas
-/ultron 5678 Oferta mensal oficinas
+/fury 5678 garageflow 3smoto Oferta mensal oficinas
+/pepper 5678 garageflow 3smoto Oferta mensal oficinas
+/banner 5678 garageflow 3smoto Oferta mensal oficinas
+/hope 5678 garageflow 3smoto Oferta mensal oficinas
+/ultron 5678 garageflow 3smoto Oferta mensal oficinas
 ```
 
-Seções fixas e tabela de leitura estrita na rule `negocio/handoff-negocio.mdc` (contexto mínimo — uma etapa atrás). Se depois houver implementação, use o mesmo número e nome com `/drdestino` e `SPEC` / `PLANO` / `TASKS`.
+Seções fixas e tabela de leitura estrita na rule `negocio/handoff-negocio.mdc` (contexto mínimo — uma etapa atrás). Se depois houver implementação, use o mesmo número, empresa, cliente e assunto com `/drdestino` e `SPEC` / `PLANO` / `TASKS`.
 
 ## Primeira vez num repositório
 

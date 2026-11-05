@@ -7,7 +7,7 @@ alwaysApply: false
 
 Prepara o repo. Seu objetivo é preparar o repositório **na primeira vez** que o Cursor vai trabalhar nele: criar `.cursor/` só na máquina, escrever as rules e skills que o código realmente pede, **instalar** o tooling obrigatório, e verificar se há alternativa claramente melhor — sem deixar o repo sem as ferramentas necessárias.
 
-- **Chamado:** Ticket **não** é obrigatório. Bootstrap não cria pasta em `chamados/` nem plano de feature. A convenção `chamados/<NUMERO>-<slug>/` e as personas SDD/negócio ficam no repositório **MCPs** — **não** copie arquivos de persona para o repo de produto.
+- **Chamado:** Ticket **não** é obrigatório. Bootstrap não cria pasta em `chamados/` nem plano de feature. A convenção `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/` e as personas SDD/negócio ficam no repositório **MCPs** — **não** copie arquivos de persona para o repo de produto.
 - **Onde:** Tudo nasce na raiz do repositório em que o comando rodou. Não grave rule de ambiente, domínio ou CI nos arquivos de persona do MCPs.
 - **Quando:** Roda uma vez por repo. Se `.cursor/` já existe, está no `.gitignore` e já tem rules, skills e o stack instalado — diga o que já está pronto e só preencha o que faltar. Não recrie arquivo que já cobre o mesmo comportamento.
 - **Só local:** Garanta no `.gitignore` (crie o arquivo se não existir) as entradas `.cursor/`, `graphify-out/` e `strix_runs/`. Não faça commit, não dê push e não abra PR. Se `.cursor/` já estiver versionado, pare e avise antes de tirar do índice.

@@ -7,9 +7,9 @@ alwaysApply: false
 
 Abre a pull request. Seu objetivo é entregar o incremento que a Viúva Negra já provou: commit do que ainda estiver solto, push da branch e PR com o corpo saído do SPEC/plano. O link volta neste chat para o `/capitao`.
 
-- **Entrada:** Número e nome do ticket. Sem os dois, pare e peça. Pasta: `chamados/<NUMERO>-<slug>/`.
+- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
 - **Gate duro (harness):** Antes de abrir a PR, rode na raiz do MCPs:
-  `./scripts/check-chamado-harness.sh --before-pr chamados/<NUMERO>-<slug>`
+  `./scripts/check-chamado-harness.sh --before-pr "chamados/<NUMERO> - <empresa> - <cliente> - <assunto>"`
   (ou o path absoluto da pasta do chamado). Se o exit code ≠ 0, **pare**, mostre a saída e peça a persona que falta (`/drdestino`, `/viuvanegra`, `/falcao`). Não abra PR com harness vermelho.
 - **Handoff:** Leia só a tabela em `.cursor/rules/engenharia/handoff.mdc`: `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `prova.md`; e `paridade.md` quando superfície dupla for obrigatória (primeiro só a linha `Status:`). Não abra o resto de `sdd/handoff/`. Sem SPEC/PLANO/TASKS → `/drdestino`. Sem `prova.md` com `Status: ok` → `/viuvanegra`.
 - **Gate de paridade:** Se o SPEC/plano ou a rule do repo exige outra superfície na mesma tarefa (ex.: web↔mobile) e não há `sdd/handoff/paridade.md` com `Status: ok`, **pare** e peça `/falcao`. Se `paridade.md` existir com `Status: gap`, pare — não abra PR shippable com must aberto. Exceção registada no plano e permitida pela rule = superfície dupla não obrigatória; nesse caso stub `pendente` de `paridade.md` não é exigido como ok.

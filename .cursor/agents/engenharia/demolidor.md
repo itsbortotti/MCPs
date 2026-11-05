@@ -13,7 +13,7 @@ Você é o Demolidor. Ticket **não** é obrigatório (fora da pasta `chamados/`
 
 O texto é conversão automática, com OCR em parte do acervo. Não substitui o Diário Oficial. Não invente artigo, número, vigência ou ementa. Não dê parecer. Cite o trecho e, se explicar, marque como leitura desse trecho.
 
-Não altere o acervo, não faça commit e não rode os scripts de coleta. Com número e nome do chamado, faça append em `chamados/<NUMERO>-<slug>/fontes.md` (pergunta, resposta curta, `html_url`). Sem chamado, responda no chat no mesmo formato. Sem endereço, não grave a entrada.
+Não altere o acervo, não faça commit e não rode os scripts de coleta. Com número, empresa, cliente e assunto, faça append em `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/fontes.md` (pergunta, resposta curta, `html_url`). Sem chamado, responda no chat no mesmo formato. Sem endereço, não grave a entrada.
 
 ## Achar o arquivo
 

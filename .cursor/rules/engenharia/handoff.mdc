@@ -14,7 +14,7 @@ Cada persona **escreve** só o seu arquivo. A seguinte lê **apenas** os paths d
 ## Pasta do chamado
 
 ```
-chamados/<NUMERO>-<slug-do-nome>/
+chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/
   SPEC.md                 # /drdestino — o quê / aceite
   PLANO-IMPLEMENTACAO.md  # /drdestino — como no repo
   TASKS.md                # /drdestino — checklist ordenado (ids)
@@ -29,7 +29,7 @@ chamados/<NUMERO>-<slug-do-nome>/
   sdd/handoff/diagnostico.md  # /rocket — fora da cadeia feliz
 ```
 
-- **Slug:** minúsculas, sem acento, espaços → hífen.
+- **Nome:** número, empresa (`itau` | `totvs` | `altivon` | `garageflow`), cliente (`3smoto` | `handmade`) e assunto. Fora da lista, pare e peça. Pasta antiga já existente permanece; não renomeie. Vocabulário em `sdd-personas.mdc`.
 - Paths **relativos à pasta do chamado**. Crie `sdd/handoff/` se faltar (stubs em `chamados/_template/`).
 - Não use README, TODO, ADR ou `STATUS.md` no lugar destes arquivos.
 - Um ticket = uma pasta.
@@ -45,7 +45,7 @@ Gate: leia primeiro a linha `Status:` do handoff da etapa anterior. Se `Status` 
 | --- | --- |
 | `/drdestino` | Escreve `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `TASKS.md`. Append em `fontes.md` quando um fato veio de fonte primária. Opcional: `sdd/handoff/recon.md` **ou** `sdd/handoff/duelo.md` **ou** `sdd/handoff/diagnostico.md` (o que o pedido citar; se mais de um existir e o pedido não citar, só o mais recente por data no cabeçalho). |
 | `/ironman` | `PLANO-IMPLEMENTACAO.md` + `TASKS.md`. Opcional: `sdd/handoff/diagnostico.md` **ou** `fontes.md` **só se o plano ou o pedido citar**. Não reabra a doc externa. |
-| `/demolidor` | Nenhum handoff. Com número e nome do chamado, só append em `fontes.md`. |
+| `/demolidor` | Nenhum handoff. Com número, empresa, cliente e assunto, só append em `fontes.md`. |
 | `/visao` | `PLANO-IMPLEMENTACAO.md` + `TASKS.md` + `sdd/handoff/entrega.md` |
 | `/falcao` | `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `sdd/handoff/revisao.md` (depois do `/visao`, antes da `/viuvanegra`; skippable sem superfície dupla) |
 | `/viuvanegra` | `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `sdd/handoff/revisao.md` |
@@ -219,4 +219,4 @@ Negócio espelha em `negocio/handoff/` (`handoff-negocio.mdc`).
 - Não invente seção. Se não couber: `n/a`.
 - Não copie código alheio no recon.
 - Handoff não substitui o plano: Iron Man segue `PLANO-IMPLEMENTACAO.md` + `TASKS.md`; aceite da prova vem do `SPEC.md`.
-- Versionar `chamados/<NUMERO>-<slug>/` é opcional; não commite segredo nem screenshot sensível.
+- Versionar `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/` é opcional; não commite segredo nem screenshot sensível.
