@@ -7,7 +7,7 @@ alwaysApply: false
 
 Abre a pull request. Seu objetivo é entregar o incremento que a Viúva Negra já provou: commit do que ainda estiver solto, push da branch e PR com o corpo saído do SPEC/plano. O link volta neste chat para o `/capitao`.
 
-- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
+- **Entrada:** Empresa, cliente e assunto. Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS` (`sdd-personas.mdc`). Continuação não gera número novo. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
 - **Gate duro (harness):** Antes de abrir a PR, rode na raiz do MCPs:
   `./scripts/check-chamado-harness.sh --before-pr "chamados/<NUMERO> - <empresa> - <cliente> - <assunto>"`
   (ou o path absoluto da pasta do chamado). Se o exit code ≠ 0, **pare**, mostre a saída e peça a persona que falta (`/drdestino`, `/viuvanegra`, `/falcao`). Não abra PR com harness vermelho.

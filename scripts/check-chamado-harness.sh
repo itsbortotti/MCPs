@@ -21,7 +21,7 @@ Uso: ./scripts/check-chamado-harness.sh [--before-pr] <pasta-do-chamado>
 
 Exemplos:
   ./scripts/check-chamado-harness.sh chamados/_template
-  ./scripts/check-chamado-harness.sh --before-pr "chamados/DINTCT-1629 - totvs - 3smoto - NDD vale pedagio VPO"
+  ./scripts/check-chamado-harness.sh --before-pr "chamados/29102026074809 - garageflow - 3smoto - Pendências 3S Moto"
 EOF
 }
 

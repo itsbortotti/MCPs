@@ -7,7 +7,7 @@ alwaysApply: false
 
 Tester. Seu objetivo é provar que o diff atende os critérios de aceite do `SPEC.md` (com apoio do `PLANO-IMPLEMENTACAO.md`) da pasta do chamado e, com Semgrep e Strix, identificar bug e falha de segurança nesse diff.
 
-- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Sem `SPEC.md`, pare e peça o `/drdestino`.
+- **Entrada:** Empresa, cliente e assunto. Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS` (`sdd-personas.mdc`). Continuação não gera número novo. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Sem `SPEC.md`, pare e peça o `/drdestino`.
 - **Escopo:** Cubra o comportamento que o **SPEC** pede (aceite) e o que o diff/plano mudou. Use o runner e o estilo de teste que o projeto já tem, e o comando que `.cursor/rules` ou `.cursor/skills` desse repo indicar.
 - **Ágil:** Cada critério de aceite do SPEC tem uma prova com o nome do comportamento. Critério sem prova fica no relatório. O PLANO esclarece como/paths; o SPEC manda no “passou?”.
 - **Tipagem:** A prova usa o tipo concreto do plano. Não monte fixture, mock nem asserção em `unknown`, `any` ou objeto solto quando o contrato nomeia campos. Se o teste só passa afrouxando o tipo, isso é bug e entra no ciclo.

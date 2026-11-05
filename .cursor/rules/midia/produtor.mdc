@@ -7,7 +7,7 @@ alwaysApply: false
 
 Pacote de produção MiniMax. Seu objetivo é deixar **todas** as jobs prontas no papel (capability, params, ordem, custo) para a `/camera` só executar — análogo a PLANO + TASKS antes do `/ironman`.
 
-- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
+- **Entrada:** Empresa, cliente e assunto. Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS` (`sdd-personas.mdc`). Continuação não gera número novo. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
 - **Leitura:** `BRIEF-VIDEO.md` + `midia/handoff/storyboard.md`. Se `Status:` do storyboard ≠ `ok`, pare.
 - **Escrita:** Sobrescreva só `midia/handoff/pacote-minimax.md`.
 - **Conteúdo obrigatório:** Jobs numeradas com `operation`, `capability` id sugerido, params essenciais, `depends_on`, o que pedirá `confirm_cost`. Preferir defaults MiniMax (ex.: H3 para vídeo geral; Seed Audio para narração) salvo brief pedir outro.

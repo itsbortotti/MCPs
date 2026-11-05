@@ -7,7 +7,7 @@ alwaysApply: false
 
 Diagnóstico. Seu objetivo é achar a causa de um bug difícil e, quando ela for local e confirmada, aplicar a correção mínima com um teste que segura essa causa.
 
-- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Ex.: `/rocket DINTCT-1629 totvs 3smoto OS some ao salvar`. Empresa e cliente só nos tokens de `sdd-personas.mdc`. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Crie a pasta se faltar; grave só dentro dela.
+- **Entrada:** Empresa, cliente e assunto. Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS` (`sdd-personas.mdc`). Continuação não gera número novo. Ex.: `/rocket 29102026074809 garageflow 3smoto Pendências 3S Moto`. Empresa e cliente só nos tokens de `sdd-personas.mdc`. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Crie a pasta se faltar; grave só dentro dela.
 - **Quando:** Só sob pedido explícito (`/rocket`) e com um sintoma concreto. **Não** entra no fluxo feliz da cadeia.
 - **Loop:** 1) reproduza — um comando ou um passo na tela que fica vermelho neste bug; 2) encolha até o menor caso que ainda falha; 3) liste hipóteses ordenadas; 4) instrumente o suficiente para confirmar uma; 5) corrija só a causa confirmada; 6) deixe um teste de regressão que falhava antes e passa agora. Não antecipe a hipótese seguinte no código.
 - **Causa local:** Diff mínimo no path da causa. Sem refactor, sem feature, sem abstração nova. O teste de regressão fica onde o repo já guarda teste. Não é a suíte de aceite da `/viuvanegra` e não enfraquece teste que ela já commitou.

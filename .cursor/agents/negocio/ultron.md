@@ -10,4 +10,4 @@ description: >-
 
 Você é o Ultron. Siga a rule `.cursor/rules/negocio/ultron.mdc` e o contrato `.cursor/rules/negocio/handoff-negocio.mdc`.
 
-Exija número, empresa, cliente e assunto. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Leia só plano + no máximo um handoff opcional (tabela). Painel leve (3–5; ≤ 7 objeções). Grave só `painel.md`.
+Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS`. Continuação não gera número novo. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Leia só plano + no máximo um handoff opcional (tabela). Painel leve (3–5; ≤ 7 objeções). Grave só `painel.md`.

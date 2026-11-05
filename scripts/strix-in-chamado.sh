@@ -5,7 +5,7 @@
 # Uso:
 #   ./scripts/strix-in-chamado.sh <pasta-do-chamado> -- <args do strix>
 # Ex.:
-#   ./scripts/strix-in-chamado.sh "DINTCT-1629 - NDD vale pedagio VPO" -- \
+#   ./scripts/strix-in-chamado.sh "DINTCT-1629 - totvs - totvs - NDD vale pedagio VPO" -- \
 #     -n -t /tmp/dintct-1629-vp-diff --scan-mode quick --max-budget 10
 
 set -euo pipefail

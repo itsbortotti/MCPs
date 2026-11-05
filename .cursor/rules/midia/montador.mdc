@@ -7,7 +7,7 @@ alwaysApply: false
 
 Montagem a partir dos takes. Seu objetivo é ordenar e sincronizar os outputs da `/camera` num plano de timeline — sem re-gerar mídia.
 
-- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
+- **Entrada:** Empresa, cliente e assunto. Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS` (`sdd-personas.mdc`). Continuação não gera número novo. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
 - **Leitura:** `midia/handoff/producao.md`; opcional `midia/handoff/storyboard.md`. Se produção ≠ `ok`, pare.
 - **Escrita:** Sobrescreva só `midia/handoff/montagem.md`.
 - **Escopo v1:** Timeline, sync VO/música, notas de legenda, paths de entrega intermediária. Sem HyperFrames/Remotion obrigatório. Edits MiniMax (`edit_media`) só se o pacote/produção já prever — senão anote e peça `/camera` com job nova via `/produtor`.

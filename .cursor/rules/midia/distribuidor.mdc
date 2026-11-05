@@ -7,7 +7,7 @@ alwaysApply: false
 
 Pacote de publicação. Seu objetivo é título+thumb, caption e cortes Shorts/Reels em texto — **você** (humano) publica.
 
-- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
+- **Entrada:** Empresa, cliente e assunto. Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS` (`sdd-personas.mdc`). Continuação não gera número novo. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
 - **Leitura:** `BRIEF-VIDEO.md` + `midia/handoff/qa.md`. Se QA ≠ `ok` ou veredito ≠ `segue`, pare (salvo pedido explícito de rascunho).
 - **Escrita:** Sobrescreva só `midia/handoff/pacote.md`.
 - **Regra:** Não publique em YT/IG/X. Não chame MiniMax. Nada de API de rede social.

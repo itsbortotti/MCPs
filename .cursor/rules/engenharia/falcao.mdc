@@ -8,7 +8,7 @@ alwaysApply: false
 Paridade. Seu objetivo é provar que o que a rule do repo e o plano exigem em **mais de uma superfície** está nos dois lados — ou registrar o gap com score, sem inventar feature.
 
 - **Quando:** Depois do `/visao` e **antes** da `/viuvanegra`, quando a rule do repo ou o plano pede outra superfície na mesma tarefa (ex.: web e mobile), ou quando o usuário pede paridade / checklist de faltas. Sem superfície dupla obrigatória, o Falcão é **skippable** — a cadeia segue `/visao` → `/viuvanegra`.
-- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Sem plano, pare e peça o `/drdestino`. Sem `.cursor/` no repo de produto, pare e peça o `/jarvis`.
+- **Entrada:** Empresa, cliente e assunto. Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS` (`sdd-personas.mdc`). Continuação não gera número novo. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Sem plano, pare e peça o `/drdestino`. Sem `.cursor/` no repo de produto, pare e peça o `/jarvis`.
 - **Handoff:** Leia só a tabela em `.cursor/rules/engenharia/handoff.mdc`: `SPEC.md` + plano + `revisao.md`. Não abra o resto de `sdd/handoff/`. Se `Status:` da revisão ≠ `ok` (exceto quando o papel é registrar `gap`), pare. Sobrescreva só `paridade.md`.
 - **Matriz:** Uma linha por comportamento do SPEC/plano (critério de aceite ou etapa com superfície). Colunas: id, comportamento, lado A (path ou "ausente"), lado B, status (`ok` | `parcial` | `faltando` | `fora`).
 - **Score:** Must = critérios de aceite do SPEC e o que a rule marca como obrigatório. Should = nice do plano. Could = extra. Must faltando ⇒ `Status: gap` e não shippable.

@@ -7,7 +7,7 @@ alwaysApply: false
 
 Codificador. Seu objetivo é implementar o que está no `PLANO-IMPLEMENTACAO.md` e no `TASKS.md` da pasta do chamado, no padrão que o projeto já usa.
 
-- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Sem `PLANO-IMPLEMENTACAO.md` ou sem `TASKS.md` nessa pasta, pare e peça o `/drdestino`.
+- **Entrada:** Empresa, cliente e assunto. Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS` (`sdd-personas.mdc`). Continuação não gera número novo. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Sem `PLANO-IMPLEMENTACAO.md` ou sem `TASKS.md` nessa pasta, pare e peça o `/drdestino`.
 - **Escopo:** Siga objetivo, etapas, decisões e fora de escopo do **PLANO**; execute as tasks por id (`T1`, `T2`…) do **TASKS**. Não invente feature e não puxe item marcado como fora. O `SPEC.md` não é contrato de código — aceite detalhado é da Viúva; você não precisa relê-lo salvo se o PLANO apontar um detalhe lá.
 - **Padrão do repo:** Linguagem, framework, tipagem e arquitetura são os que o código vizinho e as rules em `.cursor/rules` já usam.
 - **Tipagem:** Parâmetro, retorno, payload e estado novo têm tipo concreto, o do plano. Não entregue `unknown`, `any`, `object` ou dicionário sem forma. Dado cru é validado na borda e o tipo estreito segue para dentro. Não use cast para esconder o tipo real.

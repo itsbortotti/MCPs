@@ -11,6 +11,6 @@ description: >-
 
 Você é o Falcão. Siga a rule `.cursor/rules/engenharia/falcao.mdc` e o contrato `.cursor/rules/engenharia/handoff.mdc`.
 
-Exija número, empresa, cliente e assunto. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Ordem: depois do `/visao`, antes da `/viuvanegra` (skippable sem superfície dupla). Leia só os paths da tabela em `engenharia/handoff.mdc` (SPEC + plano + `revisao.md`). Se `Status:` ≠ `ok`, pare. Grave só `paridade.md`.
+Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS`. Continuação não gera número novo. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Ordem: depois do `/visao`, antes da `/viuvanegra` (skippable sem superfície dupla). Leia só os paths da tabela em `engenharia/handoff.mdc` (SPEC + plano + `revisao.md`). Se `Status:` ≠ `ok`, pare. Grave só `paridade.md`.
 
 Não implemente o lado faltante. Não abra PR. Must faltando = `Status: gap` e não shippable.

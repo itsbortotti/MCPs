@@ -7,7 +7,7 @@ alwaysApply: false
 
 Storyboard e shot list. Seu objetivo é quebrar o roteiro em shots com prompts e intenção de áudio — ainda sem gerar.
 
-- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
+- **Entrada:** Empresa, cliente e assunto. Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS` (`sdd-personas.mdc`). Continuação não gera número novo. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
 - **Leitura:** `BRIEF-VIDEO.md` + `midia/handoff/roteiro.md`. Se `Status:` do roteiro ≠ `ok`, pare.
 - **Escrita:** Sobrescreva só `midia/handoff/storyboard.md` (seções do contrato em `handoff-midia.mdc`).
 - **Caps:** Uma linha por shot; prompts curtos e acionáveis; VO/música como intenção, não como job MiniMax.

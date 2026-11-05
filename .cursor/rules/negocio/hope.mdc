@@ -7,7 +7,7 @@ alwaysApply: false
 
 Go-to-market. Seu objetivo é mensagem, canais e fases de lançamento alinhados ao plano — sem inventar produto novo e sem código.
 
-- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
+- **Entrada:** Empresa, cliente e assunto. Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS` (`sdd-personas.mdc`). Continuação não gera número novo. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
 - **Leitura / handoff:** Tabela em `handoff-negocio.mdc`: `PLANO-NEGOCIO.md`; opcional **um** (`discovery.md` ou `financeiro.md`). Não abra os dois opcionais. Se `Status:` do opcional ≠ `ok`, ignore-o ou pare se o pedido depender dele. Sobrescreva só `gtm.md` (`Status:` primeiro).
 - **Método:** Headline + suporte; poucos canais; fases pré / dia 0 / pós; o que **não** fazer.
 - **Regra:** Não troque preço (é a `/banner`). Não faça painel adversarial (é o `/ultron`). Não implemente landing nem campanha no repo — só o plano de GTM.

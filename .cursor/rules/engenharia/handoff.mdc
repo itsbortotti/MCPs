@@ -29,7 +29,7 @@ chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/
   sdd/handoff/diagnostico.md  # /rocket — fora da cadeia feliz
 ```
 
-- **Nome:** número, empresa (`itau` | `totvs` | `altivon` | `garageflow`), cliente (`3smoto` | `handmade`) e assunto. Fora da lista, pare e peça. Pasta antiga já existente permanece; não renomeie. Vocabulário em `sdd-personas.mdc`.
+- **Nome:** número, empresa (`itau` | `totvs` | `altivon` | `garageflow`), cliente (`3smoto` | `handmade` | `totvs` | `todos`) e assunto. Fora da lista, pare e peça. Pasta antiga já existente permanece; não renomeie. Vocabulário em `sdd-personas.mdc`.
 - Paths **relativos à pasta do chamado**. Crie `sdd/handoff/` se faltar (stubs em `chamados/_template/`).
 - Não use README, TODO, ADR ou `STATUS.md` no lugar destes arquivos.
 - Um ticket = uma pasta.

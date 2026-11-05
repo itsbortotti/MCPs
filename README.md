@@ -110,17 +110,17 @@ chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/
   negocio/handoff/...         # negócio
 ```
 
-Empresa: `itau` | `totvs` | `altivon` | `garageflow`. Cliente: `3smoto` | `handmade`. Assunto é o que o chamado é, com espaço só nesse trecho. Ex.: `chamados/DINTCT-1629 - totvs - 3smoto - NDD vale pedagio VPO/`. Pasta antiga já existente permanece.
+Empresa: `itau` | `totvs` | `altivon` | `garageflow`. Cliente: `3smoto` | `handmade` | `totvs` | `todos`. Assunto com a primeira letra maiúscula e o resto minúsculo; sigla em maiúsculas. Espaço só nesse trecho. Ex.: `chamados/29102026074809 - garageflow - 3smoto - Pendências 3S Moto/`. Pasta antiga já existente permanece.
 
-**Como invocar** (número, empresa, cliente e assunto obrigatórios na cadeia de engenharia, na de negócio, e em `/falcao`, `/loki`, `/shuri`, `/rocket`):
+**Como invocar** (empresa e cliente obrigatórios; sem número na criação, a persona gera `DDMMAAAAHHMMSS`):
 
 ```text
-/drdestino DINTCT-1629 totvs 3smoto NDD vale pedagio VPO
-/pepper DINTCT-1629 totvs 3smoto Plano de assinatura
-/fury DINTCT-1629 totvs 3smoto Plano de assinatura
+/drdestino 29102026074809 garageflow 3smoto Pendências 3S Moto
+/pepper 29102026074809 garageflow 3smoto Pendências 3S Moto
+/fury 29102026074809 garageflow 3smoto Pendências 3S Moto
 ```
 
-Ou no corpo: `Ticket: DINTCT-1629`, `Empresa: totvs`, `Cliente: 3smoto`, `Nome: NDD vale pedagio VPO`.
+Ou no corpo: `Ticket: 29102026074809`, `Empresa: garageflow`, `Cliente: 3smoto`, `Nome: Pendências 3S Moto`.
 
 Exceções sem ticket: `/jarvis` (bootstrap), `/capitao` (só link da PR), `/wong`, `/demolidor`, `/retro` (quando a dor é o ambiente dos agentes). `/formiga` e `/heimdall` pedem ticket quando o trabalho é de um chamado. `/retro` pede ticket quando a dor é um chamado.
 

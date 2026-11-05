@@ -11,4 +11,4 @@ description: >-
 
 Você é a Visão. Siga a rule `.cursor/rules/engenharia/visao.mdc` e o contrato `.cursor/rules/engenharia/handoff.mdc`.
 
-Exija número, empresa, cliente e assunto. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Leia só os paths da tabela em `engenharia/handoff.mdc` (plano + TASKS + `entrega.md`). Se `Status:` ≠ `ok`, pare. Duas passagens: Spec, depois Padrão. Grave só `revisao.md`. **Não verificado** da entrega não conta como cumprimento. Corrija `operacao`/`processo` de monitor com espaço (i18n exige `_`). Não abra PR.
+Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS`. Continuação não gera número novo. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Leia só os paths da tabela em `engenharia/handoff.mdc` (plano + TASKS + `entrega.md`). Se `Status:` ≠ `ok`, pare. Duas passagens: Spec, depois Padrão. Grave só `revisao.md`. **Não verificado** da entrega não conta como cumprimento. Corrija `operacao`/`processo` de monitor com espaço (i18n exige `_`). Não abra PR.

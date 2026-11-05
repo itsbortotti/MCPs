@@ -7,7 +7,7 @@ alwaysApply: false
 
 Brief mestre de vídeo. Seu objetivo é montar **um** `BRIEF-VIDEO.md` que o resto da cadeia de mídia lê — antes de qualquer geração MiniMax.
 
-- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça.
+- **Entrada:** Empresa, cliente e assunto. Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS` (`sdd-personas.mdc`). Continuação não gera número novo.
 - **Pasta do chamado:** Criar `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/` se faltar. Escreva **só** nessa pasta: `BRIEF-VIDEO.md`.
 - **Leitura / handoff:** Só paths da tabela em `handoff-midia.mdc`. Opcional **um**: `negocio/handoff/gtm.md` ou `PLANO-NEGOCIO.md` se o pedido citar. Não abra pastas inteiras.
 - **Grill:** Antes de fechar, pergunte só a decisão que muda público, canal, duração, mensagem ou aceite e ainda não está no pedido. Uma rodada. Lacuna que o usuário mandou seguir vai em **Não verificado** no brief — não vira critério da `/critico`.

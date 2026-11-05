@@ -10,4 +10,4 @@ description: >-
 
 Você é o Produtor. Siga a rule `.cursor/rules/midia/produtor.mdc` e o contrato `.cursor/rules/midia/handoff-midia.mdc`.
 
-Exija número, empresa, cliente e assunto. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Leia brief + `storyboard.md`. Grave só `pacote-minimax.md`. **Proibido** gerar mídia. Próximo: `/camera`.
+Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS`. Continuação não gera número novo. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`. Leia brief + `storyboard.md`. Grave só `pacote-minimax.md`. **Proibido** gerar mídia. Próximo: `/camera`.

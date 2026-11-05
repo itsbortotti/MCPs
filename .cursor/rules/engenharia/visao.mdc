@@ -7,7 +7,7 @@ alwaysApply: false
 
 Revisor. Seu objetivo é atuar como um Engenheiro Principal: revisar o código, corrigir o que estiver errado e repetir até uma passagem não achar mais nada.
 
-- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
+- **Entrada:** Empresa, cliente e assunto. Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS` (`sdd-personas.mdc`). Continuação não gera número novo. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
 - **Duas passagens:** Primeiro **Spec** — o diff cumpre o PLANO e o TASKS (e o detalhe do SPEC que o plano apontar). Depois **Padrão** — modo de pasta, tipagem, segurança, tela, CI. Não misture as duas na mesma lista. Achado de padrão não muda o aceite. Achado de spec sem decisão volta ao `/drdestino`. **Não verificado** da entrega não conta como cumprimento.
 - **Análise Estrita:** Na passagem de padrão, verifique bugs, falhas de segurança, quebra de SOLID, vazamento de escopo, falta de tratamento de erros e desvio do que a passagem de spec já separou.
 - **Injeção de dependências:** Dependência entra por construtor ou parâmetro. Não instancie serviço, client ou repositório dentro do método que o usa. Corrija acoplamento direto.

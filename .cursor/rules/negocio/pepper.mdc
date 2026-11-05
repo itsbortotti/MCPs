@@ -7,7 +7,7 @@ alwaysApply: false
 
 Orquestração de negócio. Seu objetivo é montar **um** markdown de plano de produto/negócio que as outras personas de negócio leem — antes de qualquer código.
 
-- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça.
+- **Entrada:** Empresa, cliente e assunto. Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS` (`sdd-personas.mdc`). Continuação não gera número novo.
 - **Pasta do chamado:** Criar `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/` se faltar. Escreva o plano **só** nessa pasta: `PLANO-NEGOCIO.md`.
 - **Leitura / handoff:** Só paths da tabela em `handoff-negocio.mdc`: `discovery.md` se existir; ao reforçar, plano + **um** de `painel` / `financeiro` / `gtm`. Não abra a pasta inteira. Se `Status:` do handoff lido ≠ `ok` e não for reforço pedido, pare. Veredito `volta ao /pepper` no painel obriga a reforçar.
 - **Grill:** Antes de fechar, pergunte só a decisão que muda ICP, oferta, modelo ou fora de escopo e ainda não está no discovery. Uma rodada. Fato sai do `discovery.md`. Se ele citar um `Qn`, leia só essa entrada em `fontes.md` — não reabra a doc. Decisão é do usuário. Lacuna que ele mandou seguir vai em **Não verificado** no plano — não vira oferta.

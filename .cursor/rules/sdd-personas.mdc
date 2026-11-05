@@ -23,15 +23,19 @@ Este arquivo (`sdd-personas.mdc`) fica na **raiz** de `.cursor/rules/` com `alwa
 
 ## Chamado (ticket)
 
-Quem pede trabalho para **qualquer** cadeia **passa número, empresa, cliente e assunto**. Sem os quatro, a persona para e pede.
+Quem pede trabalho para **qualquer** cadeia passa **empresa, cliente e assunto**. Sem empresa ou cliente, a persona para e pede. Não invente token.
 
-- **Como passar:** `/drdestino DINTCT-1629 totvs 3smoto NDD vale pedagio VPO` — ou no corpo: `Ticket: DINTCT-1629`, `Empresa: totvs`, `Cliente: 3smoto`, `Nome: NDD vale pedagio VPO`.
+Pedido para **criar** (chamado, spec, plano, brief ou pasta) **sem número**: gere `DDMMAAAAHHMMSS` com o relógio local no instante de criar a pasta. Não peça o número. Não reuse número de outro chamado. Assunto sai do que foi pedido, no padrão de maiúsculas abaixo. Se o pedido trouxer chave de card (`DINTCT-1629`), o número é a chave, sem horário.
+
+Quem **só continua** um chamado já aberto não gera número novo. Sem a pasta identificada, pare e peça o chamado.
+
+- **Como passar:** `/drdestino 29102026074809 garageflow 3smoto Pendências 3S Moto` — ou no corpo: `Ticket: 29102026074809`, `Empresa: garageflow`, `Cliente: 3smoto`, `Nome: Pendências 3S Moto`.
 - **Pasta:** `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/` na raiz deste repositório (MCPs).
-  - Número: chave do ticket (`DINTCT-1629`).
+  - Número: chave do card (`DINTCT-1629`) ou, sem card e sem número no pedido, `DDMMAAAAHHMMSS` gerado na hora (dia, mês, ano, hora, minuto e segundo). Ex.: `22102026185311` é 22/10/2026 18:53:11.
   - Empresa: `itau` | `totvs` | `altivon` | `garageflow`.
-  - Cliente: `3smoto` | `handmade`.
-  - Assunto: o que é o chamado, texto curto. Espaço só neste trecho. Sem `/` e sem `\`.
-- Exemplo: `chamados/DINTCT-1629 - totvs - 3smoto - NDD vale pedagio VPO/`.
+  - Cliente: `3smoto` | `handmade` | `totvs` | `todos`. `todos` só quando o card vale para todo tenant.
+  - Assunto: o que é o chamado. Primeira letra maiúscula, resto minúsculo. Sigla e nome curto ficam em maiúsculas: `NDD`, `CIOT`, `VPO`, `IPEF`, `TPF`, `PR`, `NFS-e`, `DEV`, `3S Moto`. Espaço só neste trecho. Sem `/` e sem `\`.
+- Exemplo: `chamados/29102026074809 - garageflow - 3smoto - Pendências 3S Moto/`.
 - Empresa ou cliente fora da lista: pare e peça. Não invente token.
 - Pasta já criada fora desse padrão: use a pasta existente. Não renomeie.
 - **Conteúdo engenharia:** `SPEC.md`, `PLANO-IMPLEMENTACAO.md`, `TASKS.md`, `sdd/handoff/*`.
@@ -47,10 +51,10 @@ Quem pede trabalho para **qualquer** cadeia **passa número, empresa, cliente e 
 
 | Comando | Ticket obrigatório? |
 | --- | --- |
-| Cadeia engenharia (`/drdestino` … `/mariahill`), `/falcao`, `/loki`, `/shuri`, `/rocket` | Sim — número, empresa, cliente e assunto |
-| Cadeia negócio (`/fury`, `/pepper`, `/banner`, `/hope`, `/ultron`) | Sim — número, empresa, cliente e assunto |
-| Cadeia mídia (`/diretor` … `/distribuidor`) | Sim — número, empresa, cliente e assunto |
-| `/formiga`, `/heimdall` | Sim, se o deploy/smoke for de um chamado. Sem ticket no pedido, peça número, empresa, cliente e assunto |
+| Cadeia engenharia (`/drdestino` … `/mariahill`), `/falcao`, `/loki`, `/shuri`, `/rocket` | Sim — empresa, cliente e assunto. Sem número na criação, gera `DDMMAAAAHHMMSS` |
+| Cadeia negócio (`/fury`, `/pepper`, `/banner`, `/hope`, `/ultron`) | Sim — empresa, cliente e assunto. Sem número na criação, gera `DDMMAAAAHHMMSS` |
+| Cadeia mídia (`/diretor` … `/distribuidor`) | Sim — empresa, cliente e assunto. Sem número na criação, gera `DDMMAAAAHHMMSS` |
+| `/formiga`, `/heimdall` | Sim, se o deploy/smoke for de um chamado. Sem pasta, peça o chamado. Não gera número novo |
 | `/capitao` | Não, se só houver link da PR. Ticket opcional para amarrar ao chamado |
 | `/jarvis` | Não — bootstrap do repo |
 | `/wong` | Não — organiza a árvore do produto |

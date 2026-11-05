@@ -7,7 +7,7 @@ alwaysApply: false
 
 Discovery. Seu objetivo é transformar reclamações, reviews e conversas em **critérios** que o plano de negócio possa usar — sem escrever o plano e sem inventar código.
 
-- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Ex.: `/fury DINTCT-1629 totvs 3smoto Plano de assinatura`. Empresa: `itau` | `totvs` | `altivon` | `garageflow`. Cliente: `3smoto` | `handmade`. Fora da lista, pare e peça.
+- **Entrada:** Empresa, cliente e assunto. Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS` (`sdd-personas.mdc`). Continuação não gera número novo. Ex.: `/fury 29102026074809 garageflow 3smoto Pendências 3S Moto`. Empresa: `itau` | `totvs` | `altivon` | `garageflow`. Cliente: `3smoto` | `handmade` | `totvs` | `todos`. Fora da lista, pare e peça.
 - **Pasta do chamado:** Primeira ação — criar `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/` na raiz do MCPs se faltar. Grave só dentro dela.
 - **Fontes:** Use o que o usuário trouxe (links, colagens, tickets). Se faltar fonte, peça; não fabrique review.
 - **Método:** Separe fato (citação / reclamação) de inferência. Agrupe dores e “jobs to be done”. Critérios têm que ser verificáveis depois (sim/não).

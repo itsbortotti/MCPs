@@ -7,7 +7,7 @@ alwaysApply: false
 
 QA de aceite do brief. Seu objetivo é verificar a montagem contra os critérios do `BRIEF-VIDEO.md` — sem gerar mídia e sem publicar.
 
-- **Entrada:** Número, empresa, cliente e assunto. Sem os quatro, pare e peça. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
+- **Entrada:** Empresa, cliente e assunto. Sem empresa ou cliente, pare e peça. Sem número, na criação, gere `DDMMAAAAHHMMSS` (`sdd-personas.mdc`). Continuação não gera número novo. Pasta: `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/`.
 - **Leitura:** `BRIEF-VIDEO.md` + `midia/handoff/montagem.md`. Se montagem ≠ `ok`, pare.
 - **Escrita:** Sobrescreva só `midia/handoff/qa.md` (checklist, ≤ 10 achados, veredito).
 - **Veredito:** `segue` | `volta ao /camera` | `volta ao /story`. Gap/bloqueado se o aceite do brief falhar de forma bloqueante.
