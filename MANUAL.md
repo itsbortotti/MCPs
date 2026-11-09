@@ -25,7 +25,7 @@ Personas: [README.md](README.md).
 
 ## 2. Simulação A — negócio → dev
 
-Primeiro “compra” a ideia no negócio. Depois, no **mesmo ticket**, planeja e implementa. Negócio → `PLANO-NEGOCIO.md` + `negocio/handoff/`. Dev → `SPEC.md`, `PLANO-IMPLEMENTACAO.md`, `TASKS.md` + `sdd/handoff/`. Código no produto.
+Primeiro “compra” a ideia no negócio. Depois, no **mesmo ticket**, planeja e implementa. Negócio → `PLANO-NEGOCIO.md` + `negocio/handoff/`. Dev → `SPEC.md`, `PLANO-IMPLEMENTACAO.md`, `TASKS.md`, `DOC-APROVACAO.md` + `sdd/handoff/`. Código no produto.
 
 | Fila | Ordem | Arquivos |
 |------|--------|----------|
@@ -126,7 +126,7 @@ Painel: dono de oficina que atrasa pagamento e o que mata a oferta.
 
 ### Dev (mesmo ticket)
 
-**`/drdestino`** — escreve `SPEC.md` (o que precisa funcionar), plano e lista de tarefas.
+**`/drdestino`** — escreve `SPEC.md` (o que precisa funcionar), plano, lista de tarefas e `DOC-APROVACAO.md` (texto para o aprovador).
 
 ```
 /drdestino 4242 garageflow 3smoto Assinatura mensal oficina
@@ -134,7 +134,7 @@ Painel: dono de oficina que atrasa pagamento e o que mata a oferta.
 Quero que a oficina possa assinar um plano mensal pelo Painel Master: ver preço, gerar cobrança e ver status ativo/atrasado. Web e mobile.
 ```
 
-**Confere:** os três arquivos existem; o aceite dá pra testar; fala de web **e** app.
+**Confere:** os quatro arquivos existem (`SPEC`, `PLANO`, `TASKS`, `DOC-APROVACAO`); o aceite dá pra testar; fala de web **e** app.
 
 Exemplo do que aparece (`SPEC.md`):
 

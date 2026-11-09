@@ -17,7 +17,7 @@ Este arquivo (`sdd-personas.mdc`) fica na **raiz** de `.cursor/rules/` com `alwa
 
 **Contexto mínimo — uma etapa atrás.** Cada persona lê só os paths da tabela no handoff do seu domínio (artefatos da etapa + handoff da anterior, no máximo um opcional). Não abra a pasta de handoffs inteira. Se `Status:` da anterior ≠ `ok`, pare.
 
-**SDD próprio (engenharia):** specify (`SPEC.md`) → plan (`PLANO-IMPLEMENTACAO.md`) → tasks (`TASKS.md`) → implement → verify. Espírito Spec Kit; **não** é o toolkit Spec Kit CLI. Personas Marvel permanecem na engenharia/negócio.
+**SDD próprio (engenharia):** specify (`SPEC.md`) → plan (`PLANO-IMPLEMENTACAO.md`) → tasks (`TASKS.md`) + aprovação (`DOC-APROVACAO.md`) → implement → verify. Espírito Spec Kit; **não** é o toolkit Spec Kit CLI. Personas Marvel permanecem na engenharia/negócio.
 
 **Mídia:** brief no papel → roteiro → storyboard → pacote MiniMax → **só então** `/camera` gera. Manual: `MANUAL-MIDIA.md`.
 
@@ -38,7 +38,7 @@ Quem **só continua** um chamado já aberto não gera número novo. Sem a pasta 
 - Exemplo: `chamados/29102026074809 - garageflow - 3smoto - Pendências 3S Moto/`.
 - Empresa ou cliente fora da lista: pare e peça. Não invente token.
 - Pasta já criada fora desse padrão: use a pasta existente. Não renomeie.
-- **Conteúdo engenharia:** `SPEC.md`, `PLANO-IMPLEMENTACAO.md`, `TASKS.md`, `sdd/handoff/*`.
+- **Conteúdo engenharia:** `SPEC.md`, `PLANO-IMPLEMENTACAO.md`, `TASKS.md`, `DOC-APROVACAO.md` (sempre — stub em `_template/`; texto legível para o aprovador antes de codar), `sdd/handoff/*`.
 - **Conteúdo negócio:** `PLANO-NEGOCIO.md`, `negocio/handoff/*`.
 - **Conteúdo mídia:** `BRIEF-VIDEO.md`, `midia/handoff/*`.
 - As três podem coexistir no mesmo chamado — arquivos e pastas separados.
@@ -82,7 +82,7 @@ Quem **só continua** um chamado já aberto não gera número novo. Sem a pasta 
 | `/rocket` | Rocket | diagnóstico de bug difícil | `engenharia/rocket.mdc` |
 | `/retro` | — | propõe ajuste nas rules; não aplica sozinho | `engenharia/retro.mdc` |
 
-Cadeia: `/drdestino` escreve `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `TASKS.md` → `/ironman` implementa por task id e grava `sdd/handoff/entrega.md` → `/visao` corrige o diff, grava `revisao.md` e, se houver tela, audita com `web-design-guidelines` → `/falcao` (depois do `/visao`, **antes** da `/viuvanegra`) quando a rule do repo ou o SPEC/plano exige outra superfície (ou sob pedido), grava `paridade.md` — sem superfície dupla, Falcão é skippable → `/viuvanegra` prova o aceite do **SPEC**, com `playwright-cli` se houver tela, Semgrep e Strix no diff, grava `prova.md` (testes de aceite = grader) → `/mariahill` roda `check-chamado-harness.sh --before-pr` e abre a PR (se superfície dupla for obrigatória e não houver `paridade.md` com `Status: ok`, Maria Hill para e pede `/falcao`). Cada uma lê **só** os paths da tabela em `.cursor/rules/engenharia/handoff.mdc` (e as rules do repo de produto). Não faz o papel da próxima.
+Cadeia: `/drdestino` escreve `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `TASKS.md` + `DOC-APROVACAO.md` → `/ironman` implementa por task id e grava `sdd/handoff/entrega.md` → `/visao` corrige o diff, grava `revisao.md` e, se houver tela, audita com `web-design-guidelines` → `/falcao` (depois do `/visao`, **antes** da `/viuvanegra`) quando a rule do repo ou o SPEC/plano exige outra superfície (ou sob pedido), grava `paridade.md` — sem superfície dupla, Falcão é skippable → `/viuvanegra` prova o aceite do **SPEC**, com `playwright-cli` se houver tela, Semgrep e Strix no diff, grava `prova.md` (testes de aceite = grader) → `/mariahill` roda `check-chamado-harness.sh --before-pr` e abre a PR (se superfície dupla for obrigatória e não houver `paridade.md` com `Status: ok`, Maria Hill para e pede `/falcao`). Cada uma lê **só** os paths da tabela em `.cursor/rules/engenharia/handoff.mdc` (e as rules do repo de produto). Não faz o papel da próxima.
 
 Quem altera o working tree confere o `git status` antes de encerrar. `.cursor/`, `graphify-out/` e `strix_runs/` untracked entram no `.gitignore` do repo de produto e não vão para o commit. No MCPs, runs do Strix ficam em `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/strix_runs/` (via `scripts/strix-in-chamado.sh`); não na raiz.
 

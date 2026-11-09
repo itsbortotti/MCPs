@@ -43,7 +43,7 @@ Gate: leia primeiro a linha `Status:` do handoff da etapa anterior. Se `Status` 
 
 | Comando | Paths permitidos (só estes) |
 | --- | --- |
-| `/drdestino` | Escreve `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `TASKS.md`. Append em `fontes.md` quando um fato veio de fonte primária. Opcional: `sdd/handoff/recon.md` **ou** `sdd/handoff/duelo.md` **ou** `sdd/handoff/diagnostico.md` (o que o pedido citar; se mais de um existir e o pedido não citar, só o mais recente por data no cabeçalho). |
+| `/drdestino` | Escreve `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `TASKS.md` + `DOC-APROVACAO.md` (sempre). Append em `fontes.md` quando um fato veio de fonte primária. Opcional: `sdd/handoff/recon.md` **ou** `sdd/handoff/duelo.md` **ou** `sdd/handoff/diagnostico.md` (o que o pedido citar; se mais de um existir e o pedido não citar, só o mais recente por data no cabeçalho). |
 | `/ironman` | `PLANO-IMPLEMENTACAO.md` + `TASKS.md`. Opcional: `sdd/handoff/diagnostico.md` **ou** `fontes.md` **só se o plano ou o pedido citar**. Não reabra a doc externa. |
 | `/demolidor` | Nenhum handoff. Com número, empresa, cliente e assunto, só append em `fontes.md`. |
 | `/visao` | `PLANO-IMPLEMENTACAO.md` + `TASKS.md` + `sdd/handoff/entrega.md` |

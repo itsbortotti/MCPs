@@ -53,7 +53,7 @@ Cada agent aponta para a rule correspondente; o procedimento completo fica em `.
 
 | Domínio | Rules | Agents | Artefatos no chamado |
 | --- | --- | --- | --- |
-| Engenharia | `.cursor/rules/engenharia/` | `.cursor/agents/engenharia/` | `SPEC.md`, `PLANO-IMPLEMENTACAO.md`, `TASKS.md`, `sdd/handoff/` |
+| Engenharia | `.cursor/rules/engenharia/` | `.cursor/agents/engenharia/` | `SPEC.md`, `PLANO-IMPLEMENTACAO.md`, `TASKS.md`, `DOC-APROVACAO.md`, `sdd/handoff/` |
 | Negócio | `.cursor/rules/negocio/` | `.cursor/agents/negocio/` | `PLANO-NEGOCIO.md`, `negocio/handoff/` |
 | Mídia | `.cursor/rules/midia/` | `.cursor/agents/midia/` | `BRIEF-VIDEO.md`, `midia/handoff/` |
 
@@ -74,7 +74,7 @@ Cada agent aponta para a rule correspondente; o procedimento completo fica em `.
 Fluxo de arquivos:
 
 ```text
-SPEC.md  →  PLANO-IMPLEMENTACAO.md  →  TASKS.md
+SPEC.md  →  PLANO-IMPLEMENTACAO.md  →  TASKS.md  +  DOC-APROVACAO.md
                 ↓
          sdd/handoff/entrega.md  →  revisao.md  →  [paridade.md]
                 ↓
@@ -128,7 +128,7 @@ Plano legado migrado: `chamados/001-migrado-busca-estabelecimentos/` (só PLANO 
 
 ## Cadeia — Engenharia
 
-`/drdestino` cria a pasta e escreve `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `TASKS.md` → `/ironman` implementa por id de task e grava `sdd/handoff/entrega.md` → `/visao` corrige o diff, grava `revisao.md` e, se houver tela, audita com `web-design-guidelines` → `/falcao` (depois do `/visao`, **antes** da `/viuvanegra`, quando a rule ou o SPEC/plano pede outra superfície; sem superfície dupla, skippable) grava `paridade.md` → `/viuvanegra` prova o aceite do **SPEC**, grava `prova.md`, e no diff roda Semgrep e Strix → `/mariahill` roda `check-chamado-harness.sh --before-pr` e abre a pull request. Se superfície dupla for obrigatória e não houver `paridade.md` com `Status: ok`, Maria Hill para e pede `/falcao`.
+`/drdestino` cria a pasta e escreve `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `TASKS.md` + `DOC-APROVACAO.md` → `/ironman` implementa por id de task e grava `sdd/handoff/entrega.md` → `/visao` corrige o diff, grava `revisao.md` e, se houver tela, audita com `web-design-guidelines` → `/falcao` (depois do `/visao`, **antes** da `/viuvanegra`, quando a rule ou o SPEC/plano pede outra superfície; sem superfície dupla, skippable) grava `paridade.md` → `/viuvanegra` prova o aceite do **SPEC**, grava `prova.md`, e no diff roda Semgrep e Strix → `/mariahill` roda `check-chamado-harness.sh --before-pr` e abre a pull request. Se superfície dupla for obrigatória e não houver `paridade.md` com `Status: ok`, Maria Hill para e pede `/falcao`.
 
 **Contexto mínimo — uma etapa atrás.** Cada persona lê só os paths da tabela em `.cursor/rules/engenharia/handoff.mdc` (SPEC/PLANO/TASKS conforme a tabela + handoff da etapa anterior; no máximo um opcional). Não abre a pasta `sdd/handoff/` inteira. Se `Status:` da anterior ≠ `ok`, para. Rules do repo de produto entram à parte. Não faz o papel da próxima.
 

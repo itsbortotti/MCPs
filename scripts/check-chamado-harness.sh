@@ -14,7 +14,7 @@ usage() {
   cat <<'EOF' >&2
 Uso: ./scripts/check-chamado-harness.sh [--before-pr] <pasta-do-chamado>
 
-  (padrão)     exige SPEC.md, PLANO-IMPLEMENTACAO.md e TASKS.md
+  (padrão)     exige SPEC.md, PLANO-IMPLEMENTACAO.md, TASKS.md e DOC-APROVACAO.md
   --before-pr  + prova.md com Status: ok; + paridade Status: ok se superfície
                dupla for indicada no SPEC/PLANO/TASKS, ou se paridade.md
                tiver Status diferente de pendente
@@ -142,7 +142,7 @@ has_dual_surface() {
 echo "check-chamado-harness: $DIR"
 [[ "$BEFORE_PR" -eq 1 ]] && echo "modo: --before-pr" || echo "modo: estrutura"
 
-for req in SPEC.md PLANO-IMPLEMENTACAO.md TASKS.md; do
+for req in SPEC.md PLANO-IMPLEMENTACAO.md TASKS.md DOC-APROVACAO.md; do
   if [[ -f "$DIR/$req" ]]; then
     ok "$req"
   else
