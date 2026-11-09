@@ -27,6 +27,7 @@ chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/
   sdd/handoff/duelo.md
   sdd/handoff/recon.md
   sdd/handoff/diagnostico.md  # /rocket — fora da cadeia feliz
+  sdd/handoff/documento.md    # /uatu — PDF de entrega + evidências (fora da cadeia feliz)
 ```
 
 - **Nome:** número, empresa (`itau` | `totvs` | `altivon` | `garageflow`), cliente (`3smoto` | `handmade` | `totvs` | `todos`) e assunto. Fora da lista, pare e peça. Pasta antiga já existente permanece; não renomeie. Vocabulário em `sdd-personas.mdc`.
@@ -53,6 +54,7 @@ Gate: leia primeiro a linha `Status:` do handoff da etapa anterior. Se `Status` 
 | `/loki` | Um alvo: `SPEC.md` / `PLANO-IMPLEMENTACAO.md` / `TASKS.md` **ou** o handoff que o usuário apontar (`entrega.md` / `revisao.md`) |
 | `/shuri` | Nenhum handoff prévio (alvo do pedido + rule). Escreve `recon.md`. |
 | `/rocket` | Nenhum handoff prévio (alvo do pedido + rule). Opcional: o arquivo que o pedido citar (`entrega.md` / `revisao.md` / `prova.md`). Escreve `diagnostico.md`. |
+| `/uatu` | `SPEC.md` + `PLANO-IMPLEMENTACAO.md`. Opcional: `sdd/handoff/prova.md` se `Status: ok`; `DOC-APROVACAO.md` para linguagem de negócio no PDF. Ambiente (`local`\|`dev`\|`hml`\|`prd`) vem do pedido — sem ambiente, pare. Escreve `documento.md` + PNGs/PDF. |
 
 Rules do repo de produto (`.cursor/rules` daquele repo), skills e o diff/código do trabalho **não** são handoff — fora desta tabela, mas necessários ao papel. Chat não substitui arquivo canónico.
 
@@ -83,6 +85,7 @@ Sem o handoff exigido na tabela, pare e peça a persona que falta.
 | `sdd/handoff/duelo.md` | `/loki` |
 | `sdd/handoff/recon.md` | `/shuri` |
 | `sdd/handoff/diagnostico.md` | `/rocket` |
+| `sdd/handoff/documento.md` | `/uatu` |
 | `fontes.md` | `/drdestino`, `/fury`, `/demolidor` — append de `## Qn`; não reescreve entrada alheia |
 | `custos.md` | qualquer persona, ao encerrar a passada — via `scripts/custo-passada.py` |
 
@@ -172,6 +175,14 @@ Status: ok | bloqueado | gap | pendente
 6. **Regressão** — teste que segura a causa, ou `n/a`.
 7. **Não verificado**
 8. **Bloqueios** — sem reprodução, causa é decisão de produto, ou vazio se `ok`.
+
+### `documento.md` (Uatu)
+
+1. **Alvo** — ambiente (`local`\|`dev`\|`hml`\|`prd`), URL base, tenant/utilizador **sem senha**.
+2. **Critérios** — critério (do SPEC) | evidência (path PNG) | passou?
+3. **PDF** — path do PDF na raiz do chamado + path do `manifest.json`.
+4. **Não verificado**
+5. **Bloqueios** — ambiente inacessível, sem credencial para aceite autenticado, critério must falhou, ou vazio se `ok`.
 
 ### `fontes.md`
 

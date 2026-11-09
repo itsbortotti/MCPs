@@ -54,7 +54,7 @@ Quem **só continua** um chamado já aberto não gera número novo. Sem a pasta 
 | Cadeia engenharia (`/drdestino` … `/mariahill`), `/falcao`, `/loki`, `/shuri`, `/rocket` | Sim — empresa, cliente e assunto. Sem número na criação, gera `DDMMAAAAHHMMSS` |
 | Cadeia negócio (`/fury`, `/pepper`, `/banner`, `/hope`, `/ultron`) | Sim — empresa, cliente e assunto. Sem número na criação, gera `DDMMAAAAHHMMSS` |
 | Cadeia mídia (`/diretor` … `/distribuidor`) | Sim — empresa, cliente e assunto. Sem número na criação, gera `DDMMAAAAHHMMSS` |
-| `/formiga`, `/heimdall` | Sim, se o deploy/smoke for de um chamado. Sem pasta, peça o chamado. Não gera número novo |
+| `/formiga`, `/heimdall`, `/uatu` | Sim, se o deploy/smoke/documento for de um chamado. Sem pasta, peça o chamado. Não gera número novo. `/uatu` exige também o ambiente (`local`\|`dev`\|`hml`\|`prd`) |
 | `/capitao` | Não, se só houver link da PR. Ticket opcional para amarrar ao chamado |
 | `/jarvis` | Não — bootstrap do repo |
 | `/wong` | Não — organiza a árvore do produto |
@@ -80,6 +80,7 @@ Quem **só continua** um chamado já aberto não gera número novo. Sem a pasta 
 | `/loki` | Loki | duelo adversarial leve | `engenharia/loki.mdc` |
 | `/shuri` | Shuri | reverse engineering com REA | `engenharia/shuri.mdc` |
 | `/rocket` | Rocket | diagnóstico de bug difícil | `engenharia/rocket.mdc` |
+| `/uatu` | Uatu | documento de entrega com evidências (PDF) no ambiente indicado | `engenharia/uatu.mdc` |
 | `/retro` | — | propõe ajuste nas rules; não aplica sozinho | `engenharia/retro.mdc` |
 
 Cadeia: `/drdestino` escreve `SPEC.md` + `PLANO-IMPLEMENTACAO.md` + `TASKS.md` + `DOC-APROVACAO.md` → `/ironman` implementa por task id e grava `sdd/handoff/entrega.md` → `/visao` corrige o diff, grava `revisao.md` e, se houver tela, audita com `web-design-guidelines` → `/falcao` (depois do `/visao`, **antes** da `/viuvanegra`) quando a rule do repo ou o SPEC/plano exige outra superfície (ou sob pedido), grava `paridade.md` — sem superfície dupla, Falcão é skippable → `/viuvanegra` prova o aceite do **SPEC**, com `playwright-cli` se houver tela, Semgrep e Strix no diff, grava `prova.md` (testes de aceite = grader) → `/mariahill` roda `check-chamado-harness.sh --before-pr` e abre a PR (se superfície dupla for obrigatória e não houver `paridade.md` com `Status: ok`, Maria Hill para e pede `/falcao`). Cada uma lê **só** os paths da tabela em `.cursor/rules/engenharia/handoff.mdc` (e as rules do repo de produto). Não faz o papel da próxima.
@@ -90,7 +91,7 @@ Se uma rule do repo exige outra superfície na mesma tarefa, o SPEC/plano inclui
 
 Facilitadores de tela: `web-design-guidelines` e `playwright-cli`. Não use taste-skill, awesome-design-md nem image-to-code.
 
-Fora da cadeia feliz: `/capitao` com o link; `/formiga` e `/heimdall` só com a skill do repo; `/jarvis` bootstrap; `/wong` árvore; `/demolidor` norma em https://github.com/ctresb/leis (com chamado, append em `fontes.md`); `/loki` duelo; `/shuri` REA → `recon.md` para o `/drdestino`; `/rocket` diagnóstico → `diagnostico.md`; `/retro` propõe ajuste nas rules e espera sim.
+Fora da cadeia feliz: `/capitao` com o link; `/formiga` e `/heimdall` só com a skill do repo; `/uatu` testa no ambiente indicado (`local`\|`dev`\|`hml`\|`prd`) e monta o PDF de entrega com evidências (`documento.md` + skill `entrega-cliente-evidencias`); `/jarvis` bootstrap; `/wong` árvore; `/demolidor` norma em https://github.com/ctresb/leis (com chamado, append em `fontes.md`); `/loki` duelo; `/shuri` REA → `recon.md` para o `/drdestino`; `/rocket` diagnóstico → `diagnostico.md`; `/retro` propõe ajuste nas rules e espera sim.
 
 `fontes.md` fica na raiz do chamado. `/drdestino`, `/fury` e `/demolidor` fazem append: pergunta, resposta, endereço da fonte primária. Sem endereço, a entrada não entra. A persona seguinte lê o `Qn` só se o plano ou o pedido citar.
 

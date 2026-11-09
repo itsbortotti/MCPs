@@ -10,3 +10,6 @@ chamados/*
 # runs locais de ferramentas (legado na raiz — não usar; canônico = chamados/<ticket>/strix_runs/)
 strix_runs/
 chamados/**/strix_runs/
+
+# cache/sessão do playwright-cli (snapshots YAML + console logs; evidência vai em chamados/.../evidencia/)
+.playwright-cli/
