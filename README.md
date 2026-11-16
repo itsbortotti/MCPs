@@ -110,7 +110,7 @@ chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/
   negocio/handoff/...         # negócio
 ```
 
-Empresa: `itau` | `totvs` | `altivon` | `garageflow`. Cliente: `3smoto` | `handmade` | `totvs` | `todos`. Assunto com a primeira letra maiúscula e o resto minúsculo; sigla em maiúsculas. Espaço só nesse trecho. Ex.: `chamados/29102026074809 - garageflow - 3smoto - Pendências 3S Moto/`. Pasta antiga já existente permanece.
+Empresa: `itau` | `totvs` | `altivon` | `garageflow`. Cliente: `3smoto` | `handmade` | `totvs` | `shoppingdasvans` | `todos`. Assunto com a primeira letra maiúscula e o resto minúsculo; sigla em maiúsculas. Espaço só nesse trecho. Ex.: `chamados/29102026074809 - garageflow - 3smoto - Pendências 3S Moto/`. Pasta antiga já existente permanece.
 
 **Como invocar** (empresa e cliente obrigatórios; sem número na criação, a persona gera `DDMMAAAAHHMMSS`):
 

@@ -33,7 +33,7 @@ Quem **só continua** um chamado já aberto não gera número novo. Sem a pasta 
 - **Pasta:** `chamados/<NUMERO> - <empresa> - <cliente> - <assunto>/` na raiz deste repositório (MCPs).
   - Número: chave do card (`DINTCT-1629`) ou, sem card e sem número no pedido, `DDMMAAAAHHMMSS` gerado na hora (dia, mês, ano, hora, minuto e segundo). Ex.: `22102026185311` é 22/10/2026 18:53:11.
   - Empresa: `itau` | `totvs` | `altivon` | `garageflow`.
-  - Cliente: `3smoto` | `handmade` | `totvs` | `todos`. `todos` só quando o card vale para todo tenant.
+  - Cliente: `3smoto` | `handmade` | `totvs` | `shoppingdasvans` | `todos`. `todos` só quando o card vale para todo tenant.
   - Assunto: o que é o chamado. Primeira letra maiúscula, resto minúsculo. Sigla e nome curto ficam em maiúsculas: `NDD`, `CIOT`, `VPO`, `IPEF`, `TPF`, `PR`, `NFS-e`, `DEV`, `3S Moto`. Espaço só neste trecho. Sem `/` e sem `\`.
 - Exemplo: `chamados/29102026074809 - garageflow - 3smoto - Pendências 3S Moto/`.
 - Empresa ou cliente fora da lista: pare e peça. Não invente token.
